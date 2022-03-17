@@ -13,30 +13,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route Untuk Halaman Admin
+
+// Route::get('/', function () {
+//     return view('admin.dashboard_admin');
+// });
+
 Route::get('admin', function () {
     return view('admin.dashboard-admin');
 });
 
+
+// Route Untuk Admin Pasar
+Route::get('admin_pasar', function () {
+    return view('admin_pasar.adashboard_pasar');
+});
+
+
+// Route Untuk User
 Route::get('user', function () {
     return view('user.dashboard-user');
 });
 
-Route::get('/data-admin', function () {
-    return view('admin.pages.data-admin');
+
+// Route Untuk Landing Page
+Route::get('/', function () {
+    return view('landing.landing_page');
 });
 
-Route::get('/data_pasar', function () {
-    return view('admin.pages.data_pasar');
+Route::get('berita', function () {
+    return view('landing.pages.berita');
 });
 
-Route::get('/data_penyewa', function () {
-    return view('admin.pages.data_penyewa');
+Route::get('pasar', function () {
+    return view('landing.pages.pasar');
 });
 
-Route::get('/konten', function () {
-    return view('admin.pages.konten.konten');
+Route::get('kontak', function () {
+    return view('landing.pages.kontak');
 });
 
-Route::get('/tambah_konten', function () {
-    return view('admin.pages.konten.tambah_konten');
+Route::get('about', function () {
+    return view('landing.pages.about');
 });
+
+// Route Untuk Landing Page
