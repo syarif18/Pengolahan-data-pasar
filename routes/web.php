@@ -1,5 +1,32 @@
 <?php
 
+use App\Http\Controllers\BabakanController;
+use App\Http\Controllers\BatikController;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CalonSewaController;
+use App\Http\Controllers\CiledugController;
+use App\Http\Controllers\CipeujeuhController;
+use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\DashboardAdminPasarController;
+use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DataAdminController;
+use App\Http\Controllers\DataPasarController;
+use App\Http\Controllers\InformasiUserController;
+use App\Http\Controllers\JamblangController;
+use App\Http\Controllers\KontakController;
+use App\Http\Controllers\KontenController;
+use App\Http\Controllers\KueController;
+use App\Http\Controllers\LapakController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PalimananController;
+use App\Http\Controllers\PasalaranController;
+use App\Http\Controllers\PasarController;
+use App\Http\Controllers\PedagangController;
+use App\Http\Controllers\ProfileUserController;
+use App\Http\Controllers\SewaUserController;
+use App\Http\Controllers\SumberController;
+use App\Http\Controllers\TentangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,48 +40,70 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route Untuk Login
+Route::get('login', [LoginController::class, 'index']);
+
 // Route Untuk Halaman Admin
 
-// Route::get('/', function () {
-//     return view('admin.dashboard_admin');
-// });
+Route::get('admin', [DashboardAdminController::class, 'index']);
 
-Route::get('admin', function () {
-    return view('admin.dashboard-admin');
-});
+Route::resource('data_admin', DataAdminController::class);
+
+Route::resource('data_pasar', DataPasarController::class);
+// Route::get('data_pasar/create', [DataPasarController::class, 'create']);
+
+Route::get('calon_sewa', [CalonSewaController::class, 'index']);
+
+Route::resource('konten', KontenController::class);
+// Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
+
+Route::resource('palimanan', PalimananController::class);
+
+Route::resource('jamblang', JamblangController::class);
+
+Route::resource('sumber', SumberController::class);
+
+Route::resource('batik', BatikController::class);
+
+Route::resource('kue', KueController::class);
+
+Route::resource('pasalaran', PasalaranController::class);
+
+Route::resource('babakan', BabakanController::class);
+
+Route::resource('cipeujeuh', CipeujeuhController::class);
+
+Route::resource('ciledug', CiledugController::class);
 
 
 // Route Untuk Admin Pasar
-Route::get('admin_pasar', function () {
-    return view('admin_pasar.adashboard_pasar');
-});
+Route::get('admin_pasar', [DashboardAdminPasarController::class, 'index']);
+
+Route::resource('pedagang', PedagangController::class);
+
+Route::resource('lapak', LapakController::class);
 
 
 // Route Untuk User
-Route::get('user', function () {
-    return view('user.dashboard-user');
-});
+Route::get('user', [DashboardUserController::class, 'index']);
+
+Route::resource('profile', ProfileUserController::class);
+
+Route::resource('sewa', SewaUserController::class);
+
+Route::resource('informasi', InformasiUserController::class);
+
+
 
 
 // Route Untuk Landing Page
-Route::get('/', function () {
-    return view('landing.landing_page');
-});
+Route::get('/', [BerandaController::class, 'index']);
 
-Route::get('berita', function () {
-    return view('landing.pages.berita');
-});
+Route::get('berita', [BeritaController::class, 'index']);
 
-Route::get('pasar', function () {
-    return view('landing.pages.pasar');
-});
 
-Route::get('kontak', function () {
-    return view('landing.pages.kontak');
-});
+Route::get('pasar', [PasarController::class, 'index']);
 
-Route::get('about', function () {
-    return view('landing.pages.about');
-});
+Route::get('kontak', [KontakController::class, 'index']);
 
-// Route Untuk Landing Page
+Route::get('about', [TentangController::class, 'index']);

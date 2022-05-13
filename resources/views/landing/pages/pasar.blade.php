@@ -18,7 +18,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-briefcase"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Palimanan</h4>
                 </div>
@@ -32,7 +32,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-card-checklist"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Jamblang</h4>
                 </div>
@@ -47,7 +47,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-bar-chart"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Sumber</h4>
                 </div>
@@ -62,7 +62,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-binoculars"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Batik </h4>
                 </div>
@@ -78,7 +78,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-brightness-high"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Kue</h4>
                 </div>
@@ -94,7 +94,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-calendar4-week"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Pasalaran</h4>
                 </div>
@@ -110,7 +110,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-brightness-high"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Babakan</h4>
                 </div>
@@ -126,7 +126,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-calendar4-week"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Cipejeuh</h4>
                 </div>
@@ -142,7 +142,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-brightness-high"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Ciledug</h4>
                 </div>

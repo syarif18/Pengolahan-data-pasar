@@ -11,8 +11,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('landing_page') }}/assets/img/favicon.png" rel="icon">
-  <link href="{{ asset('landing_page') }}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('landing_page') }}/assets/img/pasar_rakyat.png" rel="icon">
+  <link href="{{ asset('landing_page') }}/assets/img/pasar_rakyat.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
@@ -49,7 +49,7 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active" style="background-image: url({{ asset('landing_page') }}/assets/img/hero-carousel/1.jpg)">
+          <div class="carousel-item active" style="background-image: url({{ asset('landing_page') }}/assets/img/hero-carousel/psr_sumber.jpg)">
             <div class="carousel-container">
               {{-- <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">Pasar Rakyat </h2>
@@ -59,7 +59,7 @@
             </div>
           </div>
 
-          <div class="carousel-item" style="background-image: url({{ asset('landing_page') }}/assets/img/hero-carousel/2.jpg)">
+          <div class="carousel-item" style="background-image: url({{ asset('landing_page') }}/assets/img/hero-carousel/psr_sumber2.jpg)">
             <div class="carousel-container">
               {{-- <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">At vero eos et accusamus</h2>
@@ -151,7 +151,7 @@
       </div>
     </div><!-- End About Section --> --}}
 
-    <!-- ======= Blog Section ======= -->
+    <!-- ======= Konten Section ======= -->
     <div id="blog" class="blog-area">
       <div class="blog-inner area-padding">
         <div class="blog-overly"></div>
@@ -169,7 +169,7 @@
               <div class="single-blog">
                 <div class="single-blog-img">
                   <a href="blog.html">
-                    <img src="{{ asset('landing_page') }}/assets/img/blog/1.jpg" alt="">
+                    <img src="{{ asset('landing_page') }}/assets/img/blog/e-retribusi.jpg" alt="">
                   </a>
                 </div>
                 <div class="blog-meta">
@@ -178,12 +178,12 @@
                     <a href="#">13 comments</a>
                   </span>
                   <span class="date-type">
-                    <i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
+                    <i class="fa fa-calendar"></i>2021-03-05 / 09:10:16
                   </span>
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Assumenda repud eum veniam</a>
+                    <a href="blog.html">Sosialisasi E-Retribusi</a>
                   </h4>
                   <p>
                     Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
@@ -201,7 +201,7 @@
               <div class="single-blog">
                 <div class="single-blog-img">
                   <a href="blog.html">
-                    <img src="{{ asset('landing_page') }}/assets/img/blog/2.jpg" alt="">
+                    <img src="{{ asset('landing_page') }}/assets/img/blog/sekolah_pasar.jpeg" alt="">
                   </a>
                 </div>
                 <div class="blog-meta">
@@ -210,15 +210,15 @@
                     <a href="#">130 comments</a>
                   </span>
                   <span class="date-type">
-                    <i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
+                    <i class="fa fa-calendar"></i>2021-03-05 / 09:10:16
                   </span>
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Explicabo magnam quibusdam.</a>
+                    <a href="blog.html">Sosialisasi Sekolah Pasar di Pasar Paliaman</a>
                   </h4>
                   <p>
-                    Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
+                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
                   </p>
                 </div>
                 <span>
@@ -233,7 +233,7 @@
               <div class="single-blog">
                 <div class="single-blog-img">
                   <a href="blog.html">
-                    <img src="{{ asset('landing_page') }}/assets/img/blog/3.jpg" alt="">
+                    <img src="{{ asset('landing_page') }}/assets/img/blog/pasar_sehat.jpeg" alt="">
                   </a>
                 </div>
                 <div class="blog-meta">
@@ -242,12 +242,12 @@
                     <a href="#">10 comments</a>
                   </span>
                   <span class="date-type">
-                    <i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
+                    <i class="fa fa-calendar"></i>2021-03-05 / 09:10:16
                   </span>
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Lorem ipsum dolor sit amet</a>
+                    <a href="blog.html">Sosialisasi Pasar Sehat di Pasar Palimanan</a>
                   </h4>
                   <p>
                     Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
@@ -281,7 +281,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-briefcase"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Palimanan</h4>
                 </div>
@@ -295,7 +295,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-card-checklist"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Jamblang</h4>
                 </div>
@@ -310,7 +310,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-bar-chart"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Sumber</h4>
                 </div>
@@ -325,7 +325,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-binoculars"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Batik </h4>
                 </div>
@@ -341,7 +341,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-brightness-high"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Kue</h4>
                 </div>
@@ -357,7 +357,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-calendar4-week"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Pasalaran</h4>
                 </div>
@@ -373,7 +373,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-brightness-high"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Babakan</h4>
                 </div>
@@ -389,7 +389,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-calendar4-week"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Cipejeuh</h4>
                 </div>
@@ -405,7 +405,7 @@
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href="#">
-                    <i class="bi bi-brightness-high"></i>
+                    <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Ciledug</h4>
                 </div>
@@ -417,6 +417,62 @@
         </div>
       </div>
     </div><!-- End Services Section -->
+
+      <!-- ======= About Section ======= -->
+    <div id="about" class="about-area area-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
+              <h2>Tentang Kami</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- single-well start-->
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="well-left">
+              <div class="single-well">
+                <a href="#">
+                  <img src="{{ asset('landing_page') }}/assets/img/pasar_rakyat.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- single-well end-->
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="well-middle">
+              <div class="single-well">
+                <a href="#">
+                  <h4 class="sec-head">Pasar Rakyat</h4>
+                </a>
+                <p>
+                  Redug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure aspernatur sit adipisci quaerat unde at nequeRedug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure
+                </p>
+                <ul>
+                  <li>
+                    <i class="bi bi-check"></i> Interior design Package
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i> Building House
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i> Reparing of Residentail Roof
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i> Renovaion of Commercial Office
+                  </li>
+                  <li>
+                    <i class="bi bi-check"></i> Make Quality Products
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End col-->
+        </div>
+      </div>
+    </div><!-- End About Section -->
 
     <!-- ======= Team Section ======= -->
     {{-- <div id="team" class="our-team-area area-padding">

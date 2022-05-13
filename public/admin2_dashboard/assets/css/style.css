@@ -37,6 +37,14 @@ h6 {
     font-family: "Nunito", sans-serif;
 }
 
+.wave {
+    position: fixed;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
@@ -236,7 +244,13 @@ h6 {
 .card {
     margin-bottom: 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+.card .bg {
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 50px;
     box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }
 
@@ -378,6 +392,10 @@ h6 {
     .logo {
         width: 280px;
     }
+
+    .log {
+        width: 280px;
+    }
 }
 
 .logo img {
@@ -391,6 +409,7 @@ h6 {
     color: #008d21;
     font-family: "Nunito", sans-serif;
 }
+
 
 .header {
     transition: all 0.5s;
