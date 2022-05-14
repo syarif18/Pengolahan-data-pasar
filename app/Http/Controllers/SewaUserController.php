@@ -96,12 +96,7 @@ class SewaUserController extends Controller
      */
     public function show($id)
     {
-        $data = SewaUser::findOrFail($id);
-        return view('user.pages.informasi', [
-            "title" => "Lihat Informasi"
-        ])->with([
-            "data" => $data
-        ]);
+        //
     }
 
     /**

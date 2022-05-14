@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pasar | Dashboard</title>
+  <title>Pasar | {{ $title }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -51,7 +51,7 @@
 
   <main id="main" class="main">
 
-    {{-- <div class="pagetitle">
+    <div class="pagetitle">
       <h1>{{ $title }}</h1>
       <nav>
         <ol class="breadcrumb">
@@ -59,7 +59,7 @@
           <li class="breadcrumb-item active">{{ $title }}</li>
         </ol>
       </nav>
-    </div><!-- End Page Title --> --}}
+    </div><!-- End Page Title -->
 
     @yield('content')
     

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SewaUser;
 
 class LapakController extends Controller
 {
@@ -13,8 +14,11 @@ class LapakController extends Controller
      */
     public function index()
     {
+        $data = SewaUser::all();
         return view('admin_pasar.pages.lapak', [
             "title" => "Data Lapak"
+        ])->with([
+            "data" => $data
         ]);
     }
 
@@ -70,7 +74,7 @@ class LapakController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 
     }
 
     /**

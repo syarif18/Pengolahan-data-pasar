@@ -52,8 +52,6 @@ Route::resource('data_admin', DataAdminController::class);
 Route::resource('data_pasar', DataPasarController::class);
 // Route::get('data_pasar/create', [DataPasarController::class, 'create']);
 
-Route::get('calon_sewa', [CalonSewaController::class, 'index']);
-
 Route::resource('konten', KontenController::class);
 // Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
 
@@ -83,6 +81,8 @@ Route::resource('pedagang', PedagangController::class);
 
 Route::resource('lapak', LapakController::class);
 
+Route::resource('calon_sewa', CalonSewaController::class);
+
 
 // Route Untuk User
 Route::get('user', [DashboardUserController::class, 'index']);
@@ -100,7 +100,6 @@ Route::resource('informasi', InformasiUserController::class);
 Route::get('/', [BerandaController::class, 'index']);
 
 Route::get('berita', [BeritaController::class, 'index']);
-
 
 Route::get('pasar', [PasarController::class, 'index']);
 

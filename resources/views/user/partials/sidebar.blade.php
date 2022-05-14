@@ -11,7 +11,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('profile') ? 'active' : 'collapsed' }}" href="/profile">
+        <a class="nav-link {{ Request::is('profile*') ? 'active' : 'collapsed' }}" href="/profile">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
@@ -20,14 +20,14 @@
     
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('sewa') ? 'active' : 'collapsed' }}" href="/sewa">
+        <a class="nav-link {{ Request::is('sewa*') ? 'active' : 'collapsed' }}" href="/sewa">
           <i class="bi bi-shop-window"></i>
           <span>Sewa Lapak</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item ">
-        <a class="nav-link {{ Request::is('informasi') ? 'active' : 'collapsed' }}" href="/informasi">
+        <a class="nav-link {{ Request::is('informasi*') ? 'active' : 'collapsed' }}" href="/informasi">
           <i class="bi bi-envelope"></i>
           <span>Information</span>
         </a>

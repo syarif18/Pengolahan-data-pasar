@@ -53,19 +53,27 @@
                   </tr>
                   <tr>
                     <th style="width: 50%">Pas Foto 3x4</th>
-                    <td><img src="{{ URL::to('/') }}/img/gambarpoto/{{ $data->gambar_paspoto }}" alt="" width="100px" height="120px"></td> </td>
+                    <td><img src="{{ URL::to('/') }}/img/gambarpoto/{{ $data->gambar_paspoto }}" alt="" width="90px" height="120px"></td> </td>
                   </tr>
                   <tr>
                     <th style="width: 50%">KTP</th>
-                    <td><img src="{{ URL::to('/') }}/img/gambarktp/{{ $data->gambar_ktp }}" alt="" width="130px" height="80px"></td> </td>
+                    <td><img src="{{ URL::to('/') }}/img/gambarktp/{{ $data->gambar_ktp }}" alt="" width="130px" height="90px"></td> </td>
                   </tr>
                   <tr>
                     <th style="width: 50%">Kartu Keluarga</th>
-                    <td><img src="{{ URL::to('/') }}/img/gambarkk/{{ $data->gambar_kk }}" alt="" width="130px" height="80px"></td> </td>
+                    <td><img src="{{ URL::to('/') }}/img/gambarkk/{{ $data->gambar_kk }}" alt="" width="130px" height="90px"></td> </td>
                   </tr>
                   <tr>
                     <th style="width: 50%">Status</th>
-                    <td>Menunggu</td>
+                    <td>
+                      @if ($data->status == '0')
+                        <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
+                      @elseif ($data->status == '1') 
+                        <button  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui</i></button>
+                      @else
+                        <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
+                      @endif
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -73,9 +81,7 @@
 
             <br>
             <br>
-
-
-
+            
             {{-- <img src="{{ asset('storage/'. $dataK->gambar) }}" alt="" width="130px" height="70px"></td> --}}
 
             {{-- <div class="row mt-3">
@@ -89,6 +95,26 @@
         <a href="{{ url('informasi') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Kembali</a>
         </div>
         </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><b>Selamat Anda Telah Disetujui</b></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Silahkan Datang Ke kantor {{ $data->nama_pasar }} untuk melakukan registrasi ulang!!!
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+          </div>
+      </div>
+
     </div>
 </section>
 

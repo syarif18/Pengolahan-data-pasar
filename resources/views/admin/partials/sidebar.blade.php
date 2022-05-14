@@ -77,12 +77,12 @@
         </ul>
       </li><!-- End Data Pedagang Nav -->
 
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link {{ Request::is('calon_sewa') ? 'active' : 'collapsed' }}" href="/calon_sewa">
           <i class="bi bi-person-plus"></i>
           <span>Calon Penyewa Lapak</span>
         </a>
-      </li><!-- End Calon Penyewa Page Nav -->
+      </li><!-- End Calon Penyewa Page Nav --> --}}
 
       <li class="nav-item">
         <a class="nav-link {{ Request::is('konten*') ? 'active' : 'collapsed' }}" href="/konten">
