@@ -14,7 +14,8 @@
 			<img src="{{ asset('admin2_dashboard') }}/assets/img/login.png">
 		</div>
 		<div class="login-content">
-			<form action="index.html">
+			<form action="{{ route('postlogin') }}" method="post">
+				@csrf
 				<img src="{{ asset('admin2_dashboard') }}/assets/img/pasar_rakyat.png">
 				<h2 class="title">Selamat Datang</h2>
         <h6 class="sub-title">Silahkan Anda Login Terlebih dahulu</h6>
@@ -23,8 +24,8 @@
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<h5>Username</h5>
-           		   		<input type="text" class="input">
+           		   		<h5>Email</h5>
+           		   		<input type="text" class="input" name="email">
            		   </div>
            		</div>
            		<div class="input-div pass">
@@ -33,7 +34,7 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" class="input">
+           		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
               <ul>

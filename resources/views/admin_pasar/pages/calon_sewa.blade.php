@@ -49,7 +49,7 @@
                                   {{-- kondisi button jika data sudah terisi --}}
                                   @if ($dataSewa->status != '0')
                                       <button disabled = "disabled" class="btn btn-success"> Setuju</button>
-                                      <button disabled = "disabled" class="btn btn-danger"> Tolak</button>
+                                      <button disabled = "disabled" class="btn btn-secondary"> Tolak</button>
                                   @else
                                       <form action="{{ route('lapak.update', $dataSewa->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
                                           @csrf
@@ -61,7 +61,7 @@
                                           @csrf
                                           @method('put')
                                           <input type="hidden" value="2" name="status">
-                                          <button type="submit" class="btn btn-danger"> tolak </button>
+                                          <button type="submit" class="btn btn-secondary"> tolak </button>
                                   </form>
                                   @endif
                                   

@@ -34,7 +34,7 @@
       </li><!-- End Calon Penyewa Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="{{ route('logout') }}">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
         </a>

@@ -14,7 +14,7 @@
                 <li><a class="nav-link scrollto {{ Request::is('pasar') ? 'active' : '' }}" href="/pasar">Pasar</a></li>
                 <li><a class="nav-link scrollto {{ Request::is('about') ? 'active' : '' }}" href="/about">Tentang Kami</a></li>
                 <li><a class="nav-link scrollto {{ Request::is('kontak') ? 'active' : '' }}" href="/kontak">Kontak</a></li>
-                <li><a class="nav-link scrollto {{ Request::is('login') ? 'active' : '' }}" href="/user">Login</a></li>
+                <li><a class="nav-link scrollto {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a></li>
             </ul>
     <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
