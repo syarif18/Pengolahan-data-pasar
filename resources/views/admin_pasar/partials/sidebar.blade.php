@@ -27,9 +27,9 @@
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('calon_sewa') ? 'active' : 'collapsed' }}" href="/calon_sewa">
+        <a class="nav-link {{ Request::is('calon_pedagang') ? 'active' : 'collapsed' }}" href="/calon pedagang">
           <i class="bi bi-person-plus"></i>
-          <span>Calon Penyewa Lapak</span>
+          <span>Calon Pedagang</span>
         </a>
       </li><!-- End Calon Penyewa Page Nav -->
 

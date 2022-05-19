@@ -10,11 +10,21 @@ class CalonSewaController extends Controller
     public function index()
     {
         $data = SewaUser::all();
-        return view('admin_pasar.pages.calon_sewa', [
+        return view('admin.pages.calon_sewa.calon_sewa', [
             "title" => "Data Calon Penyewa"
         ])->with([
             "data" => $data]);
     }
+
+    // public function edit($id)
+    // {
+    //     $data = SewaUser::findOrFail($id);
+    //     return view('admin_pasar.pages.edit', [
+    //         "title" => "Data Calon Penyewa"
+    //     ])->with([
+    //         "data" => $data
+    //     ]);
+    // }
 
     public function update(Request $request, $id)
     {
@@ -23,5 +33,15 @@ class CalonSewaController extends Controller
         $item->update(['status' => $request->status]);
 
         return redirect('calon_sewa')->with('success', 'Konten Berhasil Diupdate!');
+    }
+
+    public function show($id)
+    {
+        $data = SewaUser::findOrFail($id);
+        return view('admin.pages.calon_sewa.show', [
+            "title" => "Lihat Details"
+        ])->with([
+            "data" => $data
+        ]);
     }
 }

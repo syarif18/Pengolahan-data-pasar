@@ -4,6 +4,7 @@ use App\Http\Controllers\BabakanController;
 use App\Http\Controllers\BatikController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CalonPedagangController;
 use App\Http\Controllers\CalonSewaController;
 use App\Http\Controllers\CiledugController;
 use App\Http\Controllers\CipeujeuhController;
@@ -60,6 +61,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::resource('konten', KontenController::class);
     // Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
 
+    Route::resource('calon_sewa', CalonSewaController::class);
+
     Route::resource('palimanan', PalimananController::class);
 
     Route::resource('jamblang', JamblangController::class);
@@ -88,7 +91,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:pengelola']], function () {
 
     Route::resource('lapak', LapakController::class);
 
-    Route::resource('calon_sewa', CalonSewaController::class);
+    Route::resource('calon_pedagang', CalonPedagangController::class);
+
 });
 
 

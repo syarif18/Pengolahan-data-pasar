@@ -24,10 +24,11 @@ class LoginController extends Controller
                 return redirect('admin_pasar');
             } elseif (Auth::user()->level == 'user'){
                 return redirect('user');
-            } else {
-                return redirect('login');
+            } else{
+
             }
         }
+        return redirect('login');
 
     }
 

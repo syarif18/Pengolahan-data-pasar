@@ -27,6 +27,8 @@ class CreateSewaUsersTable extends Migration
             $table->string('gambar_paspoto');
             $table->string('gambar_ktp');
             $table->string('gambar_kk');
+            $table->string('tahun_masuk')->nullable();
+            $table->string('tahun_keluar')->nullable();
             $table->string('status')->default('0');
             $table->timestamps();
         });

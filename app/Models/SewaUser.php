@@ -11,6 +11,6 @@ class SewaUser extends Model
 
     protected $guarded = ['id'];
     protected $fillable = ['nama_pasar', 'jenis_tempat', 'nama', 'nik', 'tanggal_lahir', 'jenis_kelamin',
-     'alamat', 'jenis_jualan', 'nomor_hp', 'gambar_paspoto', 'gambar_ktp', 'gambar_kk', 'status'];
+     'alamat', 'jenis_jualan', 'nomor_hp', 'gambar_paspoto', 'gambar_ktp', 'gambar_kk', 'status', 'tahun_masuk', 'tahun_keluar'];
 
 }
