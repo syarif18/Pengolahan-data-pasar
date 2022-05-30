@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class DataAdminController extends Controller
 {
@@ -13,8 +15,11 @@ class DataAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.data_admin', [
+        $data = User::all();
+        return view('admin.pages.data_admin.data_admin', [
             "title" => "Data Admin"
+        ])->with([
+            "data" => $data
         ]);
     }
 
@@ -25,7 +30,9 @@ class DataAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.data_admin.create', [
+            "title" => "Create Data Admin"
+        ]);
     }
 
     /**
@@ -36,7 +43,21 @@ class DataAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|max:255',
+            'level' => 'required|max:255',
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:5|max:255'
+        ]);
+
+        $validateData['password'] = Hash::make($validateData['password']);
+
+        User::create($validateData);
+
+        $request->session()->flash('success', 'Tambah Data Admin Berhasil!');
+
+        return redirect('data_admin');
+
     }
 
     /**

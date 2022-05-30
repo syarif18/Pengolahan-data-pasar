@@ -1,15 +1,15 @@
-@extends('layouts.main')
+@extends('layouts.amain')
 
 @section('content')
 
-@include('user.partials.navbar')
-@include('user.partials.sidebar')
+@include('admin_pasar.partials.header')
+@include('admin_pasar.partials.sidebar')
 
     <section>
     <div class="card bg">
         <div class="container mt-3">
             <center><h2>Sewa Lapak</h2></center>
-            
+
             <div class="card">
             <div class="card-body">
               <h5 class="card-title">isi Data Sewa Dengan Benar!</h5>
@@ -105,4 +105,3 @@
 
 @endsection
 
-  

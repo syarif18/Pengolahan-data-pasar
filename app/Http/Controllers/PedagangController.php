@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SewaUser;
+use Illuminate\Support\Collection;
+
 
 class PedagangController extends Controller
 {
@@ -13,9 +16,11 @@ class PedagangController extends Controller
      */
     public function index()
     {
+        $data = SewaUser::where('konfirmasi', '1')->get();
         return view('admin_pasar.pages.pedagang', [
-            "title" => "Data Pedagang"
-        ]);
+            "title" => "Data Calon pedagang"
+        ])->with([
+            "datas" => $data]);
     }
 
     /**

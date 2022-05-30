@@ -19,17 +19,32 @@
 				<img src="{{ asset('admin2_dashboard') }}/assets/img/pasar_rakyat.png">
 				<h2 class="title">Selamat Datang</h2>
         <h6 class="sub-title">Silahkan Anda Login Terlebih dahulu</h6>
+
+            @if(session()->has('loginError'))
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <h5>{{ session('loginError') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
            		   		<h5>Email</h5>
-           		   		<input type="text" class="input" name="email">
+           		   		<input type="text" class="input @error('email')
+                                  is-invalid
+                              @enderror" name="email">
+                              @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
            		   </div>
            		</div>
            		<div class="input-div pass">
-           		   <div class="i"> 
+           		   <div class="i">
            		    	<i class="fas fa-lock"></i>
            		   </div>
            		   <div class="div">
@@ -37,14 +52,14 @@
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
-              <ul>
+              {{-- <ul>
                 <li>
                   <a class="forgot" href="#">Lupa Password?</a>
                 </li>
                 <li>
-                  <a class="new" href="#">Buat Akun Baru?</a>
+                  <a class="new" href="{{ url('registrasi') }}">Buat Akun Baru?</a>
                 </li>
-              </ul>
+              </ul> --}}
             	<input type="submit" class="btn" value="Login">
             </form>
         </div>

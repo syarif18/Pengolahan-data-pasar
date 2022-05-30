@@ -4,21 +4,34 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('admin') ? 'active' : 'collapsed' }}" href="/admin">
+        <a class="nav-link {{ Request::is('admin*') ? 'active' : 'collapsed' }}" data-bs-target="#dash-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
+          <i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="dash-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a class="nav-content {{ Request::is('admin') ? 'active' : 'collapsed' }} " href="/admin">
+                  <i class="bi bi-circle"></i><span>Dashboard admin</span>
+                </a>
+            </li>
+            <li>
+                <a class="nav-content {{ Request::is('/') ? 'active' : 'collapsed' }} " href="/">
+                  <i class="bi bi-circle"></i><span>Dashboard Utama</span>
+                </a>
+            </li>
+        </ul>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('data_admin') ? 'active' : 'collapsed' }}" href="/data_admin">
+        <a class="nav-link {{ Request::is('data_admin*') ? 'active' : 'collapsed' }}" href="/data_admin">
           <i class="bi bi-person"></i>
           <span>Data Admin</span>
         </a>
       </li><!-- End Admin Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('data_pasar') ? 'active' : 'collapsed' }}" href="/data_pasar">
+        <a class="nav-link {{ Request::is('data_pasar*') ? 'active' : 'collapsed' }}" href="/data_pasar">
           <i class="bi bi-shop-window"></i>
           <span>Data Pasar</span>
         </a>
@@ -93,7 +106,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('logout') }}">
-          <i class="bi bi-box-arrow-in-right"></i>
+            <i class="bi bi-box-arrow-right"></i>
           <span>Logout</span>
         </a>
       </li><!-- End Login Page Nav -->

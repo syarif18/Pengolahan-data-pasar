@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin Dinas',
             'level' => 'admin',
-            'email' => 'admindinas@admin.com',
+            'email' => 'admindinas@gmail.com',
             'password' => bcrypt('12345'),
             'remember_token' => Str::random(60)
         ]);
@@ -28,16 +28,8 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin Pasar',
             'level' => 'pengelola',
-            'email' => 'adminpasar@admin.com',
+            'email' => 'adminpasar@gmail.com',
             'password' => bcrypt('23456'),
-            'remember_token' => Str::random(60)
-        ]);
-
-        User::create([
-            'name' => 'Pedagang',
-            'level' => 'user',
-            'email' => 'user@user.com',
-            'password' => bcrypt('34567'),
             'remember_token' => Str::random(60)
         ]);
     }

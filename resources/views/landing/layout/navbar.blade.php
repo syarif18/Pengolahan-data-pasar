@@ -14,7 +14,24 @@
                 <li><a class="nav-link scrollto {{ Request::is('pasar') ? 'active' : '' }}" href="/pasar">Pasar</a></li>
                 <li><a class="nav-link scrollto {{ Request::is('about') ? 'active' : '' }}" href="/about">Tentang Kami</a></li>
                 <li><a class="nav-link scrollto {{ Request::is('kontak') ? 'active' : '' }}" href="/kontak">Kontak</a></li>
-                <li><a class="nav-link scrollto {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a></li>
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Selamat Datang, {{ auth()->user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if (Auth::user()->level == 'admin')
+                                <li><a class="dropdown-item" href="admin">Dashboard</a></li>
+                            @else
+                                <li><a class="dropdown-item" href="admin_pasar">Dashboard</a></li>
+                            @endif
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ route('logout') }}">LogOut</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li><a class="nav-link scrollto {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a></li>
+                @endauth
             </ul>
     <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
@@ -22,4 +39,3 @@
     </div>
   </header>  <!-- End Header -->
 
-   

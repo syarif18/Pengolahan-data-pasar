@@ -47,9 +47,9 @@
                     <input class="date form-control" type="text" name="published_at">
                 </div> --}}
                 {{-- <script type="text/javascript">
-                    $('.date').datepicker({  
+                    $('.date').datepicker({
                     format: 'mm-dd-yyyy'
-                    });  
+                    });
                 </script>   --}}
 
                 <div class="form-group mt-3">
@@ -68,7 +68,7 @@
         document.addEventListener('trix-file-accept', function(e){
             e.preventDefault();
         })
-        
+
         function previewImage() {
             const image = document.querySelector('#gambar');
             const imgPreview = document.querySelector('.img-preview');
@@ -82,7 +82,7 @@
                 imgPreview.src = oFREvent.target.result;
             }
         }
-        
+
     </script>
     {{-- <script>
         const judul = document.querySelector('#judul');
@@ -96,4 +96,3 @@
     </script> --}}
 @endsection
 
-  

@@ -62,7 +62,7 @@
     </div><!-- End Page Title -->
 
     @yield('content')
-    
+
   </main><!-- End #main -->
 
 

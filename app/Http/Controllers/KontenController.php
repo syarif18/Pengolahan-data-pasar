@@ -32,7 +32,9 @@ class KontenController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.konten.create');
+        return view('admin.pages.konten.create', [
+            "title" => "Buat Konten"
+        ]);
     }
 
     /**
@@ -87,7 +89,9 @@ class KontenController extends Controller
     public function edit($id)
     {
         $data = Konten::findOrFail($id);
-        return view('admin.pages.konten.edit')->with([
+        return view('admin.pages.konten.edit', [
+            "title" => "Edit Konten"
+        ])->with([
             "data" => $data
         ]);
     }
@@ -133,7 +137,7 @@ class KontenController extends Controller
 
         $item->update($data);
 
-        
+
         return redirect('konten')->with('success', 'Konten Berhasil Diupdate!');
     }
 

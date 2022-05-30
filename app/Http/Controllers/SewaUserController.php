@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SewaUser;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class SewaUserController extends Controller
 {
@@ -15,8 +16,11 @@ class SewaUserController extends Controller
      */
     public function index()
     {
-        return view('user.pages.sewa.sewa', [
+        $data = SewaUser::all();
+        return view('admin_pasar.pages.sewa.sewa', [
             "title" => "Sewa Lapak"
+        ])->with([
+            "data" => $data
         ]);
     }
 
@@ -27,7 +31,7 @@ class SewaUserController extends Controller
      */
     public function create()
     {
-        return view('user.pages.sewa.create', [
+        return view('admin_pasar.pages.sewa.create', [
             "title" => "Sewa Lapak"
         ]);
     }
@@ -67,7 +71,7 @@ class SewaUserController extends Controller
         $uploadktp->move(public_path().'/img/gambarktp', $namaKtp);
         $uploadkk->move(public_path().'/img/gambarkk', $namaKk);
         $datasewa->save();
-        return redirect('informasi')->with('success', 'Konten Baru Ditambahkan!');
+        return redirect('sewa')->with('success', 'Data Calon Penyewa Berhasil Ditambahkan!');
 
         // $datasewa = $request->validate([
         //     'nama_pasar' => 'required|max:255',
@@ -96,7 +100,12 @@ class SewaUserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = SewaUser::findOrFail($id);
+        return view('admin_pasar.pages.sewa.show', [
+            "title" => "Lihat Detail Data"
+        ])->with([
+            "data" => $data
+        ]);
     }
 
     /**
@@ -107,7 +116,13 @@ class SewaUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = SewaUser::findOrFail($id);
+        $item->update(['tahun_masuk' => $request->tahun_masuk]);
+
+        $item = SewaUser::findOrFail($id);
+        $item->update(['konfirmasi' => $request->konfirmasi]);
+
+        return redirect('sewa')->with('success', 'Data Calon Penyewa Berhasil Diupdate!');
     }
 
     /**
@@ -130,6 +145,15 @@ class SewaUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = SewaUser::findOrFail($id);
+        $imgpoto = public_path("img/gambarpoto/{$data->gambar_paspoto}");
+        File::delete($imgpoto);
+        $imgktp = public_path("img/gambarktp/{$data->gambar_ktp}");
+        File::delete($imgktp);
+        $imgkk = public_path("img/gambarkk/{$data->gambar_kk}");
+        File::delete($imgkk);
+
+        $data->delete();
+        return redirect('sewa')->with('delete', 'Data Berhasil DIhapus!');
     }
 }

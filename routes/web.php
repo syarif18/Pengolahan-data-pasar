@@ -42,9 +42,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route Untuk Login
-Route::get('login', [LoginController::class, 'index']);
+Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
 
 
 
@@ -93,6 +94,10 @@ Route::group(['middleware' => ['auth', 'ceklevel:pengelola']], function () {
 
     Route::resource('calon_pedagang', CalonPedagangController::class);
 
+    Route::resource('sewa', SewaUserController::class);
+
+    Route::resource('informasi', InformasiUserController::class);
+
 });
 
 
@@ -102,9 +107,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
 
     Route::resource('profile', ProfileUserController::class);
 
-    Route::resource('sewa', SewaUserController::class);
 
-    Route::resource('informasi', InformasiUserController::class);
 });
 
 // Route Untuk Landing Page

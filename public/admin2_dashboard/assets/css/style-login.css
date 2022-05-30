@@ -65,6 +65,10 @@ form {
     font-size: 1rem;
 }
 
+.login-content h5 {
+    color: #be3232;
+}
+
 .login-content .input-div {
     position: relative;
     display: grid;

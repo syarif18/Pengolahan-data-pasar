@@ -22,19 +22,22 @@ class LoginController extends Controller
                 return redirect('admin');
             } elseif (Auth::user()->level == 'pengelola'){
                 return redirect('admin_pasar');
-            } elseif (Auth::user()->level == 'user'){
-                return redirect('user');
             } else{
 
             }
         }
-        return redirect('login');
+        return back()->with('loginError', 'Kesalahan pada saat Login');
 
     }
 
     public function logout()
     {
         Auth::logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
         return redirect('/');
     }
 
