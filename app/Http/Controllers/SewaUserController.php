@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\SewaUser;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
+
 
 class SewaUserController extends Controller
 {
@@ -16,7 +18,8 @@ class SewaUserController extends Controller
      */
     public function index()
     {
-        $data = SewaUser::all();
+        $user = Auth::user()->name;
+        $data = SewaUser::where('nama_pasar', $user)->get();
         return view('admin_pasar.pages.sewa.sewa', [
             "title" => "Sewa Lapak"
         ])->with([

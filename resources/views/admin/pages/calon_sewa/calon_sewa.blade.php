@@ -19,7 +19,8 @@
                   <thead>
                     <tr>
                       <th scope="col">No</th>
-                      <th scope="col">Sewa Lapak</th>
+                      <th scope="col">Nama Penyewa</th>
+                      <th scope="col">Nama Pasar</th>
                       <th scope="col">Status</th>
                       <th scope="col">Aksi</th>
                     </tr>
@@ -28,6 +29,7 @@
                       @foreach ($data as $dataSewa)
                           <tr>
                               <td scope="col" style="text-align: center">{{ $loop->iteration }}</td>
+                              <td>{{ $dataSewa->nama }}</td>
                               <td>{{ $dataSewa->nama_pasar }}</td>
                               <td>
                                 @if ($dataSewa->status == '0')

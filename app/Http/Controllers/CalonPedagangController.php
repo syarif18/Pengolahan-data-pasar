@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SewaUser;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
+
 
 class CalonPedagangController extends Controller
 {
@@ -15,7 +17,8 @@ class CalonPedagangController extends Controller
      */
     public function index()
     {
-        $data = SewaUser::where('status', '1')->get();
+        $user = Auth::user()->name;
+        $data = SewaUser::where('status', '1')->where('nama_pasar', $user)->get();
         return view('admin_pasar.pages.calon_pedagang.calon_pedagang', [
             "title" => "Data Calon pedagang"
         ])->with([

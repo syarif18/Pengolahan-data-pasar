@@ -37,7 +37,7 @@
                     <thead>
                       <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Sewa Lapak</th>
+                        <th scope="col">Nama Penyewa</th>
                         <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                       </tr>
@@ -46,7 +46,7 @@
                         @foreach ($data as $dataSewa)
                             <tr>
                                 <td scope="col" style="text-align: center">{{ $loop->iteration }}</td>
-                                <td>{{ $dataSewa->nama_pasar }}</td>
+                                <td>{{ $dataSewa->nama }}</td>
                                 <td>
                                   {{-- kondisi status apakah di setujui atau dotolak --}}
                                   @if ($dataSewa->status == '0')
@@ -90,6 +90,9 @@
                     {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Launch demo modal
                     </button> --}}
+
+                </div>
+            </div>
         </div>
     </div>
 </section>
