@@ -9,11 +9,11 @@
         {{-- @method('get') --}}
         <div class="row mb-5">
             <div class="col-md-8">
-                <h1 class="mb-3">{{ $data->judul }}</h1>
+                <h1 class="mb-3">{{ $konten->judul }}</h1>
 
                 <a href="{{ url('konten') }}" class="btn btn-success"><i class="bi bi-arrow-left"></i>Kembali</a>
-                <a href="{{ route('konten.edit', $data->id) }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i>Edit</a>
-                <form action="{{ route('konten.destroy', $data->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                <a href="{{ route('konten.edit', $konten->id) }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i>Edit</a>
+                <form action="{{ route('konten.destroy', $konten->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus konten?')">
                             @method('delete')
                             @csrf
                             <button class="btn btn-danger"><i class="bi bi-trash">Hapus</i></button>
@@ -21,8 +21,8 @@
                 {{-- <a href="" class="btn btn-danger"><i class="bi bi-trash"></i>Kembali</a> --}}
 
                 <div class="" style="max-height: 350px; overflow:hidden">
-                    <img src="{{ asset('storage/'. $data->gambar) }}" alt="" class="img-fluid mt-3">
-                </div> 
+                    <img src="{{ asset('storage/'. $konten->gambar) }}" alt="" class="img-fluid mt-3">
+                </div>
 
                 {{-- @if ($data->gambar)
                     <img src="{{ asset('storage/'. $data->gambar) alt="">
@@ -31,7 +31,7 @@
                 @endif --}}
 
                 <article class="my-3 fs-5">
-                    {!! $data->body !!}
+                    {!! $konten->body !!}
                 </article>
 
             </div>

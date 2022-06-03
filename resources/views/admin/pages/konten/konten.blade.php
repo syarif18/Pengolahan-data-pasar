@@ -19,7 +19,7 @@
 <div>
     <a href="{{ 'konten/create' }}" class="btn btn-primary"> + Tambah Konten </a>
 </div>
-    
+
     <table class="table table-bordered border-primary mt-2">
         <thead class="table-light">
             <tr>
@@ -31,7 +31,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $dataKonten)
+            @foreach ($konten as $dataKonten)
                 <tr>
                     <td scope="col" style="text-align: center">{{ $loop->iteration }}</td>
                     <td scope="col">{{ $dataKonten->judul }}</td>
@@ -50,6 +50,6 @@
             @endforeach
         </tbody>
     </table>
-    
+
 @endsection
 

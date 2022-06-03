@@ -17,11 +17,11 @@ class KontenController extends Controller
      */
     public function index()
     {
-        $data = Konten::all();
+        $konten = Konten::all();
         return view('admin.pages.konten.konten', [
             "title" => "Konten"
         ])->with([
-            "data" => $data
+            "konten" => $konten
         ]);
     }
 
@@ -49,18 +49,18 @@ class KontenController extends Controller
         // Konten::insert($data);
         // return redirect('konten');
 
-        $data = $request->validate([
+        $konten = $request->validate([
             'judul' => 'required|max:225',
             'gambar' => 'image|file|max:2048',
             'body' => 'required'
         ]);
 
 
-        $data['gambar'] = $request->file('gambar')->store('konten-gambar');
+        $konten['gambar'] = $request->file('gambar')->store('konten-gambar');
 
-        $data['excerpt'] = Str::limit(strip_tags($request->body), 100, '...');
+        $konten['excerpt'] = Str::limit(strip_tags($request->body), 100, '...');
 
-        Konten::create($data);
+        Konten::create($konten);
         return redirect('konten')->with('success', 'Konten Baru Ditambahkan!');
     }
 
@@ -72,11 +72,11 @@ class KontenController extends Controller
      */
     public function show($id)
     {
-        $data = Konten::findOrFail($id);
+        $konten = Konten::findOrFail($id);
         return view('admin.pages.konten.show', [
             "title" => "Lihat Konten"
         ])->with([
-            "data" => $data
+            "konten" => $konten
         ]);
     }
 
@@ -88,11 +88,11 @@ class KontenController extends Controller
      */
     public function edit($id)
     {
-        $data = Konten::findOrFail($id);
+        $konten = Konten::findOrFail($id);
         return view('admin.pages.konten.edit', [
             "title" => "Edit Konten"
         ])->with([
-            "data" => $data
+            "konten" => $konten
         ]);
     }
 
@@ -120,7 +120,7 @@ class KontenController extends Controller
         // return redirect('konten')->with('success', 'Konten Berhasil Diupdate!');
 
         $item = Konten::findOrFail($id);
-        $data = $request->validate([
+        $konten = $request->validate([
             'judul' => 'required|max:225',
             'gambar' => 'image|file|max:2048',
             'body' => 'required'
@@ -130,12 +130,12 @@ class KontenController extends Controller
             if($request->oldImage){
                 Storage::delete($request->oldImage);
             }
-            $data['gambar'] = $request->file('gambar')->store('konten-gambar');
+            $konten['gambar'] = $request->file('gambar')->store('konten-gambar');
         }
 
-        $data['excerpt'] = Str::limit(strip_tags($request->body), 100, '...');
+        $konten['excerpt'] = Str::limit(strip_tags($request->body), 100, '...');
 
-        $item->update($data);
+        $item->update($konten);
 
 
         return redirect('konten')->with('success', 'Konten Berhasil Diupdate!');

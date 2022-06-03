@@ -165,11 +165,12 @@
           </div>
           <div class="row">
             <!-- Start Left Blog -->
+            @foreach ( $konten as $dataKonten )
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
-                <div class="single-blog-img">
-                  <a href="blog.html">
-                    <img src="{{ asset('landing_page') }}/assets/img/blog/e-retribusi.jpg" alt="">
+                <div class="single-blog-img" style="max-height: 260px; overflow:hidden">
+                  <a href="berita" >
+                    <img src="{{ asset('storage/'. $dataKonten->gambar) }}" alt="" class="img-fluid mt-3">
                   </a>
                 </div>
                 <div class="blog-meta">
@@ -178,87 +179,23 @@
                     <a href="#">13 comments</a>
                   </span>
                   <span class="date-type">
-                    <i class="fa fa-calendar"></i>2021-03-05 / 09:10:16
+                    <i class="fa fa-calendar"></i>{{ $dataKonten->created_at }}
                   </span>
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="blog.html">Sosialisasi E-Retribusi</a>
+                    <a href="berita">{{ $dataKonten->judul }}</a>
                   </h4>
-                  <p>
-                    Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                  </p>
+                  <p>{!! $dataKonten->excerpt !!}</p>
                 </div>
                 <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
+                  <a href="berita" class="ready-btn">Read more</a>
                 </span>
               </div>
               <!-- Start single blog -->
             </div>
+            @endforeach
             <!-- End Left Blog-->
-            <!-- Start Left Blog -->
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="single-blog">
-                <div class="single-blog-img">
-                  <a href="blog.html">
-                    <img src="{{ asset('landing_page') }}/assets/img/blog/sekolah_pasar.jpeg" alt="">
-                  </a>
-                </div>
-                <div class="blog-meta">
-                  <span class="comments-type">
-                    <i class="fa fa-comment-o"></i>
-                    <a href="#">130 comments</a>
-                  </span>
-                  <span class="date-type">
-                    <i class="fa fa-calendar"></i>2021-03-05 / 09:10:16
-                  </span>
-                </div>
-                <div class="blog-text">
-                  <h4>
-                    <a href="blog.html">Sosialisasi Sekolah Pasar di Pasar Paliaman</a>
-                  </h4>
-                  <p>
-                  Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                  </p>
-                </div>
-                <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
-                </span>
-              </div>
-              <!-- Start single blog -->
-            </div>
-            <!-- End Left Blog-->
-            <!-- Start Right Blog-->
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="single-blog">
-                <div class="single-blog-img">
-                  <a href="blog.html">
-                    <img src="{{ asset('landing_page') }}/assets/img/blog/pasar_sehat.jpeg" alt="">
-                  </a>
-                </div>
-                <div class="blog-meta">
-                  <span class="comments-type">
-                    <i class="fa fa-comment-o"></i>
-                    <a href="#">10 comments</a>
-                  </span>
-                  <span class="date-type">
-                    <i class="fa fa-calendar"></i>2021-03-05 / 09:10:16
-                  </span>
-                </div>
-                <div class="blog-text">
-                  <h4>
-                    <a href="blog.html">Sosialisasi Pasar Sehat di Pasar Palimanan</a>
-                  </h4>
-                  <p>
-                    Lorem ipsum dolor sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.sit amet conse adipis elit Assumenda repud eum veniam optio modi sit explicabo nisi magnam quibusdam.
-                  </p>
-                </div>
-                <span>
-                  <a href="blog.html" class="ready-btn">Read more</a>
-                </span>
-              </div>
-            </div>
-            <!-- End Right Blog-->
           </div>
         </div>
       </div>
