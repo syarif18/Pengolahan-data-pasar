@@ -10,15 +10,28 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $konten = Konten::get()->sortByDesc('created_at');
-        $minikonten = Konten::take(4)->get()->sortbyDesc('created_at');
-        $kontens = Konten::take(1)->get()->sortbyDesc('created_at');
+        // $konten = Konten::take(3)->get()->sortbyDesc('created_at');
+        $konten = Konten::latest()->paginate(3);
+        $minikonten = Konten::orderBy('created_at', 'desc')->take(3)->get();
 
-        return view('landing.pages.berita', [
+        return view('landing.pages.berita.berita', [
             'konten' => $konten,
             'minikonten' => $minikonten,
-            'kontens' => $kontens,
             "title" => "Berita"
+        ]);
+    }
+
+    public function detailberita($id)
+    {
+        $konten = Konten::findOrFail($id);
+        $minikonten = Konten::orderBy('created_at', 'desc')->take(3)->get();
+
+
+        return view('landing.pages.berita.detail', [
+            "title" => "Lihat Konten"
+        ])->with([
+            "konten" => $konten,
+            'minikonten' => $minikonten
         ]);
     }
 }

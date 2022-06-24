@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SewaUser;
+use App\Exports\PedagangExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
+
 
 class PalimananController extends Controller
 {
@@ -13,9 +19,16 @@ class PalimananController extends Controller
      */
     public function index()
     {
+        $userpalimanan = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar palimanan')->latest()->paginate(10);
         return view('admin.pages.pasar.palimanan', [
             "title" => "Pasar Palimanan"
-        ]);
+        ])->with([
+            "userpalimanan" => $userpalimanan]);
+    }
+
+    public function pedagangExport(Request $request){
+        // dd($request->nama_pasar);
+        return Excel::download(new PedagangExport('pasar palimanan', $request->nama_pasar), 'pedagang palimanan.xlsx');
     }
 
     /**

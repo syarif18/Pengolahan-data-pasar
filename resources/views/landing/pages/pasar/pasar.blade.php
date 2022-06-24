@@ -17,7 +17,7 @@
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="detailpasar">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Palimanan</h4>
@@ -154,5 +154,5 @@
         </div>
       </div>
     </div><!-- End Services Section -->
-    
+
 @endsection

@@ -8,11 +8,11 @@
 <section>
   <div class="card">
       <div class="container mt-3">
-          <center><h2>Informasi</h2></center>
+          <center><h2>Data Tunggu</h2></center>
 
           <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Informasi Status Sewa Lapak Anda</h5>
+                <h5 class="card-title">Data Tunggu Calon Penyewa Lapak</h5>
 
                 <!-- Table with hoverable rows -->
                 <table class="table table-hover">

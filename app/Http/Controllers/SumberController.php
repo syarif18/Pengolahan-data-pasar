@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SewaUser;
+use App\Exports\PedagangExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+
 
 class SumberController extends Controller
 {
@@ -13,9 +18,16 @@ class SumberController extends Controller
      */
     public function index()
     {
+        $usersumber = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar sumber')->latest()->paginate(10);
         return view('admin.pages.pasar.sumber', [
             "title" => "Pasar Sumber"
-        ]);
+        ])->with([
+            "usersumber" => $usersumber]);
+    }
+
+    public function pedagangExport(Request $request){
+        // dd($request->nama_pasar);
+        return Excel::download(new PedagangExport('pasar sumber', $request->nama_pasar), 'pedagang sumber.xlsx');
     }
 
     /**

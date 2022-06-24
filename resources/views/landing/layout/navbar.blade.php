@@ -10,8 +10,8 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a></li>
-                <li><a class="nav-link scrollto {{ Request::is('berita') ? 'active' : '' }}" href="/berita">Berita</a></li>
-                <li><a class="nav-link scrollto {{ Request::is('pasar') ? 'active' : '' }}" href="/pasar">Pasar</a></li>
+                <li><a class="nav-link scrollto {{ Request::is('berita*') ? 'active' : '' }}" href="/berita">Berita</a></li>
+                <li><a class="nav-link scrollto {{ Request::is('pasar*') ? 'active' : '' }}" href="/pasar">Pasar</a></li>
                 <li><a class="nav-link scrollto {{ Request::is('about') ? 'active' : '' }}" href="/about">Tentang Kami</a></li>
                 {{-- <li><a class="nav-link scrollto {{ Request::is('kontak') ? 'active' : '' }}" href="/kontak">Kontak</a></li> --}}
                 @auth

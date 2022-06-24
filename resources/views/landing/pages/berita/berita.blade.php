@@ -47,12 +47,12 @@
                     @foreach ( $minikonten as $item )
                     <div class="recent-single-post">
                       <div class="post-img">
-                        <a href="#">
+                        <a href="{{ route('detailberita', $item->id) }}">
                         <img src="{{ asset('storage/'. $item->gambar) }}" alt="">
                         </a>
                       </div>
                       <div class="pst-content">
-                        <p><a href="#">{{ $item->excerpt }}</a></p>
+                        <p><a href="{{ route('detailberita', $item->id) }}">{{ $item->excerpt }}</a></p>
                       </div>
                     </div>
                     @endforeach
@@ -93,48 +93,54 @@
                 @foreach ( $konten as $dataKonten )
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="single-blog">
-                  <div class="single-blog-img" style="height: 350px; width: 500px; overflow:hidden">
-                    <a href="blog-details.html">
+                  <div class="single-blog-img" style="height: 350px; overflow:hidden">
+                    <a href="{{ route('detailberita', $dataKonten->id) }}">
                     <img src="{{ asset('storage/'. $dataKonten->gambar) }}" alt="" class="img-fluid">
                     </a>
                   </div>
                   <div class="blog-meta">
-                    <span class="comments-type">
+                    {{-- <span class="comments-type">
                       <i class="bi bi-chat"></i>
                       <a href="#">11 comments</a>
-                    </span>
+                    </span> --}}
                     <span class="date-type">
                       <i class="bi bi-calendar"></i>{{ $dataKonten->created_at }}
                     </span>
                   </div>
                   <div class="blog-text">
                     <h4>
-                      <a href="#">{{ $dataKonten->judul }}</a>
+                      <a href="{{ route('detailberita', $dataKonten->id) }}">{{ $dataKonten->judul }}</a>
                     </h4>
                     <p>{!! $dataKonten->excerpt !!}</p>
                   </div>
                   <span>
-                    <a href="blog-details.html" class="ready-btn">Read more</a>
+                    <a href="{{ route('detailberita', $dataKonten->id) }}" class="ready-btn">Read more</a>
                   </span>
                 </div>
               </div>
               @endforeach
               <!-- End single blog -->
-
-              <div class="blog-pagination">
-                <ul class="pagination">
-                  <li class="page-item"><a href="#" class="page-link">&lt;</a></li>
-                  <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                  <li class="page-item"><a href="#" class="page-link">2</a></li>
-                  <li class="page-item"><a href="#" class="page-link">3</a></li>
-                  <li class="page-item"><a href="#" class="page-link">&gt;</a></li>
-                </ul>
-              </div>
+                    <div class="d-flex justify-content-center" >
+                    {{-- <div>
+                        Showing
+                        {{ $konten-firstItem() }}
+                        to
+                        {{ $konten->lastItem() }}
+                        of
+                        {{ $konten->total() }}
+                        entries
+                    </div> --}}
+                    <div class="pull-center">
+                        {{ $konten->links() }}
+                    </div>
+                    </div>
             </div>
           </div>
         </div>
       </div>
     </div><!-- End Blog Page -->
+
+
 
   </main><!-- End #main -->
 @endsection

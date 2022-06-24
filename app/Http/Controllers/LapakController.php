@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SewaUser;
+use App\Models\Lapak;
+use Illuminate\Support\Facades\File;
+use Auth;
 
 class LapakController extends Controller
 {
@@ -14,11 +16,11 @@ class LapakController extends Controller
      */
     public function index()
     {
-        $data = SewaUser::all();
-        return view('admin_pasar.pages.lapak', [
+        $datalapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
+        return view('admin_pasar.pages.lapak.lapak', [
             "title" => "Data Lapak"
         ])->with([
-            "data" => $data
+            "datalapak" => $datalapak
         ]);
     }
 
@@ -29,7 +31,9 @@ class LapakController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin_pasar.pages.lapak.create', [
+            "title" => "Tambah Lapak"
+        ]);
     }
 
     /**
@@ -40,7 +44,28 @@ class LapakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $upload = $request->gambar1;
+        $gambarlapak1 = time().rand(100,999).".".$upload->getClientOriginalExtension();
+
+        $upload2 = $request->gambar2;
+        $gambarlapak2 = time().rand(100,999).".".$upload2->getClientOriginalExtension();
+
+        $upload3 = $request->gambar3;
+        $gambarlapak3 = time().rand(100,999).".".$upload3->getClientOriginalExtension();
+
+        $datalapak = new Lapak;
+        $datalapak->jenis_tempat = $request->jenis_tempat;
+        $datalapak->jumlah_tempat = $request->jumlah_tempat;
+        $datalapak->gambar1 = $gambarlapak1;
+        $datalapak->gambar2 = $gambarlapak2;
+        $datalapak->gambar3 = $gambarlapak3;
+        $datalapak->user_id = Auth::user()->id;
+
+        $upload->move(public_path().'/img/gambarlapak', $gambarlapak1);
+        $upload2->move(public_path().'/img/gambarlapak', $gambarlapak2);
+        $upload3->move(public_path().'/img/gambarlapak', $gambarlapak3);
+        $datalapak->save();
+        return redirect('lapak')->with('success', 'Data Lapak Berhasil Ditambahkan!');
     }
 
     /**
@@ -74,7 +99,7 @@ class LapakController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        //
     }
 
     /**
@@ -85,6 +110,15 @@ class LapakController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $datalapak = Lapak::findOrFail($id);
+        $upload = public_path("img/gambarlapak/{$datalapak->gambar1}");
+        File::delete($upload);
+        $upload2 = public_path("img/gambarlapak/{$datalapak->gambar1}");
+        File::delete($upload2);
+        $upload3 = public_path("img/gambarlapak/{$datalapak->gambar1}");
+        File::delete($upload3);
+
+        $datalapak->delete();
+        return redirect('lapak')->with('delete', 'Data Berhasil DIhapus!');
     }
 }

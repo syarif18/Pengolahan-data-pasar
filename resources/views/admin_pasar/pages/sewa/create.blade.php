@@ -19,7 +19,8 @@
                 @csrf
                 <div class="col-md-6">
                     <label for="nama_pasar" class="form-label">Nama Pasar *</label>
-                    <select class="form-select" aria-label="Default select example" id="nama_pasar" name="nama_pasar">
+                    <input type="text" name="nama_pasar" readonly class="form-control-plaintext" id="staticEmail" value="{{ Auth::user()->name }}">
+                    {{-- <select class="form-select" aria-label="Default select example" id="nama_pasar" name="nama_pasar">
                         <option selected>Nama Pasar</option>
                         <option value="Pasar Palimanan">Pasar Palimanan</option>
                         <option value="Pasar Jamblang">Pasar Jamblang</option>
@@ -30,18 +31,21 @@
                         <option value="Pasar Cipeujeuh">Pasar Cipeujeuh</option>
                         <option value="Pasar Babakan">Pasar Babakan</option>
                         <option value="Pasar Ciledug">Pasar Ciledug</option>
-                    </select>
+                    </select> --}}
                 </div>
                 <div class="col-md-6">
                     <label for="jenis_tempat" class="form-label">Jenis Tempat *</label>
                     <select class="form-select" aria-label="Default select example" id="jenis_tempat" name="jenis_tempat">
-                        <option selected>Jenis Tempat</option>
-                        <option value="Toko">Toko</option>
+                        <option value="" hidden selected>Jenis Tempat</option>
+                        @foreach ($lapak as $lapak)
+                            <option value="{{ $lapak->jenis_tempat }}">{{ $lapak->jenis_tempat }}</option>
+                        @endforeach
+                        {{-- <option value="Toko">Toko</option>
                         <option value="Kios">Kios</option>
                         <option value="Los">Los</option>
                         <option value="Lemprakan">Lemprakan</option>
                         <option value="PTT">PTT</option>
-                        <option value="MCK">MCK</option>
+                        <option value="MCK">MCK</option> --}}
                     </select>
                 </div>
                 <div class="col-md-6">
@@ -82,15 +86,18 @@
                 </div>
                 <div class="col-md-4">
                     <label for="gambar_paspoto" class="form-label">Pas Foto 3x4 *</label>
-                  <input class="form-control" type="file" id="gambar_paspoto" id="gambarpaspoto" name="gambar_paspoto">
+                    <input class="form-control" type="file" id="gambar_paspoto" name="gambar_paspoto" onchange="previewImage()">
+                    <img class="img-preview img-fluid mt-3 col-sm-5">
                 </div>
                 <div class="col-md-4">
                     <label for="gambar_ktp" class="form-label">Foto Ktp *</label>
-                  <input class="form-control" type="file" id="gambar_ktp" id="gambar_ktp" name="gambar_ktp">
+                    <input class="form-control" type="file" id="gambar_ktp" name="gambar_ktp" onchange="previewImages()">
+                    <img class="img-preview-i img-fluid mt-3 col-sm-5">
                 </div>
                 <div class="col-md-4">
                     <label for="gambar_kk" class="form-label">Foto KK *</label>
-                  <input class="form-control" type="file" id="gambar_kk" id="gambar_kk" name="gambar_kk">
+                    <input class="form-control" type="file" id="gambar_kk" id="gambar_kk" name="gambar_kk" onchange="previewImagess()">
+                    <img class="img-preview-ii img-fluid mt-3 col-sm-5">
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Sewa Lapak</button>
@@ -102,6 +109,50 @@
         </div>
     </div>
     </section>
+
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#gambar_paspoto', '#gambar_ktp');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        function previewImages() {
+            const image = document.querySelector('#gambar_ktp');
+            const imgPreview = document.querySelector('.img-preview-i');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        function previewImagess() {
+            const image = document.querySelector('#gambar_kk');
+            const imgPreview = document.querySelector('.img-preview-ii');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 
 @endsection
 

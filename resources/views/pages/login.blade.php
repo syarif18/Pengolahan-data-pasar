@@ -32,11 +32,11 @@
            		   		<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<h5>Email</h5>
-           		   		<input type="text" class="input @error('email')
+           		   		<h5>Username</h5>
+           		   		<input type="text" class="input @error('username')
                                   is-invalid
-                              @enderror" name="email">
-                              @error('email')
+                              @enderror" name="username">
+                              @error('username')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -52,14 +52,14 @@
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
-              {{-- <ul>
+              <ul>
                 <li>
-                  <a class="forgot" href="#">Lupa Password?</a>
+                  <a class="forgot" href="/">Kembali ke halaman</a>
                 </li>
-                <li>
+                {{-- <li>
                   <a class="new" href="{{ url('registrasi') }}">Buat Akun Baru?</a>
-                </li>
-              </ul> --}}
+                </li> --}}
+              </ul>
             	<input type="submit" class="btn" value="Login">
             </form>
         </div>

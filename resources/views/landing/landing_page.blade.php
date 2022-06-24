@@ -168,28 +168,28 @@
             @foreach ( $konten as $dataKonten )
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="single-blog">
-                <div class="single-blog-img" style="max-height: 260px; overflow:hidden">
-                  <a href="berita" >
+                <div class="single-blog-img" style="max-height: 200px; overflow:hidden; object-fit: contain">
+                  <a href="{{ route('detailberita', $dataKonten->id) }}" >
                     <img src="{{ asset('storage/'. $dataKonten->gambar) }}" alt="" class="img-fluid mt-3">
                   </a>
                 </div>
                 <div class="blog-meta">
-                  <span class="comments-type">
+                  {{-- <span class="comments-type">
                     <i class="fa fa-comment-o"></i>
                     <a href="#">13 comments</a>
-                  </span>
+                  </span> --}}
                   <span class="date-type">
                     <i class="fa fa-calendar"></i>{{ $dataKonten->created_at }}
                   </span>
                 </div>
                 <div class="blog-text">
                   <h4>
-                    <a href="berita">{{ $dataKonten->judul }}</a>
+                    <a href="{{ route('detailberita', $dataKonten->id) }}">{{ $dataKonten->judul }}</a>
                   </h4>
-                  <p>{!! $dataKonten->excerpt !!}</p>
+                  <p class="card-text">{!! $dataKonten->excerpt !!}</p>
                 </div>
                 <span>
-                  <a href="berita" class="ready-btn">Read more</a>
+                  <a href="{{ route('detailberita', $dataKonten->id) }}" class="ready-btn">Read more</a>
                 </span>
               </div>
               <!-- Start single blog -->
@@ -217,7 +217,7 @@
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="detailpasar">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Palimanan</h4>

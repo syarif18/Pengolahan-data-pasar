@@ -5,9 +5,9 @@
 @include('admin.partials.header')
 @include('admin.partials.sidebar')
 
-<div>
+{{-- <div>
     <a href="{{ 'data_pasar/create' }}" class="btn btn-primary"> + Tambah Data </a>
-</div>
+</div> --}}
 
     <table class="table table-bordered border-primary mt-2">
         <thead class="table-light">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SewaUser;
+use App\Models\Lapak;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +35,10 @@ class SewaUserController extends Controller
      */
     public function create()
     {
+        $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
         return view('admin_pasar.pages.sewa.create', [
-            "title" => "Sewa Lapak"
+            "title" => "Sewa Lapak",
+            "lapak" => $lapak
         ]);
     }
 

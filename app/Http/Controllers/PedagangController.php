@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SewaUser;
+use App\Exports\PedagangExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,15 +18,30 @@ class PedagangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $user = Auth::user()->name;
-        $data = SewaUser::where('konfirmasi', '1')->where('nama_pasar', $user)->get();
+        $data = SewaUser::where('konfirmasi', '1')->where('nama_pasar', $user);
+
+        if($request->has('search')){
+            $data->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $data = $data->latest()->paginate(10);
 
         return view('admin_pasar.pages.pedagang', [
             "title" => "Data Calon pedagang"
         ])->with([
-            "datas" => $data]);
+            "datas" => $data,
+            "auth" => $user,
+            "search" => $request->search?$request->search:''
+        ]);
+    }
+
+    public function pedagangExport(Request $request){
+        // dd($request->search);
+        return Excel::download(new PedagangExport($request->nama_pasar, $request->search), 'pedagang.xlsx');
     }
 
     /**

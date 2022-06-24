@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SewaUser;
 use Illuminate\Http\Request;
+use App\Exports\PedagangExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class CiledugController extends Controller
 {
@@ -13,9 +17,16 @@ class CiledugController extends Controller
      */
     public function index()
     {
+        $userciledug = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar ciledug')->latest()->paginate(10);
         return view('admin.pages.pasar.ciledug', [
             "title" => "Pasar Ciledug"
-        ]);
+        ])->with([
+            "userciledug" => $userciledug]);
+    }
+
+    public function pedagangExport(Request $request){
+        // dd($request->nama_pasar);
+        return Excel::download(new PedagangExport('pasar ciledug', $request->nama_pasar), 'pedagang ciledug.xlsx');
     }
 
     /**

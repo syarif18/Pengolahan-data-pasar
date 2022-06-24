@@ -16,7 +16,7 @@ class BerandaController extends Controller
 
     public function index()
     {
-        $konten = Konten::take(3)->get()->sortByDesc('created_at');
+        $konten = Konten::orderBy('created_at', 'desc')->take(3)->get();
 
         return view('landing.landing_page', [
             'konten' => $konten,

@@ -12,6 +12,14 @@
     </div>
 @endif
 
+@if(session()->has('delete'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('delete') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+
 <div>
     <a href="{{ 'data_admin/create' }}" class="btn btn-primary"> + Sewa Lapak </a>
 </div>
@@ -28,7 +36,8 @@
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Level</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -37,7 +46,14 @@
                                     <td scope="col">{{ $loop->iteration }}</td>
                                     <td>{{ $dataAdmin->name }}</td>
                                     <td>{{ $dataAdmin->level }}</td>
-                                    <td>{{ $dataAdmin->email }}</td>
+                                    <td>{{ $dataAdmin->username }}</td>
+                                    <td>
+                                    <form action="{{ route('data_admin.destroy', $dataAdmin->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

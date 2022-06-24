@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SewaUser;
+use App\Models\Lapak;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,10 +72,12 @@ class CalonPedagangController extends Controller
     public function edit($id)
     {
         $data = SewaUser::findOrFail($id);
+        $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
         return view('admin_pasar.pages.calon_pedagang.edit', [
             "title" => "Konfirmasi Data"
         ])->with([
-            "data" => $data
+            "data" => $data,
+            "lapak" => $lapak
         ]);
     }
 

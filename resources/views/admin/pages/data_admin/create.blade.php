@@ -14,7 +14,7 @@
                     <form class="row g-3" action="{{ route('data_admin.store') }}" method="POST">
                         @csrf
                         <div class="col-md-6">
-                            <label for="name" class="form-label">name *</label>
+                            <label for="name" class="form-label">Nama Pasar*</label>
                             <input type="text" id="name" name="name" class="form-control @error('name')
                                 is-invalid
                             @enderror" placeholder="name" required value="{{ old('name') }}">
@@ -40,11 +40,11 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label for="email" class="form-label">email *</label>
-                            <input type="text" id="email" name="email" class="form-control @error('email')
+                            <label for="username" class="form-label">Username *</label>
+                            <input type="text" id="username" name="username" class="form-control @error('username')
                             is-invalid
-                            @enderror" placeholder="email" required value="{{ old('email') }}" >
-                            @error('email')
+                            @enderror" placeholder="username" required value="{{ old('username') }}" >
+                            @error('username')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

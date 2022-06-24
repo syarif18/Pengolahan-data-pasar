@@ -46,7 +46,7 @@ class DataAdminController extends Controller
         $validateData = $request->validate([
             'name' => 'required|max:255',
             'level' => 'required|max:255',
-            'email' => 'required|email:dns|unique:users',
+            'username' => 'required|min:5|max:255|unique:users',
             'password' => 'required|min:5|max:255'
         ]);
 
@@ -102,6 +102,8 @@ class DataAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::findOrFail($id);
+        $data->delete();
+        return redirect('data_admin')->with('delete', 'Data Berhasil DIhapus!');
     }
 }

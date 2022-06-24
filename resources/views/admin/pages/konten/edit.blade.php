@@ -10,30 +10,30 @@
         <div class="container mt-5">
             <center><h2>Edit Konten</h2></center>
 
-            <form action="{{ route('konten.update', $data->id)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('konten.update', $konten->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="form-group mt-3">
                     <table for="judul"> judul *</table>
-                    <input type="text" name="judul" class="form-control" value="{{ old('judul', $data->judul) }}">
+                    <input type="text" name="judul" class="form-control" value="{{ old('judul', $konten->judul) }}">
                 </div>
                 {{-- <div class="form-group mt-2">
                     <table for="excerpt"> kutipan *</table>
-                    <textarea name="excerpt" class="form-control">{{ $data->excerpt }}</textarea> 
+                    <textarea name="excerpt" class="form-control">{{ $konten->excerpt }}</textarea>
                 </div>
                 <div class="form-group mt-2">
                     <table for="body"> isi konten full *</table>
-                    <textarea name="body" class="form-control">{{ $data->body }}</textarea>
+                    <textarea name="body" class="form-control">{{ $konten->body }}</textarea>
                 </div> --}}
                 {{-- <div class="form-group mt-2">
                     <label for="formFile" class="form-label">Input Gambar *</label>
-                    <input class="form-control" type="file" id="formFile" name="gambar" value="{{ $data->gambar }}">
+                    <input class="form-control" type="file" id="formFile" name="gambar" value="{{ $konten->gambar }}">
                 </div> --}}
                 <div class="form-group mt-3">
                     <label for="gambar" class="form-label">Input Gambar *</label>
-                    <input type="hidden" name="oldImage" value="{{$data->gambar}}">
-                    @if ($data->gambar)
-                        <img src="{{asset('storage/'. $data->gambar)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                    <input type="hidden" name="oldImage" value="{{$konten->gambar}}">
+                    @if ($konten->gambar)
+                        <img src="{{asset('storage/'. $konten->gambar)}}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
                     @else
                         <img class="img-preview img-fluid mb-3 col-sm-5">
                     @endif
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group mt-3">
                     <table for="body"> isi konten full *</table>
-                    <input class="form-control" id="body" type="hidden" name="body" value="{{ old('body', $data->body) }}">
+                    <input class="form-control" id="body" type="hidden" name="body" value="{{ old('body', $konten->body) }}">
                     <trix-editor input="body" class="form-control"></trix-editor>
                 </div>
                 {{-- <div class="form-group mt-2">
@@ -54,9 +54,9 @@
                     <input class="date form-control" type="text" name="publish_at" value="{{ $data->published_at }}">
                 </div>
                 <script type="text/javascript">
-                    $('.date').datepicker({  
+                    $('.date').datepicker({
                     format: 'mm-dd-yyyy'
-                    });  
+                    });
                 </script>   --}}
 
                 <div class="form-group mt-3">

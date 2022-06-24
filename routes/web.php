@@ -65,22 +65,31 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::resource('calon_sewa', CalonSewaController::class);
 
     Route::resource('palimanan', PalimananController::class);
+    Route::post('exportpalimanan', [PalimananController::class, 'pedagangExport'])->name('exportpalimanan');
 
     Route::resource('jamblang', JamblangController::class);
+    Route::post('exportjamblang', [JamblangController::class, 'pedagangExport'])->name('exportjamblang');
 
     Route::resource('sumber', SumberController::class);
+    Route::post('exportSumber', [SumberController::class, 'pedagangExport'])->name('exportSumber');
 
     Route::resource('batik', BatikController::class);
+    Route::post('exportBatik', [BatikController::class, 'pedagangExport'])->name('exportBatik');
 
     Route::resource('kue', KueController::class);
+    Route::post('exportKue', [KueController::class, 'pedagangExport'])->name('exportKue');
 
     Route::resource('pasalaran', PasalaranController::class);
+    Route::post('exportPasalaran', [PasalaranController::class, 'pedagangExport'])->name('exportPasalaran');
 
     Route::resource('babakan', BabakanController::class);
+    Route::post('exportBabakan', [BabakanController::class, 'pedagangExport'])->name('exportBabakan');
 
     Route::resource('cipeujeuh', CipeujeuhController::class);
+    Route::post('exportCipeujeuh', [CipeujeuhController::class, 'pedagangExport'])->name('exportCipeujeuh');
 
     Route::resource('ciledug', CiledugController::class);
+    Route::post('exportCiledug', [CiledugController::class, 'pedagangExport'])->name('exportCiledug');
 
 });
 
@@ -89,6 +98,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:pengelola']], function () {
     Route::get('admin_pasar', [DashboardAdminPasarController::class, 'index']);
 
     Route::resource('pedagang', PedagangController::class);
+    Route::post('exportpedagang', [PedagangController::class, 'pedagangExport'])->name('exportpedagang');
 
     Route::resource('lapak', LapakController::class);
 
@@ -113,9 +123,12 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
 // Route Untuk Landing Page
 Route::get('/', [BerandaController::class, 'index']);
 
-Route::get('berita', [BeritaController::class, 'index']);
+Route::get('berita', [BeritaController::class, 'index'])->name('berita');
+Route::get('detailberita/{id}', [BeritaController::class, 'detailberita'])->name('detailberita');
 
 Route::get('pasar', [PasarController::class, 'index']);
+Route::get('detailpasar', [PasarController::class, 'detailpasar'])->name('detailpasar');
+
 
 Route::get('kontak', [KontakController::class, 'index']);
 
