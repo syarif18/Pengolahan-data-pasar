@@ -21,7 +21,7 @@
 
 
 <div>
-    <a href="{{ 'data_admin/create' }}" class="btn btn-primary"> + Sewa Lapak </a>
+    <a href="{{ 'data_admin/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Tambah Admin</i></a>
 </div>
 
 <section>

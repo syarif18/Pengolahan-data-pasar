@@ -17,7 +17,7 @@
 @endif
 
 <div>
-    <a href="{{ 'konten/create' }}" class="btn btn-primary"> + Tambah Konten </a>
+    <a href="{{ 'konten/create' }}" class="btn btn-primary"> <i class="bi bi-plus-circle"> Tambah Konten</i></a>
 </div>
 
     <table class="table table-bordered border-primary mt-2">

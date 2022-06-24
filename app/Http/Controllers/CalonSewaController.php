@@ -9,7 +9,7 @@ class CalonSewaController extends Controller
 {
     public function index()
     {
-        $data = SewaUser::all();
+        $data = SewaUser::OrderBy('created_at', 'desc')->get();
         return view('admin.pages.calon_sewa.calon_sewa', [
             "title" => "Data Calon Penyewa"
         ])->with([

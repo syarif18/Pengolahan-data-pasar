@@ -91,7 +91,7 @@
         @method('post')
         @csrf
         <input type="hidden" name="nama_pasar" value="{{ $userjamblang }}">
-        <button type="submit" class="btn btn-success">export</button>
+        <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Excel</i></button>
     </form>
     {{-- <a href="{{ route('exportpedagang') }}" class="btn btn-primary"> Export Excel </a> --}}
 </div>

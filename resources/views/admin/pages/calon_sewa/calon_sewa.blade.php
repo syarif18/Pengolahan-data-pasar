@@ -6,17 +6,11 @@
 @include('admin.partials.sidebar')
 
 <section>
-  <div class="card">
       <div class="container mt-3">
-          <center><h2>Data Tunggu</h2></center>
 
-          <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Data Tunggu Calon Penyewa Lapak</h5>
-
-                <!-- Table with hoverable rows -->
-                <table class="table table-hover">
-                  <thead>
+          <!-- Table with hoverable rows -->
+          <table class="table table-hover">
+                  <thead class="table-light">
                     <tr>
                       <th scope="col">No</th>
                       <th scope="col">Nama Penyewa</th>
@@ -25,19 +19,29 @@
                       <th scope="col">Aksi</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="table-light">
                       @foreach ($data as $dataSewa)
                           <tr>
                               <td scope="col" style="text-align: center">{{ $loop->iteration }}</td>
                               <td>{{ $dataSewa->nama }}</td>
                               <td>{{ $dataSewa->nama_pasar }}</td>
                               <td>
-                                @if ($dataSewa->status == '0')
-                                <a href="" disabled = "disabled" class="btn btn-warning" >Menunggu</a>
-                                @elseif ($dataSewa->status == '1')
-                                <a href="" class="btn btn-success" >Disetujui</a>
+                                {{-- kondisi button jika data sudah terisi --}}
+                                @if ($dataSewa->status != '0')
+                                    <button disabled = "disabled" class="btn btn-secondary">Selesai</button>
                                 @else
-                                <a href="" disabled = "disabled" class="btn btn-danger" >Ditolak</a>
+                                    <form action="{{ route('calon_sewa.update', $dataSewa->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('put')
+                                        <input type="hidden" value="1" name="status">
+                                        <button type="submit" class="btn btn-success"> <i class="bi bi-check-circle"></i> </button>
+                                    </form>
+                                    <form action="{{ route('calon_sewa.update', $dataSewa->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('put')
+                                        <input type="hidden" value="2" name="status">
+                                        <button type="submit" class="btn btn-danger"> <i class="bi bi-dash-circle"></i> </button>
+                                    </form>
                                 @endif
                               </td>
                               <td>
@@ -47,26 +51,6 @@
                                     @csrf
                                     <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                   </form>
-
-                                  {{-- kondisi button jika data sudah terisi --}}
-                                  @if ($dataSewa->status != '0')
-                                      <button disabled = "disabled" class="btn btn-success"> Setuju</button>
-                                      <button disabled = "disabled" class="btn btn-secondary"> Tolak</button>
-                                  @else
-                                      <form action="{{ route('calon_sewa.update', $dataSewa->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
-                                          @csrf
-                                          @method('put')
-                                          <input type="hidden" value="1" name="status">
-                                          <button type="submit" class="btn btn-success"> setuju </button>
-                                      </form>
-                                      <form action="{{ route('calon_sewa.update', $dataSewa->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
-                                          @csrf
-                                          @method('put')
-                                          <input type="hidden" value="2" name="status">
-                                          <button type="submit" class="btn btn-secondary"> tolak </button>
-                                  </form>
-                                  @endif
-
                               </td>
                           </tr>
                       @endforeach
@@ -133,9 +117,8 @@
                               </div>
                           </div>
                           </div>
-                      </div> --}}
-      </div>
-  </div>
+                       </div> --}}
+        </div>
 </section>
 
 @endsection
