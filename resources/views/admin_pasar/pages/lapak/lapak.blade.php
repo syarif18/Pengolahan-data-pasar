@@ -19,7 +19,7 @@
 @endif
 
 <div>
-    <a href="{{ 'lapak/create' }}" class="btn btn-primary"> + Tambah Lapak </a>
+    <a href="{{ 'lapak/create' }}" class="btn btn-primary"> <i class="bi bi-plus-circle"> Tambah Lapak</i> </a>
 </div>
 
 <section>

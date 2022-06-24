@@ -17,16 +17,19 @@
                         <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
+
+                <form action="{{ route('exportpedagang') }}" class="d-inline" method="POST">
+                    @method('post')
+                    @csrf
+                    <input type="hidden" name="nama_pasar" value="{{ $auth }}">
+                    <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
+                    <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Cetak</i></button>
+                </form>
+
+
             </div>
         </div>
 
-        <form action="{{ route('exportpedagang') }}" class="d-inline" method="POST">
-            @method('post')
-            @csrf
-            <input type="hidden" name="nama_pasar" value="{{ $auth }}">
-            <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
-            <button type="submit" class="btn btn-success">export</button>
-        </form>
         {{-- <a href="{{ route('exportpedagang') }}" class="btn btn-primary"> Export Excel </a> --}}
     </div>
 
