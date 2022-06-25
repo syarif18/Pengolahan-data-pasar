@@ -19,9 +19,19 @@
     </div>
 @endif
 
-<div>
+<div class="form-group ">
     <a href="{{ 'sewa/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Sewa Lapak</i></a>
 </div>
+
+<form action="/sewa" method="GET">
+    @csrf
+    @method('post')
+    <div class="input-group mb-3">
+        <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
+        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+    </div>
+</form>
+
 
 <section>
     <div class="card mt-3">
@@ -84,6 +94,9 @@
                         @endforeach
                     </tbody>
                   </table>
+                <div class="table-hover d-flex justify-content-center" >
+                    {{ $data->links() }}
+                </div>
                   <!-- End Table with hoverable rows -->
                   <!-- Button trigger modal -->
 

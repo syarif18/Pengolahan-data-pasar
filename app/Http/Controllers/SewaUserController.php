@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SewaUser;
 use App\Models\Lapak;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,14 +18,24 @@ class SewaUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user()->name;
-        $data = SewaUser::where('nama_pasar', $user)->get();
+        $data = SewaUser::where('nama_pasar', $user)->paginate(10);
+
+        if($request->has('search')){
+            $data->where('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $data = $data->latest()->paginate(10);
+
+        // dd($request->search);
+
         return view('admin_pasar.pages.sewa.sewa', [
             "title" => "Sewa Lapak"
         ])->with([
-            "data" => $data
+            "data" => $data,
+            "search" => $request->search?$request->search:''
         ]);
     }
 

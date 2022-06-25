@@ -7,6 +7,8 @@ use App\Models\SewaUser;
 use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 
 class KueController extends Controller
@@ -16,11 +18,22 @@ class KueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $kue;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $kue = DB::table('sewa_users')->where('nama_pasar', 'pasar kue')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar kue')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar kue')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $userkue = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar kue')->latest()->paginate(10);
         return view('admin.pages.pasar.kue', [
-            "title" => "Pasar Kue"
+            "title" => "Pasar Kue",
+            "kue" => $kue,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "userkue" => $userkue]);
     }

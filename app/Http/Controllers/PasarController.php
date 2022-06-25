@@ -35,6 +35,22 @@ class PasarController extends Controller
         ]);
     }
 
+    public function detailpasargambar($id)
+    {
+        $lapak = Lapak::where('user_id', '=', '2')->get();
+        $gambar1 = Lapak::where('user_id', '=', '2')->take(3)->get();
+        $gambar2 = Lapak::where('user_id', '=', '2')->take(3)->get();
+        $gambar3 = Lapak::where('user_id', '=', '2')->take(3)->get();
+
+        return view('landing.pages.pasar.detail', [
+            'lapak' => $lapak,
+            'gambar1' => $gambar1,
+            'gambar2' => $gambar2,
+            'gambar3' => $gambar3,
+            "title" => "Informasi Pasar"
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

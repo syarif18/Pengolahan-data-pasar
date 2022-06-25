@@ -80,9 +80,9 @@
         <!-- Start Portfolio -page -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter="*" href="{{ route('detailpasar')}}" class="filter-active">All</li>
             @foreach ($lapak as $item)
-            <li data-filter="{{ $item->jenis_tempat }}">{{ $item->jenis_tempat }}</li>
+            <li data-filter="" href="{{ route('detailpasargambar', $item->jenis_tempat) }}">{{ $item->jenis_tempat }}</li>
             @endforeach
             </ul>
         </div>

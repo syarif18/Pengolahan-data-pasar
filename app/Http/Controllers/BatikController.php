@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class BatikController extends Controller
 {
@@ -15,11 +17,22 @@ class BatikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $batik;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $batik = DB::table('sewa_users')->where('nama_pasar', 'pasar batik')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar batik')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar batik')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $userbatik = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar batik')->latest()->paginate(10);
         return view('admin.pages.pasar.batik', [
-            "title" => "Pasar Batik"
+            "title" => "Pasar Batik",
+            "batik" => $batik,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "userbatik" => $userbatik]);
     }

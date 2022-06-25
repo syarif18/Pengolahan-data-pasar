@@ -8,6 +8,8 @@ use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+
 
 
 class JamblangController extends Controller
@@ -17,11 +19,22 @@ class JamblangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $jamblang;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $jamblang = DB::table('sewa_users')->where('nama_pasar', 'pasar jamblang')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar jamblang')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar jamblang')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $userjamblang = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar jamblang')->latest()->paginate(10);
         return view('admin.pages.pasar.jamblang', [
-            "title" => "Pasar Jamblang"
+            "title" => "Pasar Jamblang",
+            "jamblang" => $jamblang,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "userjamblang" => $userjamblang]);
     }

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class CiledugController extends Controller
 {
@@ -15,11 +17,22 @@ class CiledugController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $ciledug;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $ciledug = DB::table('sewa_users')->where('nama_pasar', 'pasar ciledug')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar ciledug')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar ciledug')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $userciledug = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar ciledug')->latest()->paginate(10);
         return view('admin.pages.pasar.ciledug', [
-            "title" => "Pasar Ciledug"
+            "title" => "Pasar Ciledug",
+            "ciledug" => $ciledug,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "userciledug" => $userciledug]);
     }

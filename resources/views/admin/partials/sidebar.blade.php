@@ -38,10 +38,15 @@
       </li><!-- End Data Pasar Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('palimanan', 'jamblang', 'sumber', 'batik', 'kue', 'pasalaran', 'babakan', 'cipeujeuh', 'ciledug') ? 'active' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link {{ Request::is('data_pedagang', 'palimanan', 'jamblang', 'sumber', 'batik', 'kue', 'pasalaran', 'babakan', 'cipeujeuh', 'ciledug') ? 'active' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="/data_pedagang">
           <i class="bi bi-people"></i><span>Data Pedagang</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a class="nav-content {{ Request::is('data_pedagang') ? 'active' : 'collapsed' }} " href="/data_pedagang">
+                    <i class="bi bi-circle"></i><span>Data Pedagang</span>
+                </a>
+            </li>
           <li>
             <a class="nav-content {{ Request::is('palimanan') ? 'active' : 'collapsed' }} " href="/palimanan">
               <i class="bi bi-circle"></i><span>Pasar Palimanan</span>

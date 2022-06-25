@@ -7,6 +7,8 @@ use App\Models\SewaUser;
 use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 
 class SumberController extends Controller
@@ -16,11 +18,22 @@ class SumberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $sumber;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $sumber = DB::table('sewa_users')->where('nama_pasar', 'pasar sumber')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar sumber')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar sumber')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $usersumber = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar sumber')->latest()->paginate(10);
         return view('admin.pages.pasar.sumber', [
-            "title" => "Pasar Sumber"
+            "title" => "Pasar Sumber",
+            "sumber" => $sumber,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "usersumber" => $usersumber]);
     }

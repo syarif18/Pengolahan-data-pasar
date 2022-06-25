@@ -16,14 +16,23 @@ class CalonPedagangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user()->name;
-        $data = SewaUser::where('status', '1')->where('nama_pasar', $user)->get();
+        $data = SewaUser::where('status', '1')->where('nama_pasar', $user);
+
+        if($request->has('search')){
+            $data->where('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $data = $data->latest()->paginate(10);
+
         return view('admin_pasar.pages.calon_pedagang.calon_pedagang', [
             "title" => "Data Calon pedagang"
         ])->with([
-            "data" => $data]);
+            "data" => $data,
+            "search" => $request->search?$request->search:''
+        ]);
     }
 
     /**
@@ -73,11 +82,14 @@ class CalonPedagangController extends Controller
     {
         $data = SewaUser::findOrFail($id);
         $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
+
         return view('admin_pasar.pages.calon_pedagang.edit', [
             "title" => "Konfirmasi Data"
         ])->with([
             "data" => $data,
-            "lapak" => $lapak
+            "lapak" => $lapak,
+            "search" => $request->search?$request->search:''
+
         ]);
     }
 

@@ -7,6 +7,8 @@ use App\Models\SewaUser;
 use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class CipeujeuhController extends Controller
 {
@@ -15,11 +17,22 @@ class CipeujeuhController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $cipeujeuh;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $cipeujeuh = DB::table('sewa_users')->where('nama_pasar', 'pasar cipeujeuh')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar cipeujeuh')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar cipeujeuh')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $usercipeujeuh = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar cipeujeuh')->latest()->paginate(10);
         return view('admin.pages.pasar.cipeujeuh', [
-            "title" => "Pasar Cipeujeuh"
+            "title" => "Pasar Cipeujeuh",
+            "cipeujeuh" => $cipeujeuh,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "usercipeujeuh" => $usercipeujeuh]);
     }

@@ -8,23 +8,31 @@
 
     <div>
         <div class="row">
-            <div class="col-md-4">
-                <form action="/pedagang" method="GET">
-                    @csrf
-                    @method('post')
-                    <div class="input-group mb-3">
-                        <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
-                        <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+            <div class="col-md-12 form-group ">
+                <div class="row ">
+                    <div class="col-sm-4">
+                        <form action="/pedagang" method="GET">
+                            @csrf
+                            @method('post')
+                            <div class="input-group mb-3">
+                                <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
+                                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="col">
+                        <form action="{{ route('exportpedagang') }}" class="d-inline" method="POST">
+                            @method('post')
+                            @csrf
+                            <input type="hidden" name="nama_pasar" value="{{ $auth }}">
+                            <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
+                            <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Cetak Excel</i></button>
+                        </form>
+                    </div>
+                </div>
 
-                <form action="{{ route('exportpedagang') }}" class="d-inline" method="POST">
-                    @method('post')
-                    @csrf
-                    <input type="hidden" name="nama_pasar" value="{{ $auth }}">
-                    <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
-                    <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Cetak</i></button>
-                </form>
+
+
 
 
             </div>

@@ -28,6 +28,7 @@ use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\SewaUserController;
 use App\Http\Controllers\SumberController;
 use App\Http\Controllers\TentangController;
+use App\Http\Controllers\DataPedagangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,9 +61,15 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     // Route::get('data_pasar/create', [DataPasarController::class, 'create']);
 
     Route::resource('konten', KontenController::class);
+
+
+
+
     // Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
 
     Route::resource('calon_sewa', CalonSewaController::class);
+
+    Route::resource('data_pedagang', DataPedagangController::class);
 
     Route::resource('palimanan', PalimananController::class);
     Route::post('exportpalimanan', [PalimananController::class, 'pedagangExport'])->name('exportpalimanan');
@@ -128,6 +135,7 @@ Route::get('detailberita/{id}', [BeritaController::class, 'detailberita'])->name
 
 Route::get('pasar', [PasarController::class, 'index']);
 Route::get('detailpasar', [PasarController::class, 'detailpasar'])->name('detailpasar');
+Route::get('detailpasargambar/{id}', [PasarController::class, 'detailpasargambar'])->name('detailpasargambar');
 
 
 Route::get('kontak', [KontakController::class, 'index']);

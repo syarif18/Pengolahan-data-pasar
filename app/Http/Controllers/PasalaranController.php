@@ -7,6 +7,8 @@ use App\Models\SewaUser;
 use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 
 class PasalaranController extends Controller
@@ -16,11 +18,22 @@ class PasalaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $pasalaran;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $pasalaran = DB::table('sewa_users')->where('nama_pasar', 'pasar pasalaran')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar pasalaran')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar pasalaran')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $userpasalaran = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar pasalaran')->latest()->paginate(10);
         return view('admin.pages.pasar.pasalaran', [
-            "title" => "Pasar Pasalaran"
+            "title" => "Pasar Pasalaran",
+            "pasalaran" => $pasalaran,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "userpasalaran" => $userpasalaran]);
     }

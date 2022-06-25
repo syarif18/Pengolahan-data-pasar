@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Exports\PedagangExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 
 class BabakanController extends Controller
 {
@@ -15,11 +17,22 @@ class BabakanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $babakan;
+    public $wanita;
+    public $pria;
+
     public function index()
     {
+        $babakan = DB::table('sewa_users')->where('nama_pasar', 'pasar babakan')->where('konfirmasi', '1')->count();
+        $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar babakan')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
+        $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar babakan')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
+
         $userbabakan = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar babakan')->latest()->paginate(10);
         return view('admin.pages.pasar.babakan', [
-            "title" => "Pasar Babakan"
+            "title" => "Pasar Babakan",
+            "babakan" => $babakan,
+            "wanita" => $wanita,
+            "pria" => $pria
         ])->with([
             "userbabakan" => $userbabakan]);
     }

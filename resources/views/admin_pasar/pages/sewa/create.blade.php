@@ -19,7 +19,7 @@
                 @csrf
                 <div class="col-md-6">
                     <label for="nama_pasar" class="form-label">Nama Pasar *</label>
-                    <input type="text" name="nama_pasar" readonly class="form-control-plaintext" id="staticEmail" value="{{ Auth::user()->name }}">
+                    <input type="text" name="nama_pasar" readonly class="form-control-plaintext @error('nama_pasar') is-invalid @enderror" id="nama_pasar" value="{{ Auth::user()->name }}">
                     {{-- <select class="form-select" aria-label="Default select example" id="nama_pasar" name="nama_pasar">
                         <option selected>Nama Pasar</option>
                         <option value="Pasar Palimanan">Pasar Palimanan</option>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="jenis_tempat" class="form-label">Jenis Tempat *</label>
-                    <select class="form-select" aria-label="Default select example" id="jenis_tempat" name="jenis_tempat">
+                    <select class="form-select" aria-label="Default select example" id="jenis_tempat" name="jenis_tempat" required>
                         <option value="" hidden selected>Jenis Tempat</option>
                         @foreach ($lapak as $lapak)
                             <option value="{{ $lapak->jenis_tempat }}">{{ $lapak->jenis_tempat }}</option>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="nama" class="form-label">Nama *</label>
-                    <input type="text" id="nama" name="nama" class="form-control" placeholder="Your Name">
+                    <input type="text" id="nama" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Your Name">
                 </div>
                 <div class="col-md-6">
                     <label for="nik" class="form-label">NIK *</label>
