@@ -28,10 +28,10 @@ class PedagangController extends Controller
             $data->where('jenis_tempat', 'like', '%' . $request->search . '%');
         }
 
-        $data = $data->latest()->paginate(10);
+        $data = $data->latest()->paginate(5);
 
         return view('admin_pasar.pages.pedagang', [
-            "title" => "Data Calon pedagang"
+            "title" => "Data pedagang"
         ])->with([
             "datas" => $data,
             "auth" => $user,

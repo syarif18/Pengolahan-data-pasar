@@ -25,7 +25,7 @@ class CalonPedagangController extends Controller
             $data->where('nama', 'like', '%' . $request->search . '%');
         }
 
-        $data = $data->latest()->paginate(10);
+        $data = $data->latest()->paginate(5);
 
         return view('admin_pasar.pages.calon_pedagang.calon_pedagang', [
             "title" => "Data Calon pedagang"

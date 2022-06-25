@@ -5,6 +5,17 @@
 @include('admin.partials.header')
 @include('admin.partials.sidebar')
 
+<div class="col-sm-4">
+    <form action="/data_pedagang" method="GET">
+        @csrf
+        @method('post')
+        <div class="input-group mb-3">
+            <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
+            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
+</div>
+
 <section>
     <div class="mt-3">
         <!-- Table with hoverable rows -->

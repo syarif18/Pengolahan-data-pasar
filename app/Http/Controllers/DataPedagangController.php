@@ -13,9 +13,16 @@ class DataPedagangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dataPedagang = SewaUser::orderBy('nama_pasar', 'asc')->where('Konfirmasi', '1')->paginate(10);
+        $dataPedagang = SewaUser::orderBy('nama_pasar', 'asc')->where('Konfirmasi', '1');
+
+        if($request->has('search')){
+            $dataPedagang->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $dataPedagang = $dataPedagang->latest()->paginate(10);
+
         return view('admin.pages.pasar.data_pedagang', [
             "title" => "Data Pedagang",
             "datapedagang" => $dataPedagang

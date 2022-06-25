@@ -21,13 +21,13 @@ class SewaUserController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user()->name;
-        $data = SewaUser::where('nama_pasar', $user)->paginate(10);
+        $data = SewaUser::where('nama_pasar', $user);
 
         if($request->has('search')){
             $data->where('nama', 'like', '%' . $request->search . '%');
         }
 
-        $data = $data->latest()->paginate(10);
+        $data = $data->latest()->paginate(5);
 
         // dd($request->search);
 

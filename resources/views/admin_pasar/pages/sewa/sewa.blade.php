@@ -19,22 +19,25 @@
     </div>
 @endif
 
-<div class="form-group ">
-    <a href="{{ 'sewa/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Sewa Lapak</i></a>
+<div class="form-group d-flex justify-content-between">
+    <div>
+        <a href="{{ 'sewa/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Sewa Lapak</i></a>
+    </div>
+
+    <form action="/sewa" method="GET">
+        @csrf
+        @method('post')
+        <div class="input-group mb-3">
+            <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
+            <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
 </div>
 
-<form action="/sewa" method="GET">
-    @csrf
-    @method('post')
-    <div class="input-group mb-3">
-        <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
-        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
-    </div>
-</form>
 
 
 <section>
-    <div class="card mt-3">
+    <div class="card">
         <div class="container mt-3">
             <center><h2>Informasi</h2></center>
 

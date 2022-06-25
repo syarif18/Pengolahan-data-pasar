@@ -38,7 +38,7 @@
 
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Informasi Status Sewa Lapak Anda</h5>
+                  <h5 class="card-title">Informasi Status Sewa Lapak</h5>
 
                   <!-- Table with hoverable rows -->
                   <table class="table table-hover">
@@ -98,6 +98,9 @@
                         @endforeach
                     </tbody>
                   </table>
+                  <div class="table-hover d-flex justify-content-center" >
+                    {{ $data->links() }}
+                  </div>
 
                   <!-- End Table with hoverable rows -->
                   <!-- Button trigger modal -->

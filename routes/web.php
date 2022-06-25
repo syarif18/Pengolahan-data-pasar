@@ -61,10 +61,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     // Route::get('data_pasar/create', [DataPasarController::class, 'create']);
 
     Route::resource('konten', KontenController::class);
-
-
-
-
     // Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
 
     Route::resource('calon_sewa', CalonSewaController::class);
