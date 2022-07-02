@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Pasar;
 use Illuminate\Support\Facades\Hash;
 
 class DataAdminController extends Controller
@@ -30,8 +31,10 @@ class DataAdminController extends Controller
      */
     public function create()
     {
+        $pasar = Pasar::all();
         return view('admin.pages.data_admin.create', [
-            "title" => "Create Data Admin"
+            "title" => "Create Data Admin",
+            "pasar" => $pasar
         ]);
     }
 

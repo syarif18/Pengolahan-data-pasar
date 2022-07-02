@@ -35,7 +35,16 @@
                         </div>
                     @enderror
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
+                    <label for="ukuran_tempat" class="form-label">Ukuran M2 Tempat *</label>
+                    <input type="text" id="ukuran_tempat" name="ukuran_tempat" class="form-control @error('ukuran_tempat') is-invalid @enderror" required placeholder="ukuran_tempat">
+                    @error('ukuran_tempat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
                     <label for="gambar1" class="form-label">Gambar 1</label>
                     <input class="form-control @error('gambar1') is-invalid @enderror" type="file" id="gambar1" name="gambar1" required onchange="previewImage()">
                     @error('gambar1')
@@ -45,7 +54,7 @@
                     @enderror
                     <img class="img-preview img-fluid mt-3 col-sm-5">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="gambar2" class="form-label">Gambar 2</label>
                     <input class="form-control @error('gambar2') is-invalid @enderror" type="file" id="gambar2" name="gambar2" required onchange="previewImages()">
                     @error('gambar2')
@@ -55,7 +64,7 @@
                     @enderror
                     <img class="img-preview-i img-fluid mt-3 col-sm-5">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label for="gambar3" class="form-label">Gambar 3</label>
                     <input class="form-control @error('gambar3') is-invalid @enderror" type="file" id="gambar3" name="gambar3" required onchange="previewImagess()">
                     @error('gambar3')

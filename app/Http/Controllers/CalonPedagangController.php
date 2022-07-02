@@ -88,7 +88,7 @@ class CalonPedagangController extends Controller
         ])->with([
             "data" => $data,
             "lapak" => $lapak,
-            "search" => $request->search?$request->search:''
+            // "search" => $request->search?$request->search:''
 
         ]);
     }

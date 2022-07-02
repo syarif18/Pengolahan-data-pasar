@@ -14,10 +14,15 @@
                     <form class="row g-3" action="{{ route('data_admin.store') }}" method="POST">
                         @csrf
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Nama Pasar*</label>
-                            <input type="text" id="name" name="name" class="form-control @error('name')
-                                is-invalid
+                            <label for="name" class="form-label">Nama Pasar *</label>
+                            <select aria-label="Default select example" id="name" name="name" required class="form-select @error('name')
+                            is-invalid
                             @enderror" placeholder="name" required value="{{ old('name') }}">
+                                <option value="" hidden selected disabled>Nama Pasar</option>
+                                @foreach ($pasar as $item)
+                                    <option value="{{ $item->nama_pasar }}">{{ $item->nama_pasar }}</option>
+                                @endforeach
+                            </select>
                             @error('name')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -28,8 +33,8 @@
                             <label for="level" class="form-label">level *</label>
                             <select class="form-select @error('level')
                             is-invalid
-                            @enderror" id="level" name="level" value="{{ old('email') }}">
-                                <option selected disabled>admin/pengelola</option>
+                            @enderror" id="level" name="level" value="{{ old('level') }} " required>
+                                <option value="" hidden selected disabled>admin/pengelola</option>
                                 <option value="admin">Admin</option>
                                 <option value="pengelola">Pengelola</option>
                             </select>
@@ -51,7 +56,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6">
-                            <label for="password" class="col-form-label">Password *</label>
+                            <label for="password" class="form-label">Password *</label>
                             <input type="password" id="password" name="password" class="form-control @error('password')
                                 is-invalid
                                 @enderror"  placeholder="Password min 5-20" required>

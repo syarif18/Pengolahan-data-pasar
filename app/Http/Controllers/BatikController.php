@@ -27,19 +27,43 @@ class BatikController extends Controller
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar batik')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
         $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar batik')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
 
-        $userbatik = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar batik')->latest()->paginate(10);
+        $userbatik = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar batik');
+
+        if($request->has('search')){
+            $userbatik->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $userbatik = $userbatik->latest()->paginate(10);
+
         return view('admin.pages.pasar.batik', [
-            "title" => "Pasar Batik",
+            "title" => "Pasar Batik"
+        ])->with([
+            "userbatik" => $userbatik,
             "batik" => $batik,
             "wanita" => $wanita,
-            "pria" => $pria
-        ])->with([
-            "userbatik" => $userbatik]);
+            "pria" => $pria,
+            "search" => $request->search?$request->search:''
+        ]);
     }
 
     public function pedagangExport(Request $request){
         // dd($request->nama_pasar);
         return Excel::download(new PedagangExport('pasar batik', $request->nama_pasar), 'pedagang batik.xlsx');
+    }
+
+    public function pedagangpdf(Request $request)
+    {
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar batik');
+
+        if($request->has('search')){
+            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $cetakpdf = $cetakpdf->get();
+
+        // dd($cetakpdf);
+
+        return view('admin.pages.pasar.batik.c_pedagangpdf', compact('cetakpdf'));
     }
 
     /**

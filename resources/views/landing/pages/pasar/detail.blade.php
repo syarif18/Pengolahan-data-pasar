@@ -78,21 +78,21 @@
         </div>
         <div class="row wesome-project-1 fix">
         <!-- Start Portfolio -page -->
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        {{-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul id="portfolio-flters">
             <li data-filter="*" href="{{ route('detailpasar')}}" class="filter-active">All</li>
             @foreach ($lapak as $item)
-            <li data-filter="" href="{{ route('detailpasargambar', $item->jenis_tempat) }}">{{ $item->jenis_tempat }}</li>
+            <a href="{{ route('detailpasargambar', $item->jenis_tempat) }}"><li data-filter="" href="">{{ $item->jenis_tempat }}</li></a>
             @endforeach
             </ul>
-        </div>
+        </div> --}}
         </div>
 
         <div class="row awesome-project-content portfolio-container">
 
         <!-- portfolio-item start -->
-        @foreach ($gambar1 as $itemgambar)
-        <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item" filter="{{ $item->jenis_tempat }}">
+        @foreach ($lapak as $itemgambar)
+        <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item" filter="">
             <div class="single-awesome-project">
                 <div class="awesome-img" style="max-height: 200px; overflow:hidden;">
                     <a href="#"><img src="{{ asset('/img/gambarlapak/'. $itemgambar->gambar1) }}" alt="" /></a>
@@ -100,18 +100,15 @@
                     <div class="project-dec">
                         <a class="portfolio-lightbox" data-gallery="myGallery" href="{{ asset('/img/gambarlapak/'. $itemgambar->gambar1) }}">
                         <h4>Pasar Palimanan</h4>
-                        {{-- <span>Pasar Palimanan</span> --}}
+                        <span>{{ $itemgambar->jenis_tempat }}</span>
                         </a>
                     </div>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
         <!-- portfolio-item end -->
-
         <!-- portfolio-item start -->
-        @foreach ($gambar2 as $itemgambar)
         <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-web">
             <div class="single-awesome-project">
             <div class="awesome-img" style="max-height: 200px; overflow:hidden;">
@@ -120,17 +117,17 @@
                 <div class="project-dec">
                     <a class="portfolio-lightbox" data-gallery="myGallery" href="{{ asset('/img/gambarlapak/'. $itemgambar->gambar3) }}">
                       <h4>Pasar Palimanan</h4>
+                      <span>{{ $itemgambar->jenis_tempat }}</span>
                     </a>
                 </div>
                 </div>
             </div>
             </div>
         </div>
-        @endforeach
         <!-- portfolio-item end -->
 
         <!-- portfolio-item start -->
-        @foreach ($gambar3 as $itemgambar)
+
         <div class="col-md-4 col-sm-4 col-xs-12 portfolio-item filter-card">
             <div class="single-awesome-project">
             <div class="awesome-img" style="max-height: 200px; overflow:hidden;">
@@ -139,6 +136,7 @@
                 <div class="project-dec">
                     <a class="portfolio-lightbox" data-gallery="myGallery" href="{{ asset('/img/gambarlapak/'. $itemgambar->gambar3) }}">
                       <h4>Pasar Palimanan</h4>
+                      <span>{{ $itemgambar->jenis_tempat }}</span>
                     </a>
                 </div>
                 </div>

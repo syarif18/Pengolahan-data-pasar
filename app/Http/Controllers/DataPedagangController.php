@@ -25,7 +25,9 @@ class DataPedagangController extends Controller
 
         return view('admin.pages.pasar.data_pedagang', [
             "title" => "Data Pedagang",
-            "datapedagang" => $dataPedagang
+            "datapedagang" => $dataPedagang,
+            "search" => $request->search?$request->search:''
+
         ]);
     }
 

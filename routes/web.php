@@ -65,33 +65,42 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     Route::resource('calon_sewa', CalonSewaController::class);
 
-    Route::resource('data_pedagang', DataPedagangController::class);
+    // Route::resource('data_pedagang', DataPedagangController::class);
 
     Route::resource('palimanan', PalimananController::class);
+    Route::post('palimananpdf', [PalimananController::class, 'pedagangpdf'])->name('palimananpdf');
     Route::post('exportpalimanan', [PalimananController::class, 'pedagangExport'])->name('exportpalimanan');
 
     Route::resource('jamblang', JamblangController::class);
+    Route::post('jamblangpdf', [JamblangController::class, 'pedagangpdf'])->name('jamblangpdf');
     Route::post('exportjamblang', [JamblangController::class, 'pedagangExport'])->name('exportjamblang');
 
     Route::resource('sumber', SumberController::class);
+    Route::post('sumberpdf', [SumberController::class, 'pedagangpdf'])->name('sumberpdf');
     Route::post('exportSumber', [SumberController::class, 'pedagangExport'])->name('exportSumber');
 
     Route::resource('batik', BatikController::class);
+    Route::post('batikpdf', [BatikController::class, 'pedagangpdf'])->name('batikpdf');
     Route::post('exportBatik', [BatikController::class, 'pedagangExport'])->name('exportBatik');
 
     Route::resource('kue', KueController::class);
+    Route::post('kuepdf', [KueController::class, 'pedagangpdf'])->name('kuepdf');
     Route::post('exportKue', [KueController::class, 'pedagangExport'])->name('exportKue');
 
     Route::resource('pasalaran', PasalaranController::class);
+    Route::post('pasalaranpdf', [PasalaranController::class, 'pedagangpdf'])->name('pasalaranpdf');
     Route::post('exportPasalaran', [PasalaranController::class, 'pedagangExport'])->name('exportPasalaran');
 
     Route::resource('babakan', BabakanController::class);
+    Route::post('babakanpdf', [BabakanController::class, 'pedagangpdf'])->name('babakanpdf');
     Route::post('exportBabakan', [BabakanController::class, 'pedagangExport'])->name('exportBabakan');
 
     Route::resource('cipeujeuh', CipeujeuhController::class);
+    Route::post('cipeujeuhpdf', [CipeujeuhController::class, 'pedagangpdf'])->name('cipeujeuhpdf');
     Route::post('exportCipeujeuh', [CipeujeuhController::class, 'pedagangExport'])->name('exportCipeujeuh');
 
     Route::resource('ciledug', CiledugController::class);
+    Route::post('ciledugpdf', [CiledugController::class, 'pedagangpdf'])->name('ciledugpdf');
     Route::post('exportCiledug', [CiledugController::class, 'pedagangExport'])->name('exportCiledug');
 
 });
@@ -102,6 +111,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:pengelola']], function () {
 
     Route::resource('pedagang', PedagangController::class);
     Route::post('exportpedagang', [PedagangController::class, 'pedagangExport'])->name('exportpedagang');
+    Route::post('pedagangpdf', [PedagangController::class, 'pedagangpdf'])->name('pedagangpdf');
 
     Route::resource('lapak', LapakController::class);
 
@@ -131,7 +141,7 @@ Route::get('detailberita/{id}', [BeritaController::class, 'detailberita'])->name
 
 Route::get('pasar', [PasarController::class, 'index']);
 Route::get('detailpasar', [PasarController::class, 'detailpasar'])->name('detailpasar');
-Route::get('detailpasargambar/{id}', [PasarController::class, 'detailpasargambar'])->name('detailpasargambar');
+Route::get('detailpasargambar/{jenis_tempat}', [PasarController::class, 'detailpasargambar'])->name('detailpasargambar');
 
 
 Route::get('kontak', [KontakController::class, 'index']);

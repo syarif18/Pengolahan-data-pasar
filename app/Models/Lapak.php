@@ -10,5 +10,5 @@ class Lapak extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $fillable = ['user_id', 'jenis_tempat', 'jumlah_tempat', 'gambar1', 'gambar2', 'gambar3'];
+    protected $fillable = ['user_id', 'jenis_tempat', 'jumlah_tempat', 'ukuran_tempat', 'gambar1', 'gambar2', 'gambar3'];
 }

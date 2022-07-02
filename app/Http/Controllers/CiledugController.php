@@ -27,19 +27,43 @@ class CiledugController extends Controller
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar ciledug')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
         $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar ciledug')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
 
-        $userciledug = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar ciledug')->latest()->paginate(10);
+        $userciledug = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar ciledug');
+
+        if($request->has('search')){
+            $userciledug->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $userciledug = $userciledug->latest()->paginate(10);
+
         return view('admin.pages.pasar.ciledug', [
-            "title" => "Pasar Ciledug",
+            "title" => "Pasar Ciledug"
+        ])->with([
+            "userciledug" => $userciledug,
             "ciledug" => $ciledug,
             "wanita" => $wanita,
-            "pria" => $pria
-        ])->with([
-            "userciledug" => $userciledug]);
+            "pria" => $pria,
+            "search" => $request->search?$request->search:''
+        ]);
     }
 
     public function pedagangExport(Request $request){
         // dd($request->nama_pasar);
         return Excel::download(new PedagangExport('pasar ciledug', $request->nama_pasar), 'pedagang ciledug.xlsx');
+    }
+
+    public function pedagangpdf(Request $request)
+    {
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar ciledug');
+
+        if($request->has('search')){
+            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $cetakpdf = $cetakpdf->get();
+
+        // dd($cetakpdf);
+
+        return view('admin.pages.pasar.ciledug.c_pedagangpdf', compact('cetakpdf'));
     }
 
     /**

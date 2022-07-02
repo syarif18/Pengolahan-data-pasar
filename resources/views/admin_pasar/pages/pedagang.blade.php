@@ -28,6 +28,16 @@
                             <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
                             <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Cetak Excel</i></button>
                         </form>
+
+                        <form action="{{ route('pedagangpdf') }}" class="d-inline" method="POST" target="_blank">
+                            @method('post')
+                            @csrf
+                            <input type="hidden" name="nama_pasar" value="{{ $auth }}">
+                            <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
+                            <button type="submit" class="btn btn-danger" ><i class="bi bi-file-earmark-spreadsheet"> Cetak pdf</i></button>
+                        </form>
+
+                        {{-- <a href="/pedagangpdf" class="btn btn-danger" target="_blank"><i class="bi bi-printer"> Cetak PDF</i></a> --}}
                     </div>
                 </div>
 

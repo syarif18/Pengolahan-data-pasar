@@ -25,43 +25,44 @@
 </div>
 
 <section>
-    <div class="card bg mt-3">
-        <div class="container mt-3">
-            <center><h2>Data Admin</h2></center>
-            <div class="card">
-                <div class="card-body mt-3">
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Level</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Aksi</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $dataAdmin)
+
+            <div class="card bg mt-3">
+                <div class="container mt-3">
+                    <center><h2>Data Admin</h2></center>
+                    <div class="card">
+                        <div class="card-body mt-3">
+                            <table class="table table-hover">
+                                <thead>
                                 <tr>
-                                    <td scope="col">{{ $loop->iteration }}</td>
-                                    <td>{{ $dataAdmin->name }}</td>
-                                    <td>{{ $dataAdmin->level }}</td>
-                                    <td>{{ $dataAdmin->username }}</td>
-                                    <td>
-                                    <form action="{{ route('data_admin.destroy', $dataAdmin->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                    </form>
-                                    </td>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Level</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $dataAdmin)
+                                        <tr>
+                                            <td scope="col">{{ $loop->iteration }}</td>
+                                            <td>{{ $dataAdmin->name }}</td>
+                                            <td>{{ $dataAdmin->level }}</td>
+                                            <td>{{ $dataAdmin->username }}</td>
+                                            <td>
+                                            <form action="{{ route('data_admin.destroy', $dataAdmin->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 </section>
 
 @endsection

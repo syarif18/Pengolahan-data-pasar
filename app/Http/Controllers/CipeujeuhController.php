@@ -27,19 +27,43 @@ class CipeujeuhController extends Controller
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar cipeujeuh')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
         $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar cipeujeuh')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
 
-        $usercipeujeuh = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar cipeujeuh')->latest()->paginate(10);
+        $usercipeujeuh = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar cipeujeuh');
+
+        if($request->has('search')){
+            $usercipeujeuh->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $usercipeujeuh = $usercipeujeuh->latest()->paginate(10);
+
         return view('admin.pages.pasar.cipeujeuh', [
-            "title" => "Pasar Cipeujeuh",
+            "title" => "Pasar Cipeujeuh"
+        ])->with([
+            "usercipeujeuh" => $usercipeujeuh,
             "cipeujeuh" => $cipeujeuh,
             "wanita" => $wanita,
-            "pria" => $pria
-        ])->with([
-            "usercipeujeuh" => $usercipeujeuh]);
+            "pria" => $pria,
+            "search" => $request->search?$request->search:''
+        ]);
     }
 
     public function pedagangExport(Request $request){
         // dd($request->nama_pasar);
         return Excel::download(new PedagangExport('pasar cipeujeuh', $request->nama_pasar), 'pedagang cipeujeuh.xlsx');
+    }
+
+    public function pedagangpdf(Request $request)
+    {
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar cipeujeuh');
+
+        if($request->has('search')){
+            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $cetakpdf = $cetakpdf->get();
+
+        // dd($cetakpdf);
+
+        return view('admin.pages.pasar.cipeujeuh.c_pedagangpdf', compact('cetakpdf'));
     }
 
     /**

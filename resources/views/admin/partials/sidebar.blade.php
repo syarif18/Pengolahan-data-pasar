@@ -42,11 +42,11 @@
           <i class="bi bi-people"></i><span>Data Pedagang</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
+            {{-- <li>
                 <a class="nav-content {{ Request::is('data_pedagang') ? 'active' : 'collapsed' }} " href="/data_pedagang">
                     <i class="bi bi-circle"></i><span>Data Pedagang</span>
                 </a>
-            </li>
+            </li> --}}
           <li>
             <a class="nav-content {{ Request::is('palimanan') ? 'active' : 'collapsed' }} " href="/palimanan">
               <i class="bi bi-circle"></i><span>Pasar Palimanan</span>

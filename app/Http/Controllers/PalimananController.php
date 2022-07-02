@@ -23,25 +23,58 @@ class PalimananController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $palimanan = DB::table('sewa_users')->where('nama_pasar', 'pasar palimanan')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar palimanan')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
         $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar palimanan')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
 
-        $userpalimanan = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar palimanan')->latest()->paginate(10);
-        return view('admin.pages.pasar.palimanan', [
+        $userpalimanan = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar palimanan');
+
+        if($request->has('search')){
+            $userpalimanan->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $userpalimanan = $userpalimanan->latest()->paginate(10);
+
+        return view('admin.pages.pasar.palimanan.palimanan', [
             "title" => "Pasar Palimanan",
+        ])->with([
+            "userpalimanan" => $userpalimanan,
             "palimanan" => $palimanan,
             "wanita" => $wanita,
-            "pria" => $pria
-        ])->with([
-            "userpalimanan" => $userpalimanan]);
+            "pria" => $pria,
+            "search" => $request->search?$request->search:''
+
+        ]);
     }
 
     public function pedagangExport(Request $request){
-        // dd($request->nama_pasar);
-        return Excel::download(new PedagangExport('pasar palimanan', $request->nama_pasar), 'pedagang palimanan.xlsx');
+        // dd($request->search);
+        // $data = SewaUser::where('konfirmasi', '=', '1')->where('nama_pasar', '=', 'pasar palimanan');
+        // if(!empty($request->search)){
+        //     $data->where('jenis_tempat', 'like','%' .$request->search. '%');
+        // }
+
+        // dd($data->get());
+        return Excel::download(new PedagangExport('pasar palimanan', $request->search), 'pedagang palimanan.xlsx');
+    }
+
+    public function pedagangpdf(Request $request)
+    {
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar palimanan');
+
+        if($request->has('search')){
+            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar palimanan')->get();
+
+        // dd($cetakpdf);
+
+        return view('admin.pages.pasar.palimanan.c_pedagangpdf')->with([
+            "cetakpdf" => $cetakpdf
+        ]);
     }
 
     /**

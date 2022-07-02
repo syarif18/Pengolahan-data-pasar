@@ -16,7 +16,8 @@ class LapakController extends Controller
      */
     public function index()
     {
-        $datalapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
+        $datalapak = Lapak::join('users', 'lapaks.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->get();
+        // dd($datalapak);
         return view('admin_pasar.pages.lapak.lapak', [
             "title" => "Data Lapak"
         ])->with([
@@ -56,6 +57,7 @@ class LapakController extends Controller
         $datalapak = new Lapak;
         $datalapak->jenis_tempat = $request->jenis_tempat;
         $datalapak->jumlah_tempat = $request->jumlah_tempat;
+        $datalapak->ukuran_tempat = $request->ukuran_tempat;
         $datalapak->gambar1 = $gambarlapak1;
         $datalapak->gambar2 = $gambarlapak2;
         $datalapak->gambar3 = $gambarlapak3;

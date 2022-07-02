@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataPasar;
+use App\Models\Pasar;
+use App\Models\Lapak;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DataPasarController extends Controller
@@ -14,11 +16,15 @@ class DataPasarController extends Controller
      */
     public function index()
     {
-        $data = DataPasar::all();
+        $pasar = Pasar::all();
+        $data = Lapak::join('users', 'lapaks.user_id', '=', 'users.id' )->get();
+        $user = User::all();
         return view('admin.pages.data_pasar.data_pasar', [
             "title" => "Data Pasar"
         ])->with([
-            "data" => $data
+            "list" => $pasar,
+            "data" => $data,
+            "pasar" => $user,
         ]);
     }
 
@@ -41,7 +47,7 @@ class DataPasarController extends Controller
     public function store(Request $request)
     {
         $data = $request->except(['_token']);
-        DataPasar::insert($data);
+        Pasar::insert($data);
         return redirect('data_pasar')->with('status', 'Data Berhasil Ditambahkan');
     }
 

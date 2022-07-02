@@ -23,27 +23,52 @@ class JamblangController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $jamblang = DB::table('sewa_users')->where('nama_pasar', 'pasar jamblang')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar jamblang')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
         $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar jamblang')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
 
-        $userjamblang = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar jamblang')->latest()->paginate(10);
-        return view('admin.pages.pasar.jamblang', [
-            "title" => "Pasar Jamblang",
+        $userjamblang = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar jamblang');
+
+        if($request->has('search')){
+            $userjamblang->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $userjamblang = $userjamblang->latest()->paginate(10);
+
+        return view('admin.pages.pasar.jamblang.jamblang', [
+            "title" => "Pasar Jamblang"
+        ])->with([
+            "userjamblang" => $userjamblang,
             "jamblang" => $jamblang,
             "wanita" => $wanita,
-            "pria" => $pria
-        ])->with([
-            "userjamblang" => $userjamblang]);
+            "pria" => $pria,
+            "search" => $request->search?$request->search:''
+        ]);
     }
 
     public function pedagangExport(Request $request){
         // dd($request->nama_pasar);
         // dd('pasar jamblang',$request->nama_pasar);
-        return Excel::download(new PedagangExport('pasar jamblang'), 'pedagang jamblang.xlsx');
+        return Excel::download(new PedagangExport('pasar jamblang', $request->search), 'pedagang jamblang.xlsx');
     }
+
+    public function pedagangpdf(Request $request)
+    {
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar jamblang');
+
+        if($request->has('search')){
+            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $cetakpdf = $cetakpdf->get();
+
+        // dd($cetakpdf);
+
+        return view('admin.pages.pasar.jamblang.c_pedagangpdf', compact('cetakpdf'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

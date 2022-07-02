@@ -39,7 +39,7 @@
                     <div class="ps-3">
                       <h6>{{ $palimanan }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                        <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                        <a href="/palimanan"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
                     </div>
                   </div>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="ps-3">
                       <h6>{{ $jamblang }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/jamblang"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                     <div class="ps-3">
                       <h6>{{ $sumber }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/sumber"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>
@@ -121,7 +121,7 @@
                     <div class="ps-3">
                       <h6>{{ $batik }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/batik"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>
@@ -144,7 +144,7 @@
                     <div class="ps-3">
                       <h6>{{ $kue }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/kue"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>
@@ -168,7 +168,7 @@
                     <div class="ps-3">
                       <h6>{{ $pasalaran }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/pasalaran"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>
@@ -202,7 +202,7 @@
                     <div class="ps-3">
                       <h6>{{ $babakan }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/babakan"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>
@@ -225,7 +225,7 @@
                     <div class="ps-3">
                       <h6>{{ $cipeujeuh }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/cipeujeuh"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>
@@ -249,7 +249,7 @@
                     <div class="ps-3">
                       <h6>{{ $ciledug }}</h6>
                       <span class="text-muted small pt-2 ps-1">Pedagang</span>
-                      <a href=""><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
+                      <a href="/ciledug"><span class="text-muted small pt-2 ps-1">| Rewiew</span></a>
 
                     </div>
                   </div>

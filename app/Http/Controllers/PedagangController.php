@@ -25,7 +25,7 @@ class PedagangController extends Controller
         $data = SewaUser::where('konfirmasi', '1')->where('nama_pasar', $user);
 
         if($request->has('search')){
-            $data->where('jenis_tempat', 'like', '%' . $request->search . '%');
+            $data->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
         }
 
         $data = $data->latest()->paginate(5);
@@ -42,6 +42,22 @@ class PedagangController extends Controller
     public function pedagangExport(Request $request){
         // dd($request->search);
         return Excel::download(new PedagangExport($request->nama_pasar, $request->search), 'pedagang.xlsx');
+    }
+
+    public function pedagangpdf(Request $request)
+    {
+        $user = Auth::user()->name;
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', $user);
+
+        if($request->has('search')){
+            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $cetakpdf = $cetakpdf->get();
+
+        // dd($cetakpdf);
+
+        return view('admin_pasar.pages.cetak_pedagangpdf', compact('cetakpdf'));
     }
 
     /**

@@ -22,10 +22,15 @@ class PedagangExport implements FromCollection, WithHeadings, ShouldAutoSize
 
     public function collection()
     {
-        $data = SewaUser::where('konfirmasi', '1')->where('nama_pasar', $this->nama_pasar);
+        $data = SewaUser::where('konfirmasi', '=', '1')->where('nama_pasar', $this->nama_pasar);
         if(!empty($this->search)){
-            $data->where('jenis_tempat', 'like', '%' . $this->search . '%');
+            $data->where('jenis_tempat', 'like', '%' . $this->search . '%')->orWhere('nama', 'like', '%' .$this->search. '%');
         }
+
+        // $data = SewaUser::where('konfirmasi', '=', '1')->where('nama_pasar', '=', 'pasar palimanan');
+        // if(!empty($request->search)){
+        //     $data->where('jenis_tempat', 'like','%' .$request->search. '%');
+        // }
 
         return $data->get([
             'nama_pasar', 'jenis_tempat', 'nama', 'nik', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'jenis_jualan', 'nomor_hp'

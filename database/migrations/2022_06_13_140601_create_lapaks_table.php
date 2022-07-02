@@ -17,10 +17,11 @@ class CreateLapaksTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('jenis_tempat');
+            $table->string('ukuran_tempat');
             $table->string('jumlah_tempat');
-            $table->string('gambar1');
-            $table->string('gambar2');
-            $table->string('gambar3');
+            $table->string('gambar1')->nullable();
+            $table->string('gambar2')->nullable();
+            $table->string('gambar3')->nullable();
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@
           <div class="col-xxl-4 col-md-12">
             <div class="card info-card revenue-card ">
 
+
               <div class="card-body">
                 <h5 class="card-title">{{ $title }}</h5>
 
@@ -28,7 +29,7 @@
                           <i class="bi bi-people-fill"></i>
                         </div>
                         <div class="ps-3">
-                          <h6>{{ $jamblang }}</h6>
+                          <h6>{{ $sumber }}</h6>
                           <span class="text-muted small pt-2 ps-1">Pedagang</span>
                         </div>
                       </div>
@@ -73,14 +74,35 @@
     </div><!-- End list -->
 </section>
 
-<div>
-    <form action="{{ route('exportjamblang') }}" method="POST">
-        @method('post')
-        @csrf
-        <input type="hidden" name="nama_pasar" value="{{ $userjamblang }}">
-        <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Excel</i></button>
-    </form>
-    {{-- <a href="{{ route('exportpedagang') }}" class="btn btn-primary"> Export Excel </a> --}}
+<div class="form-group d-flex justity-content-between">
+    <div class="col-sm-4">
+        <form action="/sumber" method="GET">
+            @csrf
+            @method('post')
+            <div class="input-group mb-3">
+                <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
+                <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="ms-2">
+        <form action="{{ route('exportSumber') }}" method="POST">
+            @method('post')
+            @csrf
+            <input type="hidden" name="nama_pasar">
+            <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
+            <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Export Excel</i></button>
+        </form>
+    </div>
+    <div class="ms-2">
+        <form action="{{ route('sumberpdf') }}" class="d-inline" method="POST" target="_blank">
+            @method('post')
+            @csrf
+            <input type="hidden" name="nama_pasar">
+            <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
+            <button type="submit" class="btn btn-danger"><i class="bi bi-file-earmark-spreadsheet"> Cetak pdf</i></button>
+        </form>
+    </div>
 </div>
 
 <section>
@@ -106,7 +128,7 @@
             </tr>
             </thead>
             <tbody class="table-light">
-                @foreach ($userjamblang as $item)
+                @foreach ($usersumber as $item)
                     <tr>
                         <td scope="col" style="text-align: center">{{ $loop->iteration }}</td>
                         <td>{{ $item->nama_pasar }}</td>
@@ -129,10 +151,9 @@
         </table>
          <!-- End single blog -->
         <div class="table-hover d-flex justify-content-center" >
-            {{ $userjamblang->links() }}
+            {{ $usersumber->links() }}
         </div>
     </div>
 </section>
-
 
 @endsection

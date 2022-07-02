@@ -9,10 +9,10 @@
             <form action="{{ route('data_pasar.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mt-2">
-                    <table for="judul"> Nama Pasar *</table>
+                    <table for="nama_pasar"> Nama Pasar *</table>
                     <input type="text" name="nama_pasar" class="form-control">
                 </div>
-                <div class="form-group mt-2">
+                {{-- <div class="form-group mt-2">
                     <table for="judul"> Jumlah Tempat *</table>
                     <input type="text" name="jumlah_tempat" class="form-control">
                 </div>
@@ -23,8 +23,8 @@
                 <div class="form-group mt-2">
                     <table for="judul"> Tempat kosong *</table>
                     <input type="text" name="tutup" class="form-control">
-                </div>
-                
+                </div> --}}
+
 
                 <div class="form-group mt-2">
                     <button type="submit" class="btn btn-primary"> Tambah Data </button>
@@ -36,5 +36,5 @@
             </form>
         </div>
     </section>
-    
+
 @endsection

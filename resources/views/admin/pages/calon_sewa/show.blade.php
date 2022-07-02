@@ -69,7 +69,7 @@
                       @if ($data->status == '0')
                         <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
                       @elseif ($data->status == '1')
-                        <button  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui</i></button>
+                        <button disabled = "disabled"  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui</i></button>
                       @else
                         <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
                       @endif
@@ -92,13 +92,29 @@
 
         </div>
         <div class="modal-footer">
+        @if ($data->status != '0')
+            <button disabled = "disabled" class="btn btn-secondary">Selesai</button>
+        @else
+            <form action="{{ route('calon_sewa.update', $data->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('put')
+                <input type="hidden" value="1" name="status">
+                <button type="submit" class="btn btn-success"> <i class="bi bi-check-circle"></i> </button>
+            </form>
+            <form action="{{ route('calon_sewa.update', $data->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('put')
+                <input type="hidden" value="2" name="status">
+                <button type="submit" class="btn btn-danger"> <i class="bi bi-dash-circle"></i> </button>
+            </form>
+        @endif
         <a href="{{ url('calon_sewa') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Kembali</a>
         </div>
         </div>
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
@@ -112,7 +128,7 @@
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
           </div>
-          </div>
+          </div> --}}
       </div>
 
     </div>

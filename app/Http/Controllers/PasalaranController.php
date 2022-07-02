@@ -22,25 +22,49 @@ class PasalaranController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $pasalaran = DB::table('sewa_users')->where('nama_pasar', 'pasar pasalaran')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar pasalaran')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
         $pria = DB::table('sewa_users')->where('nama_pasar', 'pasar pasalaran')->where('jenis_kelamin', 'laki-laki')->where('konfirmasi', '1')->count();
 
-        $userpasalaran = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar pasalaran')->latest()->paginate(10);
-        return view('admin.pages.pasar.pasalaran', [
-            "title" => "Pasar Pasalaran",
+        $userpasalaran = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar pasalaran');
+
+        if($request->has('search')){
+            $userpasalaran->where('jenis_tempat', 'like', '%' . $request->search . '%');
+        }
+
+        $userpasalaran = $userpasalaran->latest()->paginate(10);
+
+        return view('admin.pages.pasar.pasalaran.pasalaran', [
+            "title" => "Pasar Pasalaran"
+        ])->with([
+            "userpasalaran" => $userpasalaran,
             "pasalaran" => $pasalaran,
             "wanita" => $wanita,
-            "pria" => $pria
-        ])->with([
-            "userpasalaran" => $userpasalaran]);
+            "pria" => $pria,
+            "search" => $request->search?$request->search:''
+        ]);
     }
 
     public function pedagangExport(Request $request){
         // dd($request->nama_pasar);
-        return Excel::download(new PedagangExport('pasar pasalaran', $request->nama_pasar), 'pedagang pasalaran.xlsx');
+        return Excel::download(new PedagangExport('pasar pasalaran', $request->search), 'pedagang pasalaran.xlsx');
+    }
+
+    public function pedagangpdf(Request $request)
+    {
+        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', 'pasar pasalaran');
+
+        if($request->has('search')){
+            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+        }
+
+        $cetakpdf = $cetakpdf->get();
+
+        // dd($cetakpdf);
+
+        return view('admin.pages.pasar.pasalaran.c_pedagangpdf', compact('cetakpdf'));
     }
 
     /**
