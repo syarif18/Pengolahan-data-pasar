@@ -49,6 +49,25 @@
                     </select>
                 </div>
                 <div class="col-md-6">
+                    <label for="ukuran_tempat" class="form-label">Jenis Tempat *</label>
+                    <select class="form-select" aria-label="Default select example" id="ukuran_tempat" name="ukuran_tempat" required>
+                        <option value="" hidden selected>Ukuran Tempat</option>
+                        @foreach ($ukuran as $item)
+                            <option value="{{ $item->ukuran_tempat }}">{{ $item->ukuran_tempat }}</option>
+                        @endforeach
+                        {{-- <option value="Toko">Toko</option>
+                        <option value="Kios">Kios</option>
+                        <option value="Los">Los</option>
+                        <option value="Lemprakan">Lemprakan</option>
+                        <option value="PTT">PTT</option>
+                        <option value="MCK">MCK</option> --}}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="nomor_tempat" class="form-label">Nomor Tempat *</label>
+                    <input type="text" class="form-control" placeholder="Jenis Jualan" id="nomor_tempat" name="nomor_tempat">
+                  </div>
+                <div class="col-md-6">
                   <label for="jenis_jualan" class="form-label">Jenis Jualan *</label>
                   <input type="text" class="form-control" placeholder="Jenis Jualan" id="jenis_jualan" name="jenis_jualan">
                 </div>
@@ -67,7 +86,7 @@
                 <div class="col-md-6">
                     <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                     <select class="form-select" aria-label="Default select example" id="jenis_kelamin" name="jenis_kelamin">
-                      <option selected>L/P</option>
+                      <option hidden selected>L/P</option>
                       <option value="Laki-Laki">Laki-Laki</option>
                       <option value="Perempuan">Perempuan</option>
                     </select>

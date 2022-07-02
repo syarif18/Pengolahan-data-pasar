@@ -47,9 +47,11 @@ class SewaUserController extends Controller
     public function create()
     {
         $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
+        $ukuran = Lapak::where('user_id', '=', Auth::user()->id)->get();
         return view('admin_pasar.pages.sewa.create', [
             "title" => "Sewa Lapak",
-            "lapak" => $lapak
+            "lapak" => $lapak,
+            "ukuran" => $ukuran
         ]);
     }
 
@@ -73,6 +75,8 @@ class SewaUserController extends Controller
         $datasewa = new SewaUser;
         $datasewa->nama_pasar = $request->nama_pasar;
         $datasewa->jenis_tempat = $request->jenis_tempat;
+        $datasewa->ukuran_tempat = $request->ukuran_tempat;
+        $datasewa->nomor_tempat = $request->nomor_tempat;
         $datasewa->nama = $request->nama;
         $datasewa->nik = $request->nik;
         $datasewa->tanggal_lahir = $request->tanggal_lahir;

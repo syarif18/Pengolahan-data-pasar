@@ -29,7 +29,6 @@
                     <th scope="col">Nama Pedagang</th>
                     <th scope="col">Nomor NIK</th>
                     <th scope="col">Tanggal Lahir</th>
-                    <th scope="col">Umur</th>
                     <th scope="col">Jenis kelamin</th>
                     <th scope="col">Alamat</th>
                     <th scope="col">Jenis Jualan</th>
@@ -40,12 +39,11 @@
                 @foreach ($cetakpdf as $item)
                     <tr>
                         <td style="text-align: center">{{ $loop->iteration }}</td>
-                        <td style="text-align: center">-</td>
-                        <td style="text-align: center">-</td>
-                        <td >{{ $item->nama }}</td>
+                        <td style="text-align: center">{{ $item->nomor_tempat }}</td>
+                        <td style="text-align: center">{{ $item->ukuran_tempat }}</td>
+                        <td style="text-align: left">{{ $item->nama }}</td>
                         <td style="text-align: center">{{ $item->nik }}</td>
                         <td style="text-align: center">{{ $item->tanggal_lahir }}</td>
-                        <td style="text-align: center">-</td>
                         <td style="text-align: center">{{ $item->jenis_kelamin }}</td>
                         <td style="text-align: center">{{ $item->alamat }}</td>
                         <td style="text-align: center">{{ $item->jenis_jualan }}</td>

@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin Dinas',
             'level' => 'admin',
-            'username' => 'admindinas1',
+            'username' => 'admindinas',
             'password' => bcrypt('12345'),
             'remember_token' => Str::random(60)
         ]);

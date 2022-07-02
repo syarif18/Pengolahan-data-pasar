@@ -18,14 +18,14 @@ class CreateSewaUsersTable extends Migration
             $table->string('nama_pasar');
             $table->string('jenis_tempat');
             $table->string('nomor_tempat');
-            $table->string('ukuran');
+            $table->string('ukuran_tempat');
             $table->string('nama');
-            $table->integer('nik');
+            $table->string('nik');
             $table->string('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->text('alamat');
             $table->string('jenis_jualan');
-            $table->integer('nomor_hp');
+            $table->string('nomor_hp');
             $table->string('status_lapak')->nullable();
             $table->string('gambar_paspoto')->nullable();
             $table->string('gambar_ktp')->nullable();;

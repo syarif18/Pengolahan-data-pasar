@@ -43,7 +43,7 @@
     </table>
 
     <div>
-        <a href="{{ 'data_pasar/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Tambah Nama Pasar</i></a>
+        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-plus-circle"> Tambah Nama Pasar</i></a>
     </div>
 
     <div class="card mt-3">
@@ -75,6 +75,46 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <!-- Button trigger modal -->
+ {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> --}}
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ route('data_pasar.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group mt-2">
+                    <table for="nama_pasar"> Nama Pasar *</table>
+                    <input type="text" name="nama_pasar" class="form-control">
+                </div>
+                {{-- <div class="form-group mt-2">
+                    <button type="submit" class="btn btn-primary"> Tambah Data </button>
+                </div> --}}
+
+                {{-- <div>
+                    <a href="{{ url('data_pasar') }}"> kembali </a>
+                </div> --}}
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <div class="form-group mt-2">
+                    <button type="submit" class="btn btn-primary"> Tambah Data </button>
+                  </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
                 </div>
             </div>
         </div>
