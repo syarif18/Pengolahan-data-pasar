@@ -20,7 +20,7 @@
                   <a class="services-icon" href="detailpasar">
                     <i class="bi bi-shop"></i>
                   </a>
-                  <h4>Pasar Palimanan</h4>
+                  <h4>Pasar Sumber</h4>
                 </div>
               </div>
               <!-- end about-details -->
@@ -49,7 +49,7 @@
                   <a class="services-icon" href="#">
                     <i class="bi bi-shop"></i>
                   </a>
-                  <h4>Pasar Sumber</h4>
+                  <h4>Pasar Palimanan</h4>
                 </div>
               </div>
               <!-- end about-details -->

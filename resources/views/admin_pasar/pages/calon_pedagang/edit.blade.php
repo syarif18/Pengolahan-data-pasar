@@ -2,8 +2,8 @@
 
 @section('content')
 
-@include('admin.partials.header')
-@include('admin.partials.sidebar')
+@include('admin_pasar.partials.header')
+@include('admin_pasar.partials.sidebar')
 
 <section>
     <div class="card">
@@ -33,18 +33,39 @@
                 </div>
                 <div class="col-md-6">
                     <label for="jenis_tempat" class="form-label">Jenis Tempat *</label>
-                    <select class="form-select" aria-label="Default select example" id="jenis_tempat" name="jenis_tempat">
-                        <option value="" hidden selected>{{ old('judul', $data->jenis_tempat) }}</option>
-                        @foreach ($lapak as $lapak)
+                  <input type="text" class="form-control"  id="jenis_tempat" name="jenis_tempat" value="{{ old('judul', $data->jenis_tempat) }}">
+                  {{-- <select class="form-select" aria-label="Default select example" id="jenis_tempat" name="jenis_tempat"> --}}
+                        {{-- <option value="" hidden selected>{{ old('judul', $data->jenis_tempat) }}</option> --}}
+                        {{-- @foreach ($lapak as $lapak)
                             <option value="{{ $lapak->jenis_tempat }}">{{ $lapak->jenis_tempat }}</option>
-                        @endforeach
+                        @endforeach --}}
                         {{-- <option value="Toko">Toko</option>
                         <option value="Kios">Kios</option>
                         <option value="Los">Los</option>
                         <option value="Lemprakan">Lemprakan</option>
                         <option value="PTT">PTT</option>
                         <option value="MCK">MCK</option> --}}
-                    </select>
+                    {{-- </select> --}}
+                </div>
+                <div class="col-md-6">
+                    <label for="ukuran_tempat" class="form-label">Ukuran Tempat *</label>
+                    <input type="text" class="form-control"  id="ukuran_tempat" name="ukuran_tempat" value="{{ old('judul', $data->ukuran_tempat) }}">
+                    {{-- <select class="form-select" aria-label="Default select example" id="ukuran_tempat" name="ukuran_tempat"> --}}
+                        {{-- <option value="" hidden selected>{{ old('judul', $data->ukuran_tempat) }}</option> --}}
+                        {{-- @foreach ($lapaks as $lapaks)
+                            <option value="{{ $lapaks->ukuran_tempat }}">{{ $lapaks->ukuran_tempat }}</option>
+                        @endforeach --}}
+                        {{-- <option value="Toko">Toko</option>
+                        <option value="Kios">Kios</option>
+                        <option value="Los">Los</option>
+                        <option value="Lemprakan">Lemprakan</option>
+                        <option value="PTT">PTT</option>
+                        <option value="MCK">MCK</option> --}}
+                    {{-- </select> --}}
+                </div>
+                <div class="col-md-6">
+                    <label for="nomor_tempat" class="form-label">Nomor Tempat *</label>
+                    <input type="text" class="form-control" placeholder="Jenis Jualan" id="nomor_tempat" name="nomor_tempat" value="{{ old('judul', $data->nomor_tempat) }}">
                 </div>
                 <div class="col-md-6">
                   <label for="jenis_jualan" class="form-label">Jenis Jualan *</label>
@@ -116,7 +137,7 @@
                 </div>
                 <div>
                     <tr>
-                        <th style="width: 50%">Status</th>
+                        <th style="width: 50%">Status Persetujuan</th>
                         <td>
                           @if ($data->status == '0')
                             <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
@@ -128,13 +149,38 @@
                         </td>
                       </tr>
                 </div>
+                <div>
+                    <tr>
+                        <th style="width: 50%">Status Pembayaran</th>
+                        <td>
+                            @if ($data->status_pembayaran == '0')
+                            <button disabled = "disabled" class="btn btn-warning">Belum Upload</i></button>
+                          @elseif ($data->status_pembayaran == '1')
+                            <button disabled = "disabled" class="btn btn-primary" >proses Konfirmasi</i></button>
+                          @elseif ($data->status_pembayaran == '2')
+                            <button disabled = "disabled" class="btn btn-success">Disetujui</i></button>
+                          @endif
+                        </td>
+                      </tr>
+                </div>
+                @if ($data->status_pembayaran != '0')
+                <div class="col-md-4">
+                    <label for="gambar_kk" class="form-label">Bukti Pembaayaran</label>
+                    @if ($data->gambar_kk)
+                    <a href="{{ asset('/img/bukti/'. $data->bukti_pembayaran) }}"><img src="{{ URL::to('/') }}/img/bukti/{{ $data->bukti_pembayaran }}" alt="" width="90px" height="120px"></a>
+                    @else
+                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                    @endif
+                </div>
+                @endif
                 <div class="form-group mt-3">
                     <table for="tahun_masuk"> tahun masuk *</table>
-                    <input type="text" name="tahun_masuk" class="form-control " >
+                    <input type="date" name="tahun_masuk" class="form-control " required value="{{ old('judul', $data->tahun_masuk) }}">
                 </div>
                 <div class="text-center">
                     <div class="form-group mt-2 ms-3">
                         <input type="hidden" value="1" name="konfirmasi">
+                        <input type="hidden" value="2" name="status_pembayaran">
                         <button type="submit" class="btn btn-primary"> Konfirmasi </button>
                     </div>
                 </div>

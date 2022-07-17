@@ -16,26 +16,28 @@
                 </a>
             </li>
             <li>
-                <a class="nav-content {{ Request::is('/') ? 'active' : 'collapsed' }} " href="/">
+                <a class="nav-content {{ Request::is('/') ? 'active' : 'collapsed' }} " href="/" target="_blank">
                   <i class="bi bi-circle"></i><span>Dashboard Utama</span>
                 </a>
             </li>
         </ul>
       </li><!-- End Dashboard Nav -->
+    @if (auth()->user()->level=="admin")
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('data_admin*') ? 'active' : 'collapsed' }}" href="/data_admin">
+                <i class="bi bi-person"></i>
+                <span>Data Admin</span>
+            </a>
+        </li><!-- End Admin Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('data_admin*') ? 'active' : 'collapsed' }}" href="/data_admin">
-          <i class="bi bi-person"></i>
-          <span>Data Admin</span>
-        </a>
-      </li><!-- End Admin Nav -->
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('data_pasar*') ? 'active' : 'collapsed' }}" href="/data_pasar">
+            <i class="bi bi-shop-window"></i>
+            <span>Data Pasar</span>
+          </a>
+        </li><!-- End Data Pasar Nav -->
+    @endif
 
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('data_pasar*') ? 'active' : 'collapsed' }}" href="/data_pasar">
-          <i class="bi bi-shop-window"></i>
-          <span>Data Pasar</span>
-        </a>
-      </li><!-- End Data Pasar Nav -->
 
       <li class="nav-item">
         <a class="nav-link {{ Request::is('data_pedagang', 'palimanan', 'jamblang', 'sumber', 'batik', 'kue', 'pasalaran', 'babakan', 'cipeujeuh', 'ciledug') ? 'active' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="/data_pedagang">
@@ -47,6 +49,11 @@
                     <i class="bi bi-circle"></i><span>Data Pedagang</span>
                 </a>
             </li> --}}
+            <li>
+              <a class="nav-content {{ Request::is('sumber') ? 'active' : 'collapsed' }} " href="/sumber">
+                <i class="bi bi-circle"></i><span>Pasar Sumber</span>
+              </a>
+            </li>
           <li>
             <a class="nav-content {{ Request::is('palimanan') ? 'active' : 'collapsed' }} " href="/palimanan">
               <i class="bi bi-circle"></i><span>Pasar Palimanan</span>
@@ -55,11 +62,6 @@
           <li>
             <a class="nav-content {{ Request::is('jamblang') ? 'active' : 'collapsed' }} " href="/jamblang">
               <i class="bi bi-circle"></i><span>Pasar Jamblang</span>
-            </a>
-          </li>
-          <li>
-            <a class="nav-content {{ Request::is('sumber') ? 'active' : 'collapsed' }} " href="/sumber">
-              <i class="bi bi-circle"></i><span>Pasar Sumber</span>
             </a>
           </li>
           <li>
@@ -100,14 +102,23 @@
           <i class="bi bi-person-plus"></i>
           <span>Calon Penyewa Lapak</span>
         </a>
-      </li><!-- End Calon Penyewa Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link {{ Request::is('konten*') ? 'active' : 'collapsed' }}" href="/konten">
-          <i class="bi bi-layout-text-window-reverse"></i>
-          <span>Konten</span>
-        </a>
-      </li><!-- End Konten Nav -->
+        </li><!-- End Calon Penyewa Page Nav -->
+        @if (auth()->user()->level=="admin")
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('konten*') ? 'active' : 'collapsed' }}" href="/konten">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <span>Konten</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('tentang*') ? 'active' : 'collapsed' }}" href="/tentang">
+                <i class="bi bi-layout-text-window-reverse"></i>
+                <span>Tentang Kami</span>
+            </a>
+        </li><!-- End Konten Nav -->
+    @endif
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('logout') }}">

@@ -26,7 +26,8 @@ class DashboardAdminPasarController extends Controller
             "title" => "Dashboard Admin Pasar",
             "pedagang" => $pedagang,
             "wanita" => $wanita,
-            "pria" => $pria
+            "pria" => $pria,
+            "user" => $user
         ]);
     }
 }

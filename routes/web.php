@@ -20,6 +20,7 @@ use App\Http\Controllers\KontenController;
 use App\Http\Controllers\KueController;
 use App\Http\Controllers\LapakController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\PalimananController;
 use App\Http\Controllers\PasalaranController;
 use App\Http\Controllers\PasarController;
@@ -47,25 +48,17 @@ Route::get('login', [LoginController::class, 'index'])->name('login')->middlewar
 Route::post('postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('registrasi', [RegistrasiController::class, 'index'])->name('registrasi');
+Route::post('registrasi', [RegistrasiController::class, 'store']);
 
 
 
-// Route Untuk Halaman Admin
-Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
+
+Route::group(['middleware' => ['auth', 'ceklevel:admin,kabid']], function(){
 
     Route::get('admin', [DashboardAdminController::class, 'index']);
 
-    Route::resource('data_admin', DataAdminController::class);
-
-    Route::resource('data_pasar', DataPasarController::class);
-    // Route::get('data_pasar/create', [DataPasarController::class, 'create']);
-
-    Route::resource('konten', KontenController::class);
-    // Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
-
     Route::resource('calon_sewa', CalonSewaController::class);
-
-    // Route::resource('data_pedagang', DataPedagangController::class);
 
     Route::resource('palimanan', PalimananController::class);
     Route::post('palimananpdf', [PalimananController::class, 'pedagangpdf'])->name('palimananpdf');
@@ -102,6 +95,24 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
     Route::resource('ciledug', CiledugController::class);
     Route::post('ciledugpdf', [CiledugController::class, 'pedagangpdf'])->name('ciledugpdf');
     Route::post('exportCiledug', [CiledugController::class, 'pedagangExport'])->name('exportCiledug');
+});
+
+// Route Untuk Halaman Admin
+Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
+
+
+    Route::resource('data_admin', DataAdminController::class);
+
+    Route::resource('data_pasar', DataPasarController::class);
+    // Route::get('data_pasar/create', [DataPasarController::class, 'create']);
+
+    Route::resource('konten', KontenController::class);
+    // Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
+
+    Route::get('tentang', [TentangController::class, 'adminindex'])->name('tentang');
+
+    // Route::resource('data_pedagang', DataPedagangController::class);
+
 
 });
 
@@ -117,10 +128,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:pengelola']], function () {
 
     Route::resource('calon_pedagang', CalonPedagangController::class);
 
-    Route::resource('sewa', SewaUserController::class);
-
-    Route::resource('informasi', InformasiUserController::class);
-
 });
 
 
@@ -129,6 +136,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
     Route::get('user', [DashboardUserController::class, 'index']);
 
     Route::resource('profile', ProfileUserController::class);
+
+    Route::resource('sewa', SewaUserController::class);
+
+    Route::resource('informasi', InformasiUserController::class);
+    // Route::put('informasi/updatebukti/{id}', [InformasiUserController::class, 'updatebukti'])->name('informasi.update');
 
 
 });

@@ -82,12 +82,14 @@ class CalonPedagangController extends Controller
     {
         $data = SewaUser::findOrFail($id);
         $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
+        $lapaks = Lapak::where('user_id', '=', Auth::user()->id)->get();
 
         return view('admin_pasar.pages.calon_pedagang.edit', [
             "title" => "Konfirmasi Data"
         ])->with([
             "data" => $data,
             "lapak" => $lapak,
+            "lapaks" => $lapaks
             // "search" => $request->search?$request->search:''
 
         ]);
@@ -102,12 +104,27 @@ class CalonPedagangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->tahun_masuk, $request->konfirmasi);
+        try {
+            $item = Lapak::where('jenis_tempat', $request->jenis_tempat)->first();
+            // return dd($request->jenis_tempat);
+            $tempat_kosong = $item->tempat_kosong-1;
+            $item->update(['tempat_kosong' => $tempat_kosong]);
+        } catch (\Throwable $th) {
+            return dd($th);
+        }
+
         $item = SewaUser::findOrFail($id);
         $item->update(['tahun_masuk' => $request->tahun_masuk]);
 
         $item = SewaUser::findOrFail($id);
         $item->update(['konfirmasi' => $request->konfirmasi]);
+
+        $item = SewaUser::findOrFail($id);
+        $item->update(['nomor_tempat' => $request->nomor_tempat]);
+
+        $item = SewaUser::findOrFail($id);
+        $item->update(['status_pembayaran' => $request->status_pembayaran]);
+
 
         return redirect('calon_pedagang')->with('success', 'Konten Berhasil Diupdate!');
     }

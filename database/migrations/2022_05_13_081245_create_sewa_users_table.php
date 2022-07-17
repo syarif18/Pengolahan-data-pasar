@@ -15,9 +15,10 @@ class CreateSewaUsersTable extends Migration
     {
         Schema::create('sewa_users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->string('nama_pasar');
             $table->string('jenis_tempat');
-            $table->string('nomor_tempat');
+            $table->string('nomor_tempat')->nullable();
             $table->string('ukuran_tempat');
             $table->string('nama');
             $table->string('nik');
@@ -32,6 +33,8 @@ class CreateSewaUsersTable extends Migration
             $table->string('gambar_kk')->nullable();;
             $table->string('tahun_masuk')->nullable();
             $table->string('tahun_keluar')->nullable();
+            $table->string('bukti_pembayaran')->nullable();
+            $table->string('status_pembayaran')->default('0');
             $table->string('konfirmasi')->default('0');
             $table->string('status')->default('0');
             $table->timestamps();

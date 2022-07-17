@@ -1,9 +1,9 @@
-@extends('layouts.amain')
+@extends('layouts.main')
 
 @section('content')
 
-@include('admin_pasar.partials.header')
-@include('admin_pasar.partials.sidebar')
+@include('user.partials.navbar')
+@include('user.partials.sidebar')
 
 <section>
     <div class="card">
@@ -57,23 +57,39 @@
                   </tr>
                   <tr>
                     <th style="width: 50%">KTP</th>
-                    <td><img src="{{ URL::to('/') }}/img/gambarktp/{{ $data->gambar_ktp }}" alt="" width="130px" height="90px"></td> </td>
+                    <td><a href="{{ asset('/img/gambarktp/'. $data->gambar_ktp) }}"><img src="{{ URL::to('/') }}/img/gambarktp/{{ $data->gambar_ktp }}" alt="" width="130px" height="90px"></a></td> </td>
                   </tr>
                   <tr>
                     <th style="width: 50%">Kartu Keluarga</th>
-                    <td><img src="{{ URL::to('/') }}/img/gambarkk/{{ $data->gambar_kk }}" alt="" width="130px" height="90px"></td> </td>
+                    <td><a href="{{ asset('/img/gambarktp/'. $data->gambar_ktp) }}"><img src="{{ URL::to('/') }}/img/gambarkk/{{ $data->gambar_kk }}" alt="" width="130px" height="90px"></a></td> </td>
                   </tr>
                   <tr>
-                    <th style="width: 50%">Status</th>
+                    <th style="width: 50%">Status Persetujuan</th>
                     <td>
                       @if ($data->status == '0')
                         <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
                       @elseif ($data->status == '1')
-                        <button  class="btn btn-success">Disetujui</i></button>
+                        <button  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui</i></button>
                       @else
                         <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
                       @endif
                     </td>
+                  </tr>
+                  <tr>
+                    <th style="width: 50%">Status Pembayaran</th>
+                    <td>
+                        @if ($data->status_pembayaran == '0')
+                        <button disabled = "disabled" class="btn btn-warning">Belum Upload</i></button>
+                      @elseif ($data->status_pembayaran == '1')
+                        <button disabled = "disabled" class="btn btn-primary" >proses Konfirmasi</i></button>
+                      @elseif ($data->status_pembayaran == '2')
+                        <button disabled = "disabled" class="btn btn-success">Disetujui</i></button>
+                      @endif
+                    </td>
+                  </tr>
+                  <tr>
+                    <th style="width: 50%">Pas Foto 3x4</th>
+                    <td><a href="{{ asset('/img/bukti/'. $data->bukti_pembayaran) }}"><img src="{{ URL::to('/') }}/img/bukti/{{ $data->bukti_pembayaran }}" alt="" width="90px" height="120px"></a></td>
                   </tr>
                 </tbody>
               </table>
@@ -92,9 +108,28 @@
 
         </div>
         <div class="modal-footer">
-        <a href="{{ url('sewa') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Kembali</a>
+        <a href="{{ url('informasi') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Kembali</a>
         </div>
         </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><b>Selamat Anda Telah Disetujui</b></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Silahkan Datang Ke kantor {{ $data->nama_pasar }} untuk melakukan registrasi ulang!!!
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+          </div>
+      </div>
 
     </div>
 </section>

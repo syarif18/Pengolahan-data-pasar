@@ -48,24 +48,26 @@ class LapakController extends Controller
         $upload = $request->gambar1;
         $gambarlapak1 = time().rand(100,999).".".$upload->getClientOriginalExtension();
 
-        $upload2 = $request->gambar2;
-        $gambarlapak2 = time().rand(100,999).".".$upload2->getClientOriginalExtension();
+        // $upload2 = $request->gambar2;
+        // $gambarlapak2 = time().rand(100,999).".".$upload2->getClientOriginalExtension();
 
-        $upload3 = $request->gambar3;
-        $gambarlapak3 = time().rand(100,999).".".$upload3->getClientOriginalExtension();
+        // $upload3 = $request->gambar3;
+        // $gambarlapak3 = time().rand(100,999).".".$upload3->getClientOriginalExtension();
 
         $datalapak = new Lapak;
         $datalapak->jenis_tempat = $request->jenis_tempat;
         $datalapak->jumlah_tempat = $request->jumlah_tempat;
+        $datalapak->tempat_kosong = $request->jumlah_tempat;
         $datalapak->ukuran_tempat = $request->ukuran_tempat;
+        $datalapak->harga = $request->harga;
         $datalapak->gambar1 = $gambarlapak1;
-        $datalapak->gambar2 = $gambarlapak2;
-        $datalapak->gambar3 = $gambarlapak3;
+        // $datalapak->gambar2 = $gambarlapak2;
+        // $datalapak->gambar3 = $gambarlapak3;
         $datalapak->user_id = Auth::user()->id;
 
         $upload->move(public_path().'/img/gambarlapak', $gambarlapak1);
-        $upload2->move(public_path().'/img/gambarlapak', $gambarlapak2);
-        $upload3->move(public_path().'/img/gambarlapak', $gambarlapak3);
+        // $upload2->move(public_path().'/img/gambarlapak', $gambarlapak2);
+        // $upload3->move(public_path().'/img/gambarlapak', $gambarlapak3);
         $datalapak->save();
         return redirect('lapak')->with('success', 'Data Lapak Berhasil Ditambahkan!');
     }

@@ -45,6 +45,15 @@
                     @enderror
                 </div>
                 <div class="col-md-6">
+                    <label for="harga" class="form-label">Harga Tempat *</label>
+                    <input type="text" id="harga" name="harga" class="form-control @error('harga') is-invalid @enderror" required placeholder="harga">
+                    @error('harga')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
                     <label for="gambar1" class="form-label">Gambar 1</label>
                     <input class="form-control @error('gambar1') is-invalid @enderror" type="file" id="gambar1" name="gambar1" required onchange="previewImage()">
                     @error('gambar1')
@@ -54,7 +63,7 @@
                     @enderror
                     <img class="img-preview img-fluid mt-3 col-sm-5">
                 </div>
-                <div class="col-md-6">
+                {{-- <div class="col-md-6">
                     <label for="gambar2" class="form-label">Gambar 2</label>
                     <input class="form-control @error('gambar2') is-invalid @enderror" type="file" id="gambar2" name="gambar2" required onchange="previewImages()">
                     @error('gambar2')
@@ -63,8 +72,8 @@
                         </div>
                     @enderror
                     <img class="img-preview-i img-fluid mt-3 col-sm-5">
-                </div>
-                <div class="col-md-6">
+                </div> --}}
+                {{-- <div class="col-md-6">
                     <label for="gambar3" class="form-label">Gambar 3</label>
                     <input class="form-control @error('gambar3') is-invalid @enderror" type="file" id="gambar3" name="gambar3" required onchange="previewImagess()">
                     @error('gambar3')
@@ -73,7 +82,7 @@
                         </div>
                     @enderror
                     <img class="img-preview-ii img-fluid mt-3 col-sm-5">
-                </div>
+                </div> --}}
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Tambah Tempat</button>
                   <button type="reset" class="btn btn-secondary">Reset</button>
@@ -100,33 +109,33 @@
             }
         }
 
-        function previewImages() {
-            const image = document.querySelector('#gambar2');
-            const imgPreview = document.querySelector('.img-preview-i');
+        // function previewImages() {
+        //     const image = document.querySelector('#gambar2');
+        //     const imgPreview = document.querySelector('.img-preview-i');
 
-            imgPreview.style.display = 'block';
+        //     imgPreview.style.display = 'block';
 
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
+        //     const oFReader = new FileReader();
+        //     oFReader.readAsDataURL(image.files[0]);
 
-            oFReader.onload = function(oFREvent){
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
+        //     oFReader.onload = function(oFREvent){
+        //         imgPreview.src = oFREvent.target.result;
+        //     }
+        // }
 
-        function previewImagess() {
-            const image = document.querySelector('#gambar3');
-            const imgPreview = document.querySelector('.img-preview-ii');
+        // function previewImagess() {
+        //     const image = document.querySelector('#gambar3');
+        //     const imgPreview = document.querySelector('.img-preview-ii');
 
-            imgPreview.style.display = 'block';
+        //     imgPreview.style.display = 'block';
 
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
+        //     const oFReader = new FileReader();
+        //     oFReader.readAsDataURL(image.files[0]);
 
-            oFReader.onload = function(oFREvent){
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
+        //     oFReader.onload = function(oFREvent){
+        //         imgPreview.src = oFREvent.target.result;
+        //     }
+        // }
     </script>
 
 @endsection

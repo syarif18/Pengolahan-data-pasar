@@ -8,7 +8,8 @@ use App\Models\Lapak;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Auth;
+use Auth;
+
 
 
 class SewaUserController extends Controller
@@ -20,18 +21,18 @@ class SewaUserController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user()->name;
-        $data = SewaUser::where('nama_pasar', $user);
+        // $user = Auth::user()->name;
+        // $data = SewaUser::where('nama', $user)->get();
 
-        if($request->has('search')){
-            $data->where('nama', 'like', '%' . $request->search . '%');
-        }
+        // if($request->has('search')){
+        //     $data->where('nama', 'like', '%' . $request->search . '%');
+        // }
 
-        $data = $data->latest()->paginate(5);
+        // $data = $data->latest()->paginate(5);
 
         // dd($request->search);
-
-        return view('admin_pasar.pages.sewa.sewa', [
+        $data = SewaUser::select('*', 'sewa_users.id AS sewa_id')->join('users', 'sewa_users.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->get();
+        return view('user.pages.sewa.sewa', [
             "title" => "Sewa Lapak"
         ])->with([
             "data" => $data,
@@ -46,12 +47,10 @@ class SewaUserController extends Controller
      */
     public function create()
     {
-        $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
-        $ukuran = Lapak::where('user_id', '=', Auth::user()->id)->get();
-        return view('admin_pasar.pages.sewa.create', [
-            "title" => "Sewa Lapak",
-            "lapak" => $lapak,
-            "ukuran" => $ukuran
+        // $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
+        // $ukuran = Lapak::where('user_id', '=', Auth::user()->id)->get();
+        return view('user.pages.sewa.create', [
+            "title" => "Sewa Lapak"
         ]);
     }
 
@@ -87,11 +86,13 @@ class SewaUserController extends Controller
         $datasewa->gambar_paspoto = $namaPoto;
         $datasewa->gambar_ktp = $namaKtp;
         $datasewa->gambar_kk = $namaKk;
+        $datasewa->user_id = Auth::user()->id;
 
         $upload->move(public_path().'/img/gambarpoto', $namaPoto);
         $uploadktp->move(public_path().'/img/gambarktp', $namaKtp);
         $uploadkk->move(public_path().'/img/gambarkk', $namaKk);
         $datasewa->save();
+
         return redirect('sewa')->with('success', 'Data Calon Penyewa Berhasil Ditambahkan!');
 
         // $datasewa = $request->validate([
@@ -122,7 +123,7 @@ class SewaUserController extends Controller
     public function show($id)
     {
         $data = SewaUser::findOrFail($id);
-        return view('admin_pasar.pages.sewa.show', [
+        return view('user.pages.sewa.show', [
             "title" => "Lihat Detail Data"
         ])->with([
             "data" => $data
@@ -157,6 +158,8 @@ class SewaUserController extends Controller
     {
         //
     }
+
+
 
     /**
      * Remove the specified resource from storage.

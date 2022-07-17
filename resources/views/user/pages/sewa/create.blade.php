@@ -1,9 +1,9 @@
-@extends('layouts.amain')
+@extends('layouts.main')
 
 @section('content')
 
-@include('admin_pasar.partials.header')
-@include('admin_pasar.partials.sidebar')
+@include('user.partials.navbar')
+@include('user.partials.sidebar')
 
     <section>
     <div class="card bg">
@@ -19,9 +19,9 @@
                 @csrf
                 <div class="col-md-6">
                     <label for="nama_pasar" class="form-label">Nama Pasar *</label>
-                    <input type="text" name="nama_pasar" readonly class="form-control-plaintext @error('nama_pasar') is-invalid @enderror" id="nama_pasar" value="{{ Auth::user()->name }}">
-                    {{-- <select class="form-select" aria-label="Default select example" id="nama_pasar" name="nama_pasar">
-                        <option selected>Nama Pasar</option>
+                    {{-- <input type="text" name="nama_pasar" class="form-control @error('nama_pasar') is-invalid @enderror" id="nama_pasar" placeholder="Nama Pasar" required> --}}
+                    <select class="form-select" aria-label="Default select example" id="nama_pasar" name="nama_pasar">
+                        <option hidden selected>Nama Pasar</option>
                         <option value="Pasar Palimanan">Pasar Palimanan</option>
                         <option value="Pasar Jamblang">Pasar Jamblang</option>
                         <option value="Pasar Sumber">Pasar Sumber</option>
@@ -31,49 +31,51 @@
                         <option value="Pasar Cipeujeuh">Pasar Cipeujeuh</option>
                         <option value="Pasar Babakan">Pasar Babakan</option>
                         <option value="Pasar Ciledug">Pasar Ciledug</option>
-                    </select> --}}
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <label for="jenis_tempat" class="form-label">Jenis Tempat *</label>
-                    <select class="form-select" aria-label="Default select example" id="jenis_tempat" name="jenis_tempat" required>
+                    <input type="text" name="jenis_tempat" class="form-control @error('jenis_tempat') is-invalid @enderror" id="jenis_tempat" placeholder="Jenis Tempat" required>
+                    {{-- <select class="form-select" aria-label="Default select example" id="jenis_tempat" name="jenis_tempat" required>
                         <option value="" hidden selected>Jenis Tempat</option>
                         @foreach ($lapak as $lapak)
                             <option value="{{ $lapak->jenis_tempat }}">{{ $lapak->jenis_tempat }}</option>
-                        @endforeach
+                        @endforeach --}}
                         {{-- <option value="Toko">Toko</option>
                         <option value="Kios">Kios</option>
                         <option value="Los">Los</option>
                         <option value="Lemprakan">Lemprakan</option>
                         <option value="PTT">PTT</option>
                         <option value="MCK">MCK</option> --}}
-                    </select>
+                    {{-- </select> --}}
                 </div>
                 <div class="col-md-6">
-                    <label for="ukuran_tempat" class="form-label">Jenis Tempat *</label>
-                    <select class="form-select" aria-label="Default select example" id="ukuran_tempat" name="ukuran_tempat" required>
+                    <label for="ukuran_tempat" class="form-label">Ukuran Tempat *</label>
+                    <input type="text" name="ukuran_tempat" class="form-control @error('ukuran_tempat') is-invalid @enderror" id="ukuran_tempat" placeholder="Ukuran Tempat" required>
+                    {{-- <select class="form-select" aria-label="Default select example" id="ukuran_tempat" name="ukuran_tempat" required>
                         <option value="" hidden selected>Ukuran Tempat</option>
                         @foreach ($ukuran as $item)
                             <option value="{{ $item->ukuran_tempat }}">{{ $item->ukuran_tempat }}</option>
-                        @endforeach
+                        @endforeach --}}
                         {{-- <option value="Toko">Toko</option>
                         <option value="Kios">Kios</option>
                         <option value="Los">Los</option>
                         <option value="Lemprakan">Lemprakan</option>
                         <option value="PTT">PTT</option>
                         <option value="MCK">MCK</option> --}}
-                    </select>
+                    {{-- </select> --}}
                 </div>
-                <div class="col-md-6">
+                {{-- <div class="col-md-6">
                     <label for="nomor_tempat" class="form-label">Nomor Tempat *</label>
                     <input type="text" class="form-control" placeholder="Jenis Jualan" id="nomor_tempat" name="nomor_tempat">
-                  </div>
+                  </div> --}}
                 <div class="col-md-6">
                   <label for="jenis_jualan" class="form-label">Jenis Jualan *</label>
                   <input type="text" class="form-control" placeholder="Jenis Jualan" id="jenis_jualan" name="jenis_jualan">
                 </div>
                 <div class="col-md-6">
                     <label for="nama" class="form-label">Nama *</label>
-                    <input type="text" id="nama" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Your Name">
+                    <input readonly type="text" id="nama" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Your Name" value="{{ Auth::user()->name }}">
                 </div>
                 <div class="col-md-6">
                     <label for="nik" class="form-label">NIK *</label>

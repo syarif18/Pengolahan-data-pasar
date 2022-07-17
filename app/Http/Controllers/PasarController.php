@@ -21,7 +21,7 @@ class PasarController extends Controller
 
     public function detailpasar()
     {
-        $lapak = Lapak::where('user_id', '=', '2')->get();
+        $lapak = Lapak::where('user_id', '=', '4')->get();
 
         return view('landing.pages.pasar.detail', [
             'lapak' => $lapak,
@@ -31,10 +31,10 @@ class PasarController extends Controller
 
     public function detailpasargambar($id)
     {
-        $lapak = Lapak::where('user_id', '=', '2')->get();
-        $gambar1 = Lapak::where('user_id', '=', '2')->take(3)->get();
-        $gambar2 = Lapak::where('user_id', '=', '2')->take(3)->get();
-        $gambar3 = Lapak::where('user_id', '=', '2')->take(3)->get();
+        $lapak = Lapak::where('user_id', '=', '4')->get();
+        $gambar1 = Lapak::where('user_id', '=', '4')->take(3)->get();
+        $gambar2 = Lapak::where('user_id', '=', '4')->take(3)->get();
+        $gambar3 = Lapak::where('user_id', '=', '4')->take(3)->get();
 
         return view('landing.pages.pasar.detail', [
             'lapak' => $lapak,

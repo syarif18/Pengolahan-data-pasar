@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-content {{ Request::is('/') ? 'active' : 'collapsed' }} " href="/">
+                    <a class="nav-content {{ Request::is('/') ? 'active' : 'collapsed' }} " href="/" target="_blank">
                       <i class="bi bi-circle"></i><span>Dashboard Utama</span>
                     </a>
                 </li>
@@ -46,12 +46,12 @@
         </a>
       </li><!-- End Calon Penyewa Page Nav -->
 
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link {{ Request::is('sewa*') ? 'active' : 'collapsed' }}" href="/sewa">
           <i class="bi bi-person-plus"></i>
           <span>Sewa Lapak</span>
         </a>
-      </li>
+      </li> --}}
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('logout') }}">

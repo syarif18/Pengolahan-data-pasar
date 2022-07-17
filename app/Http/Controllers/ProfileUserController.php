@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class ProfileUserController extends Controller
 {
@@ -13,8 +17,11 @@ class ProfileUserController extends Controller
      */
     public function index()
     {
-        return view('user.pages.profile', [
-            "title" => "Profile"
+        $user = User::where('id', Auth::user()->id)->first();
+
+        return view('user.pages.profile.profile', [
+            "title" => "Profile",
+            "user" => $user
         ]);
     }
 
@@ -70,7 +77,35 @@ class ProfileUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $image_lama = $request->old_image;
+        $image_baru = $request->file('foto');
+
+        if($image_baru == ''){
+            $foto = $image_lama;
+        }else{
+
+            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+            $foto = $new_image;
+            $image_baru->move(public_path().'/img/profile', $new_image);
+        }
+
+
+        $user = User::find($id);
+
+        $user->update(array(
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'nomor_hp' => $request->nomor_hp,
+            'foto' => $foto
+        ));
+
+        $user->save();
+
+        return redirect('profile')->with('success', 'Data Berhasil Diubah');
     }
 
     /**

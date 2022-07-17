@@ -12,4 +12,11 @@ class TentangController extends Controller
             "title" => "Tentang Kami"
         ]);
     }
+
+    public function adminindex()
+    {
+        return view('admin.pages.about.tentang', [
+            "title" => "Tentang Kami"
+        ]);
+    }
 }

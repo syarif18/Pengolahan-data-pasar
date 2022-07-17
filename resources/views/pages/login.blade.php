@@ -26,6 +26,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <h5>{{ session('success') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
 
            		<div class="input-div one">
            		   <div class="i">
@@ -56,9 +63,9 @@
                 <li>
                   <a class="forgot" href="/">Kembali ke halaman</a>
                 </li>
-                {{-- <li>
+                <li>
                   <a class="new" href="{{ url('registrasi') }}">Buat Akun Baru?</a>
-                </li> --}}
+                </li>
               </ul>
             	<input type="submit" class="btn" value="Login">
             </form>

@@ -17,7 +17,7 @@
               <div class="card info-card revenue-card ">
 
                 <div class="card-body">
-                  <h5 class="card-title">Pasar Jamblang</h5>
+                  <h5 class="card-title">{{ $user }}</h5>
 
                   {{-- isi body --}}
                   <div class="row">

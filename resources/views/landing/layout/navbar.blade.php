@@ -22,8 +22,12 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @if (Auth::user()->level == 'admin')
                                 <li><a class="dropdown-item" href="admin">Dashboard</a></li>
-                            @else
+                            @elseif (Auth::user()->level == 'kabid')
+                                <li><a class="dropdown-item" href="admin">Dashboard</a></li>
+                            @elseif (Auth::user()->level == 'admin_pasar')
                                 <li><a class="dropdown-item" href="admin_pasar">Dashboard</a></li>
+                            @else
+                                <li><a class="dropdown-item" href="user">Dashboard</a></li>
                             @endif
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('logout') }}">LogOut</a></li>

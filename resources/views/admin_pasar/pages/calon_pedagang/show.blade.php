@@ -69,11 +69,27 @@
                       @if ($data->status == '0')
                         <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
                       @elseif ($data->status == '1')
-                        <button  class="btn btn-success">Disetujui</i></button>
+                        <button  class="btn btn-success" disabled>Disetujui</i></button>
                       @else
                         <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
                       @endif
                     </td>
+                  </tr>
+                  <tr>
+                    <th style="width: 50%">Status Pembayaran</th>
+                    <td>
+                        @if ($data->status_pembayaran == '0')
+                        <button disabled = "disabled" class="btn btn-warning">Belum Upload</i></button>
+                      @elseif ($data->status_pembayaran == '1')
+                        <button disabled = "disabled" class="btn btn-primary" >proses Konfirmasi</i></button>
+                      @elseif ($data->status_pembayaran == '2')
+                        <button disabled = "disabled" class="btn btn-success">Disetujui</i></button>
+                      @endif
+                    </td>
+                  </tr>
+                  <tr>
+                    <th style="width: 50%">Pas Foto 3x4</th>
+                    <td><a href="{{ asset('/img/bukti/'. $data->bukti_pembayaran) }}"><img src="{{ URL::to('/') }}/img/bukti/{{ $data->bukti_pembayaran }}" alt="" width="90px" height="120px"></a></td>
                   </tr>
                 </tbody>
               </table>

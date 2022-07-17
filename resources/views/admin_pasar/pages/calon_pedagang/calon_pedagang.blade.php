@@ -46,7 +46,8 @@
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Penyewa</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Status Persetujuan</th>
+                        <th>Status Pembayaran</th>
                         <th scope="col">Aksi</th>
                       </tr>
                     </thead>
@@ -64,6 +65,19 @@
                                   @else
                                     <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
                                   @endif
+                                </td>
+                                <td>
+                                    @if ($dataSewa->status == '1')
+                                    {{-- kondisi status apakah di setujui atau dotolak --}}
+                                    @if ($dataSewa->status_pembayaran == '0')
+                                      <button disabled = "disabled" class="btn btn-warning">Belum Upload</i></button>
+                                    @elseif ($dataSewa->status_pembayaran == '1')
+                                      <button disabled = "disabled" class="btn btn-primary" >proses Konfirmasi</i></button>
+                                    @elseif ($dataSewa->status_pembayaran == '2')
+                                      <button disabled = "disabled" class="btn btn-success">Disetujui</i></button>
+                                    @endif
+
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('calon_pedagang.show', $dataSewa->id) }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
@@ -88,7 +102,7 @@
                                     @endif
 
                                     @if ($dataSewa->konfirmasi != '0')
-                                        <button disabled = "disabled" class="btn btn-primary">Dikonfirmasi</button>
+                                        <button disabled = "disabled" class="btn btn-secondary">Selesai</button>
                                     @else
                                         <a href="{{ route('calon_pedagang.edit', $dataSewa->id) }}" class="btn btn-primary">Konfirmasi</a>
                                     @endif
