@@ -22,7 +22,7 @@ class KueController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $kue = DB::table('sewa_users')->where('nama_pasar', 'pasar kue')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar kue')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
@@ -36,7 +36,7 @@ class KueController extends Controller
 
         $userkue = $userkue->latest()->paginate(10);
 
-        return view('admin.pages.pasar.kue', [
+        return view('admin.pages.pasar.kue.kue', [
             "title" => "Pasar Kue"
         ])->with([
             "userkue" => $userkue,

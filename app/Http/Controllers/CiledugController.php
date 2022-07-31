@@ -21,7 +21,7 @@ class CiledugController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $ciledug = DB::table('sewa_users')->where('nama_pasar', 'pasar ciledug')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar ciledug')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
@@ -35,7 +35,7 @@ class CiledugController extends Controller
 
         $userciledug = $userciledug->latest()->paginate(10);
 
-        return view('admin.pages.pasar.ciledug', [
+        return view('admin.pages.pasar.ciledug.ciledug', [
             "title" => "Pasar Ciledug"
         ])->with([
             "userciledug" => $userciledug,

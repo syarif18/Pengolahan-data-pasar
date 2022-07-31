@@ -11,13 +11,16 @@
 
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-              <img src="{{ URL::to('/') }}/img/profile/{{ $user->foto }}" alt="" width="120px" height="130px" alt="Profile" alt="Profile" class="rounded-circle">
-              <h2>{{ $user->name }}</h2>
+                @if( auth()->user()->foto )
+              {{-- <img src="{{ URL::to('/') }}/img/profile/{{ auth()->user()->foto }}" alt="" width="40px" height="40px" alt="Profile" alt="Profile" class="rounded-circle"> --}}
+              <img src="{{ URL::to('/') }}/img/profile/{{ $user->foto }}" width="120px" height="120px" alt="Profile" alt="Profile" class="rounded-circle">
+                @else
+              <img src="{{ asset('admin2_dashboard') }}/assets/img/user-2.png" alt="Profile" class="rounded-circle">
+              @endif
+              <h2>{{ $user->nama }}</h2>
               <h3>{{ auth()->user()->level }}</h3>
             </div>
           </div>
-
         </div>
 
         <div class="col-xl-8">
@@ -44,23 +47,18 @@
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                   <h5 class="card-title">Status</h5>
-                  <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+                  {{-- <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p> --}}
 
                   <h5 class="card-title">Detail Profil</h5>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
-                    <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
+                    <div class="col-lg-9 col-md-8">{{ $user->nama }}</div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Username</div>
                     <div class="col-lg-9 col-md-8">{{ $user->username }}</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">{{ $user->email }}</div>
                   </div>
 
                   <div class="row">
@@ -96,7 +94,11 @@
                     <div class="row mb-3">
                       <label for="foto" class="col-md-4 col-lg-3 col-form-label">Gambar Profil</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="{{ URL::to('/') }}/img/profile/{{ $user->foto }}" alt="" width="130px" height="130px" alt="Profile">
+                        @if( auth()->user()->foto )
+                        <img src="{{ URL::to('/') }}/img/profile/{{ $user->foto }}" alt="" width="120px" height="120px" alt="Profile">
+                            @else
+                        <img src="{{ asset('admin2_dashboard') }}/assets/img/user-2.png" alt="Profile" class="rounded-circle">
+                        @endif
                         <input type="hidden" class="form-control-file-mt3" name="old_image" value="{{ $user->foto }}">
                         <input type="file" name="foto" class="btn btn-online-primary btn-sm">
                         {{-- <div class="pt-2">
@@ -121,16 +123,9 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="text" class="form-control" id="email" value="{{ old('email', $user->email) }}">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
                       <label for="tanggal_lahir" class="col-md-4 col-lg-3 col-form-label">Tanggal Lahir</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="tanggal_lahir" type="text" class="form-control" id="tanggal_lahir" value="{{ old('tanggal_lahir', $user->tanggal_lahir) }}">
+                        <input name="tanggal_lahir" type="date" class="form-control" id="tanggal_lahir" value="{{ old('tanggal_lahir', $user->tanggal_lahir) }}">
                       </div>
                     </div>
 

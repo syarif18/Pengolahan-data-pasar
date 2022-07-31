@@ -168,14 +168,14 @@
                 @if( auth()->user()->foto )
               <img src="{{ URL::to('/') }}/img/profile/{{ auth()->user()->foto }}" alt="" width="40px" height="40px" alt="Profile" alt="Profile" class="rounded-circle">
                 @else
-              <img src="{{ asset('admin2_dashboard') }}/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="{{ asset('admin2_dashboard') }}/assets/img/user-2.png" alt="Profile" class="rounded-circle">
               @endif
-              <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->name }}</span>
+              <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama }}</span>
             </a><!-- End Profile Iamge Icon -->
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
               <li class="dropdown-header">
-                <h6>{{ auth()->user()->name }}</h6>
+                <h6>{{ auth()->user()->nama }}</h6>
                 <span>{{ auth()->user()->level }}</span>
               </li>
               <li>

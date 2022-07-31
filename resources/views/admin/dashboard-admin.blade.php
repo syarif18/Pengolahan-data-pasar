@@ -4,6 +4,8 @@
 
 @include('admin.partials.header')
 @include('admin.partials.sidebar')
+@include('sweetalert::alert')
+
 
     <section class="section dashboard">
       <div class="row">

@@ -4,8 +4,11 @@
 
     @include('admin_pasar.partials.header')
     @include('admin_pasar.partials.sidebar')
+    @include('sweetalert::alert')
+
 
     <section class="section dashboard">
+
       <div class="row">
 
         <!-- List Pasar -->

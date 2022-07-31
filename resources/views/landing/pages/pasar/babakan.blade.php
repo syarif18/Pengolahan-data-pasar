@@ -28,28 +28,28 @@
 
         <!-- portfolio-item start -->
 
-        @foreach ($lapak as $itemgambar)
+        @foreach ($data as $itemgambar)
         <div class="card ms-5 col-md-12 col-sm-12 col-xs-12 col-mt-12 portfolio-item single-awesome-project" style="width: 20rem;">
             {{-- <div class="col-md-12 col-sm-12 col-xs-12 col-mt-12 portfolio-item" filter="">
                 <div class="single-awesome-project"> --}}
                     <div class="awesome-img" style="max-height: 190px; overflow:hidden;">
-                        <a href="#"><img src="{{ asset('/img/gambarlapak/'. $itemgambar->gambar1) }}" alt="" /></a>
+                        <a href="#"><img src="{{ asset('/img/gambarlapak/'. $itemgambar['gambar1']) }}" alt="" /></a>
                         <div class="add-actions text-center">
                         <div class="project-dec">
-                            <a class="portfolio-lightbox" data-gallery="myGallery" href="{{ asset('/img/gambarlapak/'. $itemgambar->gambar1) }}">
-                            <h4>Pasar Sumber</h4>
-                            <span>{{ $itemgambar->jenis_tempat }}</span>
+                            <a class="portfolio-lightbox" data-gallery="myGallery" href="{{ asset('/img/gambarlapak/'. $itemgambar['gambar1']) }}">
+                            <h4>Pasar Babakan</h4>
+                            <span>{{ $itemgambar['jenis_tempat'] }}</span>
                             </a>
                         </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Detail {{ $itemgambar->jenis_tempat }}</h5>
-                        <p class="card-text">Luas Tempat : {{ $itemgambar->ukuran_tempat }}</p>
-                        <p class="card-text">Jumlah Tempat Kosong : {{ $itemgambar->tempat_kosong }}</p>
-                        <p class="card-text">Harga Sewa Lapak : Rp. {{ number_format($itemgambar->harga) }}/tahun</p>
+                        <h5 class="card-title">Detail {{ $itemgambar['jenis_tempat'] }}</h5>
+                        <p class="card-text">Luas Tempat : {{ $itemgambar['ukuran_tempat']}}</p>
+                        <p class="card-text">Jumlah Tempat Kosong : {{ $itemgambar['tempat_kosong'] }}</p>
+                        <p class="card-text">Harga Sewa Lapak : Rp. {{ number_format($itemgambar['harga']) }}/tahun</p>
                         <a href="" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">informasi</a>
-                        <a href="/sewa/create" class="btn btn-primary" target="_blank">Sewa</a>
+                        <a href="/sewa" class="btn btn-primary" target="_blank">Sewa</a>
                     </div>
                 {{-- </div>
             </div> --}}
@@ -79,7 +79,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+            </div>
 
 
         </div>
@@ -227,7 +227,8 @@
 <div class="col-md-12">
     <!-- Start Map -->
     {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.0614483499376!2d108.47431261414309!3d-6.762362268005592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1e52ed0f81cd%3A0xca2a5ac5bdbd16fd!2sDinas%20Perdagangan%20Dan%20Perindustrian%20Kabupaten%20Cirebon!5e0!3m2!1sid!2sid!4v1647499779824!5m2!1sid!2sid" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6539.302295068454!2d108.48598044686614!3d-6.7629006468725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1e455cf750c1%3A0x780bf6cdd2bfcc5a!2sPASAR%20SUMBER!5e0!3m2!1sid!2sid!4v1657287948874!5m2!1sid!2sid" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy" ></iframe>
+    {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6539.302295068454!2d108.48598044686614!3d-6.7629006468725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1e455cf750c1%3A0x780bf6cdd2bfcc5a!2sPASAR%20SUMBER!5e0!3m2!1sid!2sid!4v1657287948874!5m2!1sid!2sid" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy" ></iframe> --}}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3223.585339266455!2d108.71921371414426!3d-6.8736242191633705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f074d391d3d65%3A0xfc2ffd771d4c94eb!2sPasar%20Babakan!5e1!3m2!1sid!2sid!4v1659236088116!5m2!1sid!2sid" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <!-- End Map -->
 </div>
 <!-- End Google Map -->

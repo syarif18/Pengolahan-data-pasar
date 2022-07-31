@@ -5,50 +5,52 @@
 @include('user.partials.navbar')
 @include('user.partials.sidebar')
 
+
 <section>
     <div class="card">
         <div class="container mt-3">
             <center><h2>Informasi</h2></center>
 
-            <div class="card">
+            <div class="card mt-5" >
                 <div class="card-body">
-                  <h5 class="card-title">Informasi Status Sewa Lapak Anda</h5>
+                    <h5 class="card-title">Status Penyewaan</h5>
 
-                  <!-- Table with hoverable rows -->
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Sewa Lapak</th>
-                        <th scope="col">Status Persetujuan</th>
-                        <th scope="col">Status Pembayaran</th>
-                        <th scope="col">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $dataSewa)
+
+                    <!-- Table with hoverable rows -->
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Sewa Lapak</th>
+                                <th scope="col">Status Persetujuan</th>
+                                <th scope="col">Status Pembayaran</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($datas as $dataSewa)
                             <tr>
                                 <td scope="col" style="text-align: center">{{ $loop->iteration }}</td>
-                                <td>{{ $dataSewa->nama_pasar }}</td>
+                                <td>Pasar Sumber</td>
                                 <td>
-                                  {{-- kondisi status apakah di setujui atau dotolak --}}
-                                  @if ($dataSewa->status == '0')
+                                {{-- kondisi status apakah di setujui atau dotolak --}}
+                                @if ($dataSewa->status == '0')
                                     <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
-                                  @elseif ($dataSewa->status == '1')
+                                @elseif ($dataSewa->status == '2')
                                     <button class="btn btn-success" disabled>Disetujui</i></button>
-                                  @else
+                                @else
                                     <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
-                                  @endif
+                                @endif
                                 </td>
                                 <td>
-                                    @if ($dataSewa->status == '1')
+                                    @if ($dataSewa->status == '2')
                                     {{-- kondisi status apakah di setujui atau dotolak --}}
                                     @if ($dataSewa->status_pembayaran == '0')
-                                      <button disabled = "disabled" class="btn btn-warning">Belum Upload</i></button>
+                                    <button disabled = "disabled" class="btn btn-warning">Belum Upload</i></button>
                                     @elseif ($dataSewa->status_pembayaran == '1')
-                                      <button disabled = "disabled" class="btn btn-primary" >proses Konfirmasi</i></button>
+                                    <button disabled = "disabled" class="btn btn-primary" >proses Konfirmasi</i></button>
                                     @elseif ($dataSewa->status_pembayaran == '2')
-                                      <button disabled = "disabled" class="btn btn-success">Disetujui</i></button>
+                                    <button disabled = "disabled" class="btn btn-success">Disetujui</i></button>
                                     @endif
 
                                     @endif
@@ -56,44 +58,38 @@
                                 <td>
                                     <a href="{{ route('informasi.show', $dataSewa->sewa_id) }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
                                     @if ($dataSewa->status == '0')
-                                      <form action="{{ route('informasi.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                    <form action="{{ route('informasi.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                      </form>
-                                    @elseif ($dataSewa->status == '2')
-                                      <form action="{{ route('informasi.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                    </form>
+                                    @elseif ($dataSewa->status == '3')
+                                    <form action="{{ route('informasi.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                      </form>
+                                    </form>
                                     @else
-                                      <form action="{{ route('informasi.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                    <form action="{{ route('informasi.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button disabled = "disabled" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                      </form>
-
-                                      <a href="#" data-bs-toggle="modal" data-bs-target="#pembayaran{{ $dataSewa->id }}" class="btn btn-primary" title="Upload bukti Pembayaran"><i class="bi bi-upload"></i></a>
+                                    </form>
+                                    @if ($dataSewa->status_pembayaran != '2')
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#pembayaran{{ $dataSewa->id }}" class="btn btn-primary" title="Upload bukti Pembayaran"><i class="bi bi-upload"></i></a>
                                     @endif
-
-                                    @endforeach
+                                    @endif
                                 </td>
                             </tr>
+                            @endforeach
 
                         </tbody>
-                    </table>
+                </table>
                         <!-- End Table with hoverable rows -->
                         <!-- Button trigger modal -->
 
-                            {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Launch demo modal
-                            </button> --}}
-
-
-
-                            <!-- Modal -->
-                            @foreach ($data as $dataSewa)
+                        <!-- Modal -->
+                            @foreach ($datas as $dataSewa)
                                 <div class="modal fade" id="pembayaran{{ $dataSewa->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
@@ -107,7 +103,7 @@
                                                 @method('put')
                                                 <div class="col-md-12">
                                                     <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
-                                                    <input class="form-control" type="file" id="bukti_pembayaran" name="bukti_pembayaran" onchange="previewImagess()">
+                                                    <input class="form-control" type="file" id="bukti_pembayaran" name="bukti_pembayaran" onchange="previewImagess()" required>
                                                     <img class="img-preview img-fluid mt-3 col-sm-5">
                                                 </div>
                                                 {{-- <form action="{{ route('sewa.updatebukti', $item->id)}}" method="POST" enctype="multipart/form-data">
@@ -140,11 +136,15 @@
                             @endforeach
 
 
-                </div>
+
+                        </div>
             </div>
+
+
         </div>
     </div>
 </section>
+
 
 <script>
     function previewImagess() {

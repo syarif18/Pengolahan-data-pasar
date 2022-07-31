@@ -21,7 +21,9 @@
 
 <div class="form-group d-flex justify-content-between">
     <div class="mb-3">
+        @if ( count($data) === 0 )
         <a href="{{ 'sewa/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Sewa Lapak</i></a>
+        @endif
     </div>
 
     {{-- <form action="/sewa" method="GET">
@@ -51,6 +53,7 @@
                       <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Penyewa</th>
+                        <th scope="col">Nama Pasar</th>
                         <th scope="col">Status Persetujuan</th>
                         <th scope="col">Aksi</th>
                       </tr>
@@ -60,11 +63,14 @@
                             <tr>
                                 <td scope="col" style="text-align: center">{{ $loop->iteration }}</td>
                                 <td>{{ $dataSewa->nama }}</td>
+                                <td>Pasar Sumber</td>
                                 <td>
                                   {{-- kondisi status apakah di setujui atau dotolak --}}
                                   @if ($dataSewa->status == '0')
                                     <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
                                   @elseif ($dataSewa->status == '1')
+                                    <button class="btn btn-primary" disabled >Proses</i></button>
+                                  @elseif ($dataSewa->status == '2')
                                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" >Disetujui</i></button>
                                   @else
                                     <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
@@ -73,24 +79,24 @@
                                 <td>
                                     <a href="{{ route('sewa.show', $dataSewa->sewa_id) }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
                                     @if ($dataSewa->status == '0')
-                                      <form action="{{ route('sewa.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                      <form action="{{ route('sewa.destroy', $dataSewa->sewa_id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                       </form>
                                     @elseif ($dataSewa->status == '2')
-                                      <form action="{{ route('sewa.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                      <form action="{{ route('sewa.destroy', $dataSewa->sewa_id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                       </form>
                                     @else
-                                      <form action="{{ route('sewa.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                      <form action="{{ route('sewa.destroy', $dataSewa->sewa_id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button disabled = "disabled" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                       </form>
-                                        {{-- <input class="form-control" type="file" id="bukti_pembayaran" name="bukti_pembayaran"> --}}
+                                        {{-- <input class="form-control" type="file" sewa_id="bukti_pembayaran" name="bukti_pembayaran"> --}}
                                     @endif
 
                                 </td>
@@ -119,8 +125,9 @@
                            <div class="modal-body">
                            Selamat Data Anda Telah Disetujui, Silahkan Lakukan Transaksi untuk Pembayaran Penyewaan lapak dengan mentransfer ke ATM di bawah ini!!!
                            <br>
-                           <br>
-                           a
+                            <img src="{{ asset('admin2_dashboard') }}/assets/img/bjb.png" alt="Profile" class="rounded-circle" width="100px" height="70px"> <br>
+                           No rekening : 008783032001 <br>
+                           A/N : Dinas Perdagangan dan Perindustrian
                            <br>
                            <br>
                            Kirim bukti, sebagai Validasi!!

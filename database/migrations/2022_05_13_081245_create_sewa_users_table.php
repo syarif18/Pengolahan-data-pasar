@@ -27,16 +27,18 @@ class CreateSewaUsersTable extends Migration
             $table->text('alamat');
             $table->string('jenis_jualan');
             $table->string('nomor_hp');
-            $table->string('status_lapak')->nullable();
             $table->string('gambar_paspoto')->nullable();
-            $table->string('gambar_ktp')->nullable();;
-            $table->string('gambar_kk')->nullable();;
+            $table->string('gambar_ktp')->nullable();
+            $table->string('gambar_kk')->nullable();
+            $table->string('dokument')->nullable();
             $table->string('tahun_masuk')->nullable();
             $table->string('tahun_keluar')->nullable();
+            $table->string('status_lapak')->nullable();
             $table->string('bukti_pembayaran')->nullable();
             $table->string('status_pembayaran')->default('0');
             $table->string('konfirmasi')->default('0');
             $table->string('status')->default('0');
+            $table->string('komentar')->nullable();
             $table->timestamps();
         });
     }

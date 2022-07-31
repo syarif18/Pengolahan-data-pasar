@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 
 class PedagangController extends Controller
@@ -21,20 +22,29 @@ class PedagangController extends Controller
     public function index(Request $request)
     {
 
-        $user = Auth::user()->name;
-        $data = SewaUser::where('konfirmasi', '1')->where('nama_pasar', $user);
+        // $user = Auth::user()->name;
+        // $data = SewaUser::where('konfirmasi', '=', '1')->where('nama_pasar', '=', $user);
 
-        if($request->has('search')){
-            $data->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+        // $request->search = 'syarif';
+        // if(!$request->has('search')){
+        //     $data->orWhere('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . 'syarif' . '%');
+        // }
+
+        $data = SewaUser::where('nama_pasar', '=', Auth::user()->nama_pasar)->where('konfirmasi', '=', 1);
+
+        if(!empty($request->search)){
+            $data->where('nama', 'like', '%' . $request->search . '%')->orWhere('jenis_tempat', 'like', '%' . $request->search . '%');
         }
 
-        $data = $data->latest()->paginate(5);
+        // dd($data->get());
+
+        // $data = $data->get();
 
         return view('admin_pasar.pages.pedagang', [
             "title" => "Data pedagang"
         ])->with([
-            "datas" => $data,
-            "auth" => $user,
+            "datas" => $data->get(),
+            "auth" => Auth::user()->nama_pasar,
             "search" => $request->search?$request->search:''
         ]);
     }
@@ -46,18 +56,31 @@ class PedagangController extends Controller
 
     public function pedagangpdf(Request $request)
     {
-        $user = Auth::user()->name;
-        $cetakpdf = SewaUser::where('konfirmasi', '1')->where('nama_pasar', $user);
 
-        if($request->has('search')){
-            $cetakpdf->where('jenis_tempat', 'like', '%' . $request->search . '%')->orWhere('nama', 'like', '%' . $request->search . '%');
+
+        // $user = Auth::user()->name;
+        // $this->nama_pasar = Auth::user()->name;
+        $cetakpdf = SewaUser::where('nama_pasar', '=', Auth::user()->nama_pasar)->where('konfirmasi', '=', 1);
+        $lk = SewaUser::where('nama_pasar', '=', Auth::user()->nama_pasar)->where('jenis_kelamin', '=', 'Laki-laki')->count();
+        $pr = SewaUser::where('nama_pasar', '=', Auth::user()->nama_pasar)->where('jenis_kelamin', '=', 'perempuan')->count();
+
+        $jum = $lk + $pr;
+
+        if(!empty($request->search)){
+            $cetakpdf->Where('jenis_tempat', 'like', '%' . $request->search . '%');
         }
 
-        $cetakpdf = $cetakpdf->get();
-
+        // $cetakpdf = $cetakpdf->get();
         // dd($cetakpdf);
-
-        return view('admin_pasar.pages.cetak_pedagangpdf', compact('cetakpdf'));
+        return view('admin_pasar.pages.cetak_pedagangpdf')->with([
+            'cetakpdf' => $cetakpdf->get(),
+            "auth" => Auth::user()->nama_pasar,
+            'tahun' => Carbon::now()->format('Y'),
+            'lk' => $lk,
+            'pr' => $pr,
+            'jum' => $jum,
+            'search' => $request->search?$request->search:''
+        ]);
     }
 
     /**

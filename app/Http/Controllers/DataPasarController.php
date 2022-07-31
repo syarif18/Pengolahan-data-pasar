@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pasar;
 use App\Models\Lapak;
 use App\Models\User;
+// use App\Models\DataPasar;
 use Illuminate\Http\Request;
 
 class DataPasarController extends Controller
@@ -17,14 +18,24 @@ class DataPasarController extends Controller
     public function index()
     {
         $pasar = Pasar::all();
-        $data = Lapak::join('users', 'lapaks.user_id', '=', 'users.id' )->get();
         $user = User::all();
         return view('admin.pages.data_pasar.data_pasar', [
             "title" => "Data Pasar"
         ])->with([
             "list" => $pasar,
-            "data" => $data,
-            "pasar" => $user,
+            "pasar" => $user
+        ]);
+    }
+
+    public function indexlapak()
+    {
+        $lapak = Lapak::join('users', 'lapaks.user_id', '=', 'users.id' )->get();
+
+        // dd($lapak);
+        return view('admin.pages.data_pasar.data_lapak', [
+            "title" => "Data Lapak"
+        ])->with([
+            "pasar" => $lapak
         ]);
     }
 
@@ -46,9 +57,9 @@ class DataPasarController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except(['_token']);
-        Pasar::insert($data);
-        return redirect('data_pasar')->with('status', 'Data Berhasil Ditambahkan');
+        $pasar = $request->except(['_token']);
+        Pasar::insert($pasar);
+        return redirect('data_pasar')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -59,10 +70,10 @@ class DataPasarController extends Controller
      */
     public function show($id)
     {
-        $data = DataPasar::findOrFail($id);
-        return view('admin.pages.data_pasar.show')->with([
-            "data" => $data
-        ]);
+        // $data = DataPasar::findOrFail($id);
+        // return view('admin.pages.data_pasar.show')->with([
+        //     "data" => $data
+        // ]);
     }
 
     /**
@@ -85,10 +96,10 @@ class DataPasarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $item = DataPasar::findOrFail($id);
-        $data = $request->except(['_token']);
-        $item->update($data);
-        return redirect('data_pasar')->with('status', 'Data Beerhasil Diupdate');
+        // $item = DataPasar::findOrFail($id);
+        // $data = $request->except(['_token']);
+        // $item->update($data);
+        // return redirect('data_pasar')->with('status', 'Data Beerhasil Diupdate');
     }
 
     /**
@@ -99,7 +110,7 @@ class DataPasarController extends Controller
      */
     public function destroy($id)
     {
-        $item = DataPasar::findOrFail($id);
+        $item = Pasar::findOrFail($id);
         $item->delete();
         return redirect('data_pasar')->with('status', 'Data Berhasil Dihapus');
     }

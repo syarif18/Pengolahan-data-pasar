@@ -14,16 +14,16 @@
                     <form class="row g-3" action="{{ route('data_admin.store') }}" method="POST">
                         @csrf
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Nama Pasar *</label>
-                            <select aria-label="Default select example" id="name" name="name" required class="form-select @error('name')
+                            <label for="nama_pasar" class="form-label">Nama Pasar *</label>
+                            <select aria-label="Default select example" id="name" name="nama_pasar" required class="form-select @error('nama_pasar')
                             is-invalid
-                            @enderror" placeholder="name" required value="{{ old('name') }}">
+                            @enderror" placeholder="nama_pasar" required value="{{ old('nama_pasar') }}">
                                 <option value="" hidden selected disabled>Nama Pasar</option>
                                 @foreach ($pasar as $item)
                                     <option value="{{ $item->nama_pasar }}">{{ $item->nama_pasar }}</option>
                                 @endforeach
                             </select>
-                            @error('name')
+                            @error('nama_pasar')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -34,8 +34,8 @@
                             <select class="form-select @error('level')
                             is-invalid
                             @enderror" id="level" name="level" value="{{ old('level') }} " required>
-                                <option value="" hidden selected disabled>admin/pengelola</option>
-                                <option value="admin">Admin</option>
+                                <option value="" hidden selected disabled>pilih pengelola</option>
+                                {{-- <option value="admin">Admin</option> --}}
                                 <option value="pengelola">Pengelola</option>
                             </select>
                             @error('level')

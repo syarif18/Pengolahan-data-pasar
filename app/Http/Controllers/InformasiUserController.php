@@ -11,12 +11,14 @@ class InformasiUserController extends Controller
 {
     public function index()
     {
-        $data = SewaUser::select('*', 'sewa_users.id AS sewa_id')->join('users', 'sewa_users.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->where('status', '1')->get();
+        $data = SewaUser::select('*', 'sewa_users.id AS sewa_id')->join('users', 'sewa_users.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->where('status', '2')->get();
+        // $user = SewaUser::select('*', 'sewa_users.id AS sewa_id')->join('users', 'sewa_users.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->where('status', '1')->first();
         // dd($data);
         return view('user.pages.informasi.informasi', [
             "title" => "Informasi"
         ])->with([
-            "data" => $data
+            "datas" => $data
+            // "user" => $user
         ]);
     }
 

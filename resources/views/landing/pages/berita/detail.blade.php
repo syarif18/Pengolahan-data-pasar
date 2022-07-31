@@ -62,7 +62,7 @@
                 <!-- recent end -->
               </div>
 
-              <div class="single-blog-page">
+              {{-- <div class="single-blog-page">
                 <div class="left-blog">
                   <h4>archive</h4>
                   <ul>
@@ -83,7 +83,7 @@
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
           <!-- End left sidebar -->

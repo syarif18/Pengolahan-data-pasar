@@ -25,6 +25,16 @@ class ProfileUserController extends Controller
         ]);
     }
 
+    public function indexpengelola()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+
+        return view('admin.pages.akun.profile', [
+            "title" => "Profile",
+            "user" => $user
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -96,16 +106,50 @@ class ProfileUserController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'nomor_hp' => $request->nomor_hp,
+            'tgl_lahir' => $request->tanggal_lahir,
+            'j_kelamin' => $request->jenis_kelamin,
+            'almt' => $request->alamat,
+            'no_hp' => $request->nomor_hp,
             'foto' => $foto
         ));
 
         $user->save();
 
         return redirect('profile')->with('success', 'Data Berhasil Diubah');
+    }
+
+    public function updatepengelola(Request $request, $id)
+    {
+        $image_lama = $request->old_image;
+        $image_baru = $request->file('foto');
+
+        if($image_baru == ''){
+            $foto = $image_lama;
+        }else{
+
+            $new_image = rand() .'.'. $image_baru->getClientOriginalExtension();
+            $foto = $new_image;
+            $image_baru->move(public_path().'/img/profile', $new_image);
+        }
+
+
+        $user = User::find($id);
+
+        $user->update(array(
+            'name' => $request->name,
+            'jabatan' => $request->jabatan,
+            'nip' => $request->nip,
+            'username' => $request->username,
+            'tgl_lahir' => $request->tanggal_lahir,
+            'j_kelamin' => $request->jenis_kelamin,
+            'almt' => $request->alamat,
+            'no_hp' => $request->nomor_hp,
+            'foto' => $foto
+        ));
+
+        $user->save();
+
+        return redirect('profil')->with('success', 'Data Berhasil Diubah');
     }
 
     /**

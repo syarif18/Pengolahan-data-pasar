@@ -14,7 +14,7 @@
 			<img src="{{ asset('admin2_dashboard') }}/assets/img/login.png">
 		</div>
 		<div class="login-content">
-			<form action="/registrasi" method="post">
+			<form action="/registrasi" method="post" onsubmit="return validate();">
 				@csrf
 				<img src="{{ asset('admin2_dashboard') }}/assets/img/pasar_rakyat.png">
 				<h2 class="title">Buat Akun Baru</h2>
@@ -25,7 +25,7 @@
            		   </div>
            		   <div class="div">
            		   		<h5>Nama Lengkap</h5>
-           		   		<input type="text" class="input" name="name" required value="{{ old('name') }}">
+           		   		<input type="text" class="input" name="nama" required value="{{ old('nama') }}">
            		   </div>
            		</div>
 
@@ -43,7 +43,7 @@
                     </div>
                  </div>
 
-                <div class="input-div one">
+                {{-- <div class="input-div one">
                     <div class="i">
                         <i class="fas fa-at"></i>
                     </div>
@@ -51,7 +51,7 @@
                             <h5>Email</h5>
                             <input type="email" class="input" name="email" required value="{{ old('email') }}">
                     </div>
-                 </div>
+                 </div> --}}
 
            		<div class="input-div pass">
            		   <div class="i">
@@ -59,9 +59,19 @@
            		   </div>
            		   <div class="div">
            		    	<h5>Password</h5>
-           		    	<input type="password" class="input" name="password" required>
+           		    	<input type="password" class="input" name="password" id="password" required>
             	   </div>
             	</div>
+
+                <div class="input-div pass">
+                    <div class="i">
+                         <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                         <h5>Masukkan Ulang Password</h5>
+                         <input type="password" class="input" name="password1" id="password1" required>
+                 </div>
+              </div>
               <ul>
 
                 <li>
@@ -76,5 +86,16 @@
         </div>
     </div>
     <script type="text/javascript" src="{{ asset('admin2_dashboard') }}/assets/js/main-login.js"></script>
+    {{-- @include('sweetalert::alert') --}}
 </body>
+<script>
+    function validate(){
+        var a = document.getElementById('password').value;
+        var b = document.getElementById('password1').value;
+        if (a!=b){
+            alert("Password tidak sesuai!");
+            return false;
+        }
+    }
+</script>
 </html>

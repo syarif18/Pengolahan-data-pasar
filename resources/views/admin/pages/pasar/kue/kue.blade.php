@@ -73,14 +73,35 @@
     </div><!-- End list -->
 </section>
 
-<div>
-    <form action="{{ route('exportKue') }}" method="POST">
-        @method('post')
-        @csrf
-        <input type="hidden" name="nama_pasar" value="{{ $userkue }}">
-        <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Excel</i></button>
-    </form>
-    {{-- <a href="{{ route('exportpedagang') }}" class="btn btn-primary"> Export Excel </a> --}}
+<div class="form-group d-flex justity-content-between">
+    <div class="col-sm-4">
+        <form action="/kue" method="GET">
+            @csrf
+            @method('post')
+            <div class="input-group mb-3">
+                <input value="{{ !empty($search)?$search:'' }}" type="text" class="form-control" placeholder="Search..." name="search">
+                <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="ms-2">
+        <form action="{{ route('exportKue') }}" method="POST">
+            @method('post')
+            @csrf
+            <input type="hidden" name="nama_pasar">
+            <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
+            <button type="submit" class="btn btn-success"><i class="bi bi-file-earmark-spreadsheet"> Export Excel</i></button>
+        </form>
+    </div>
+    <div class="ms-2">
+        <form action="{{ route('kuepdf') }}" class="d-inline" method="POST" target="_blank">
+            @method('post')
+            @csrf
+            <input type="hidden" name="nama_pasar">
+            <input type="hidden" name="search" value="{{ !empty($search)?$search:'' }}">
+            <button type="submit" class="btn btn-danger"><i class="bi bi-file-earmark-spreadsheet"> Cetak pdf</i></button>
+        </form>
+    </div>
 </div>
 
 <section>

@@ -15,8 +15,8 @@ class CreateTentangTable extends Migration
     {
         Schema::create('tentang', function (Blueprint $table) {
             $table->id();
-            $table->string('gambar');
-            $table->text('body');
+            $table->string('gambar')->nullable();
+            $table->text('body')->nullable();
             $table->string('nomor_kantor');
             $table->string('jam_kerja');
             $table->string('email');

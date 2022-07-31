@@ -21,7 +21,7 @@ class BatikController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $batik = DB::table('sewa_users')->where('nama_pasar', 'pasar batik')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar batik')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
@@ -35,7 +35,7 @@ class BatikController extends Controller
 
         $userbatik = $userbatik->latest()->paginate(10);
 
-        return view('admin.pages.pasar.batik', [
+        return view('admin.pages.pasar.batik.batik', [
             "title" => "Pasar Batik"
         ])->with([
             "userbatik" => $userbatik,

@@ -85,7 +85,7 @@
         </form>
     </div>
     <div class="ms-2">
-        <form action="{{ route('exportpalimanan') }}" method="POST">
+        <form action="{{ route('exportPasalaran') }}" method="POST">
             @method('post')
             @csrf
             <input type="hidden" name="nama_pasar">

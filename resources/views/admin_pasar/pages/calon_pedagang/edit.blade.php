@@ -65,7 +65,13 @@
                 </div>
                 <div class="col-md-6">
                     <label for="nomor_tempat" class="form-label">Nomor Tempat *</label>
-                    <input type="text" class="form-control" placeholder="Jenis Jualan" id="nomor_tempat" name="nomor_tempat" value="{{ old('judul', $data->nomor_tempat) }}">
+                    {{-- <input type="text" class="form-control"  id="nomor_tempat" name="nomor_tempat" value="{{ old('judul', $data->nomor_tempat) }}"> --}}
+                    <select class="form-select" aria-label="Default select example" id="nomor_tempat" name="nomor_tempat">
+                        <option value="" hidden selected>{{ old('judul', $data->nomor_tempat) }}</option>
+                        @foreach ($lapak as $lap)
+                            <option value="{{ $lap->nomor_tempat }}">{{ $lap->nomor_tempat }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-6">
                   <label for="jenis_jualan" class="form-label">Jenis Jualan *</label>

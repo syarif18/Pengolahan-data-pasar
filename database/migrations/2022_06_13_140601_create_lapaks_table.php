@@ -19,7 +19,7 @@ class CreateLapaksTable extends Migration
             $table->string('jenis_tempat');
             $table->string('ukuran_tempat');
             $table->string('jumlah_tempat');
-            $table->string('tempat_kosong');
+            // $table->string('tempat_kosong');
             $table->string('harga');
             $table->string('gambar1')->nullable();
             // $table->string('gambar2')->nullable();

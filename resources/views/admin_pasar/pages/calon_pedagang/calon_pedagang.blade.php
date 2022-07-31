@@ -47,7 +47,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Nama Penyewa</th>
                         <th scope="col">Status Persetujuan</th>
-                        <th>Status Pembayaran</th>
+                        <th scope="col">Status Pembayaran</th>
                         <th scope="col">Aksi</th>
                       </tr>
                     </thead>
@@ -60,14 +60,16 @@
                                   {{-- kondisi status apakah di setujui atau dotolak --}}
                                   @if ($dataSewa->status == '0')
                                     <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
-                                  @elseif ($dataSewa->status == '1')
-                                    <button disabled = "disabled" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui</i></button>
-                                  @else
+                                @elseif ($dataSewa->status == '1')
+                                    <button disabled = "disabled"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui Kepala Pasar</i></button>
+                                    @elseif ($dataSewa->status == '2')
+                                    <button disabled = "disabled"  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui Dinas</i></button>
+                                @else
                                     <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
-                                  @endif
+                                @endif
                                 </td>
                                 <td>
-                                    @if ($dataSewa->status == '1')
+                                    @if ($dataSewa->status == '2')
                                     {{-- kondisi status apakah di setujui atau dotolak --}}
                                     @if ($dataSewa->status_pembayaran == '0')
                                       <button disabled = "disabled" class="btn btn-warning">Belum Upload</i></button>
@@ -80,31 +82,32 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('calon_pedagang.show', $dataSewa->id) }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
+                                    <a href="{{ route('show_penyewa', $dataSewa->id) }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
                                     @if ($dataSewa->status == '0')
-                                      <form action="{{ route('calon_pedagang.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                      <form action="{{ route('destroy_penyewa', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                       </form>
                                     @elseif ($dataSewa->status == '2')
-                                      <form action="{{ route('calon_pedagang.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                      <form action="{{ route('destroy_penyewa', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                       </form>
                                     @else
-                                      <form action="{{ route('calon_pedagang.destroy', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
+                                      <form action="{{ route('destroy_penyewa', $dataSewa->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                         @method('delete')
                                         @csrf
                                         <button disabled = "disabled" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                                       </form>
                                     @endif
-
-                                    @if ($dataSewa->konfirmasi != '0')
-                                        <button disabled = "disabled" class="btn btn-secondary">Selesai</button>
-                                    @else
-                                        <a href="{{ route('calon_pedagang.edit', $dataSewa->id) }}" class="btn btn-primary">Konfirmasi</a>
+                                    @if ($dataSewa->status_pembayaran == '1')
+                                        @if ($dataSewa->konfirmasi != '0')
+                                            <button disabled = "disabled" class="btn btn-secondary">Selesai</button>
+                                        {{-- @else
+                                            <a href="{{ route('', $dataSewa->id) }}" class="btn btn-primary">Konfirmasi</a> --}}
+                                        @endif
                                     @endif
 
                                 </td>

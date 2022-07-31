@@ -17,7 +17,7 @@
 </div>
 
 <section>
-    <div class="mt-3">
+    <div class="table-responsive mt-3">
         <!-- Table with hoverable rows -->
         <table class="table table-hover">
             <thead class="table-light">

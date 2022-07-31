@@ -21,7 +21,7 @@ class CreateKontensTable extends Migration
             $table->string('gambar');
             $table->text('body');
             // $table->binary('gambar');
-            $table->timestamp('published_at')->nullable();
+            // $table->timestamp('published_at')->nullable();
             // $table->softDeletes();
             $table->timestamps();
         });

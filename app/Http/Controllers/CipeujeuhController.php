@@ -21,7 +21,7 @@ class CipeujeuhController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $cipeujeuh = DB::table('sewa_users')->where('nama_pasar', 'pasar cipeujeuh')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar cipeujeuh')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
@@ -35,7 +35,7 @@ class CipeujeuhController extends Controller
 
         $usercipeujeuh = $usercipeujeuh->latest()->paginate(10);
 
-        return view('admin.pages.pasar.cipeujeuh', [
+        return view('admin.pages.pasar.cipeujeuh.cipeujeuh', [
             "title" => "Pasar Cipeujeuh"
         ])->with([
             "usercipeujeuh" => $usercipeujeuh,

@@ -3,7 +3,7 @@
 @section('content')
 
     @include('admin_pasar.partials.header')
-    @include('admin_pasar.partials.sidebar')
+    {{-- @include('admin_pasar.partials.sidebar') --}}
 
 
     <div>
@@ -103,9 +103,9 @@
                                     </tbody>
                                 </table>
 
-                                <div class="table-hover d-flex justify-content-center" >
+                                {{-- <div class="table-hover d-flex justify-content-center" >
                                     {{ $datas->links() }}
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                 {{-- </div> --}}

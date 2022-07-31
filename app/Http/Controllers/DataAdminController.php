@@ -16,7 +16,7 @@ class DataAdminController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $data = User::orderBy('level')->where('level', 'kabid')->orWhere('level', 'admin')->orWhere('level', '=', 'pengelola')->get();
         return view('admin.pages.data_admin.data_admin', [
             "title" => "Data Admin"
         ])->with([
@@ -33,7 +33,7 @@ class DataAdminController extends Controller
     {
         $pasar = Pasar::all();
         return view('admin.pages.data_admin.create', [
-            "title" => "Create Data Admin",
+            "title" => "Create Data Pengelola",
             "pasar" => $pasar
         ]);
     }
@@ -47,7 +47,7 @@ class DataAdminController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'name' => 'required|max:255',
+            'nama_pasar' => 'required|max:255',
             'level' => 'required|max:255',
             'username' => 'required|min:5|max:255|unique:users',
             'password' => 'required|min:5|max:255'
@@ -57,9 +57,9 @@ class DataAdminController extends Controller
 
         User::create($validateData);
 
-        $request->session()->flash('success', 'Tambah Data Admin Berhasil!');
+        // $request->session()->flash('success', 'Tambah Data Admin Berhasil!');
 
-        return redirect('data_admin');
+        return redirect('data_admin')->with('success', 'Tambah Data Admin Berhasil!');
 
     }
 
@@ -107,6 +107,6 @@ class DataAdminController extends Controller
     {
         $data = User::findOrFail($id);
         $data->delete();
-        return redirect('data_admin')->with('delete', 'Data Berhasil DIhapus!');
+        return redirect('data_admin')->with('success', 'Data Berhasil DIhapus!');
     }
 }

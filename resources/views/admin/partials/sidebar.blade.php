@@ -22,7 +22,14 @@
             </li>
         </ul>
       </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+          <a class="nav-link {{ Request::is('profil*') ? 'active' : 'collapsed' }}" href="/profil">
+            <i class="bi bi-person"></i>
+            <span>Profile</span>
+          </a>
+        </li><!-- End Profile Page Nav -->
     @if (auth()->user()->level=="admin")
+
         <li class="nav-item">
             <a class="nav-link {{ Request::is('data_admin*') ? 'active' : 'collapsed' }}" href="/data_admin">
                 <i class="bi bi-person"></i>
@@ -31,11 +38,42 @@
         </li><!-- End Admin Nav -->
 
         <li class="nav-item">
+            <a class="nav-link {{ (Request::is('data_pasar*') || Request::is('data_lapak')) ? 'active' : 'collapsed' }}" data-bs-target="#pasar-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-shop-window"></i>
+              <span>Data Pasar</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="pasar-nav" class="nav-content collapse {{ (Request::is('data_pasar*') || Request::is('data_lapak')) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a class="nav-content {{ Request::is('data_pasar') ? 'active' : '' }} " href="/data_pasar">
+                      <i class="bi bi-circle"></i><span>Data Pasar</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-content {{ Request::is('data_lapak') ? 'active' : '' }} " href="/data_lapak" >
+                      <i class="bi bi-circle"></i><span>Data Lapak</span>
+                    </a>
+                </li>
+            </ul>
+          </li>
+
+        {{-- <li class="nav-item">
           <a class="nav-link {{ Request::is('data_pasar*') ? 'active' : 'collapsed' }}" href="/data_pasar">
-            <i class="bi bi-shop-window"></i>
-            <span>Data Pasar</span>
+            <i class="bi bi-shop-window"></i><span>Data Pasar</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li><!-- End Data Pasar Nav -->
+          <ul id="pasar-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a class="nav-content {{ Request::is('data_pasar') ? 'active' : 'collapsed' }} " href="/sumber">
+                  <i class="bi bi-circle"></i><span>Data Pasar</span>
+                </a>
+              </li>
+              <li>
+                <a class="nav-content {{ Request::is('data_pasar') ? 'active' : 'collapsed' }} " href="/sumber">
+                  <i class="bi bi-circle"></i><span>Data Lapak</span>
+                </a>
+              </li>
+          </ul>
+        </li><!-- End Data Pasar Nav --> --}}
     @endif
 
 
@@ -43,7 +81,7 @@
         <a class="nav-link {{ Request::is('data_pedagang', 'palimanan', 'jamblang', 'sumber', 'batik', 'kue', 'pasalaran', 'babakan', 'cipeujeuh', 'ciledug') ? 'active' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="/data_pedagang">
           <i class="bi bi-people"></i><span>Data Pedagang</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="forms-nav" class="nav-content collapse {{ Request::is('data_pedagang', 'palimanan', 'jamblang', 'sumber', 'batik', 'kue', 'pasalaran', 'babakan', 'cipeujeuh', 'ciledug') ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
             {{-- <li>
                 <a class="nav-content {{ Request::is('data_pedagang') ? 'active' : 'collapsed' }} " href="/data_pedagang">
                     <i class="bi bi-circle"></i><span>Data Pedagang</span>
@@ -97,14 +135,22 @@
         </ul>
       </li><!-- End Data Pedagang Nav -->
 
+
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('calon_sewa') ? 'active' : 'collapsed' }}" href="/calon_sewa">
+        <a class="nav-link {{ Request::is('calon_sewa*') ? 'active' : 'collapsed' }}" href="/calon_sewa">
           <i class="bi bi-person-plus"></i>
           <span>Calon Penyewa Lapak</span>
         </a>
 
         </li><!-- End Calon Penyewa Page Nav -->
         @if (auth()->user()->level=="admin")
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('konfirmasi*') ? 'active' : 'collapsed' }}" href="/konfirmasi">
+                <i class="bi bi-person-check"></i>
+              <span>Konfirmasi Pembayaran</span>
+            </a>
+          </li><!-- End Calon Penyewa Page Nav -->
+
         <li class="nav-item">
             <a class="nav-link {{ Request::is('konten*') ? 'active' : 'collapsed' }}" href="/konten">
                 <i class="bi bi-layout-text-window-reverse"></i>
@@ -114,7 +160,7 @@
 
         <li class="nav-item">
             <a class="nav-link {{ Request::is('tentang*') ? 'active' : 'collapsed' }}" href="/tentang">
-                <i class="bi bi-layout-text-window-reverse"></i>
+                <i class="bi bi-info-square"></i>
                 <span>Tentang Kami</span>
             </a>
         </li><!-- End Konten Nav -->

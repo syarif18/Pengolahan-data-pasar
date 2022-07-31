@@ -17,7 +17,7 @@
             <div class="well-left">
               <div class="single-well">
                 <a href="#">
-                  <img src="{{ asset('landing_page') }}/assets/img/pasar_rakyat.png" alt="">
+                    <img src="{{ URL::to('/') }}/img/logo/{{ $about->gambar }}" alt="">
                 </a>
               </div>
             </div>
@@ -29,26 +29,7 @@
                 <a href="#">
                   <h4 class="sec-head">Pasar Rakyat</h4>
                 </a>
-                <p>
-                  Redug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure aspernatur sit adipisci quaerat unde at nequeRedug Lagre dolor sit amet, consectetur adipisicing elit. Itaque quas officiis iure
-                </p>
-                <ul>
-                  <li>
-                    <i class="bi bi-check"></i> Interior design Package
-                  </li>
-                  <li>
-                    <i class="bi bi-check"></i> Building House
-                  </li>
-                  <li>
-                    <i class="bi bi-check"></i> Reparing of Residentail Roof
-                  </li>
-                  <li>
-                    <i class="bi bi-check"></i> Renovaion of Commercial Office
-                  </li>
-                  <li>
-                    <i class="bi bi-check"></i> Make Quality Products
-                  </li>
-                </ul>
+                <p>{!! $about->body !!}</p>
               </div>
             </div>
           </div>
@@ -76,8 +57,8 @@
                   <div class="single-icon">
                     <i class="bi bi-phone"></i>
                     <p>
-                      Call: +62 231 321073<br>
-                      <span>Senin-Jumat (9am-4pm)</span>
+                      Call: {{ $about->nomor_kantor }}<br>
+                      <span>Senin-Jumat {{ $about->jam_kerja }}</span>
                     </p>
                   </div>
                 </div>
@@ -88,8 +69,8 @@
                   <div class="single-icon">
                     <i class="bi bi-envelope"></i>
                     <p>
-                      Email: Disperdagin@KabCireon.com<br>
-                      <span>Web: www.example.com</span>
+                      Email: {{ $about->email }}<br>
+                      {{-- <span>Web: www.example.com</span> --}}
                     </p>
                   </div>
                 </div>
@@ -100,8 +81,7 @@
                   <div class="single-icon">
                     <i class="bi bi-geo-alt"></i>
                     <p>
-                      Location: Jl Komplek Dinas Sumber<br>
-                      <span>NY 000000, IDN</span>
+                      Location: {{ $about->lokasi }}<br>
                     </p>
                   </div>
                 </div>
@@ -112,7 +92,8 @@
               <!-- Start Google Map -->
               <div class="col-md-12">
                 <!-- Start Map -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.0614483499376!2d108.47431261414309!3d-6.762362268005592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1e52ed0f81cd%3A0xca2a5ac5bdbd16fd!2sDinas%20Perdagangan%20Dan%20Perindustrian%20Kabupaten%20Cirebon!5e0!3m2!1sid!2sid!4v1647499779824!5m2!1sid!2sid" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.0614483499376!2d108.47431261414309!3d-6.762362268005592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1e52ed0f81cd%3A0xca2a5ac5bdbd16fd!2sDinas%20Perdagangan%20Dan%20Perindustrian%20Kabupaten%20Cirebon!5e0!3m2!1sid!2sid!4v1647499779824!5m2!1sid!2sid" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
+                <iframe src="{{ $about->link }}" width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 <!-- End Map -->
               </div>
               <!-- End Google Map -->
@@ -162,7 +143,7 @@
                 </div>
 
                 <p>6FQG+3J2, Sumber, Kec. Sumber, Kabupaten Cirebon, Jawa Barat 45611</p>
-                <div class="footer-icons">
+                {{-- <div class="footer-icons">
                   <ul>
                     <li>
                       <a href="#"><i class="bi bi-facebook"></i></a>
@@ -177,7 +158,7 @@
                       <a href="#"><i class="bi bi-linkedin"></i></a>
                     </li>
                   </ul>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>

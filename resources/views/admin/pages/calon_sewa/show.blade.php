@@ -10,7 +10,7 @@
         <div class="container mt-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Table with stripped rows</h5>
+              <h5 class="card-title">Table Data Calon Pedagang</h5>
 
               <!-- Table with stripped rows -->
               <table class="table table-striped">
@@ -22,6 +22,10 @@
                   <tr>
                     <th style="width: 50%">Jenis Tempat</th>
                     <td>{{ $data->jenis_tempat }}</td>
+                  </tr>
+                  <tr>
+                    <th style="width: 50%">Nomor Tempat</th>
+                    <td>{{ $data->nomor_tempat }}</td>
                   </tr>
                   <tr>
                     <th style="width: 50%">Jenis Jualan</th>
@@ -69,7 +73,9 @@
                       @if ($data->status == '0')
                         <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
                       @elseif ($data->status == '1')
-                        <button disabled = "disabled"  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui</i></button>
+                        <button disabled = "disabled"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui Kepala Pasar</i></button>
+                      @elseif ($data->status == '2')
+                        <button disabled = "disabled"  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Disetujui Dinas</i></button>
                       @else
                         <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
                       @endif
@@ -92,19 +98,19 @@
 
         </div>
         <div class="modal-footer">
-        @if ($data->status != '0')
+        @if ($data->status != '1')
             <button disabled = "disabled" class="btn btn-secondary">Selesai</button>
         @else
             <form action="{{ route('calon_sewa.update', $data->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                <input type="hidden" value="1" name="status">
+                <input type="hidden" value="2" name="status">
                 <button type="submit" class="btn btn-success"> <i class="bi bi-check-circle"></i> </button>
             </form>
             <form action="{{ route('calon_sewa.update', $data->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                <input type="hidden" value="2" name="status">
+                <input type="hidden" value="3" name="status">
                 <button type="submit" class="btn btn-danger"> <i class="bi bi-dash-circle"></i> </button>
             </form>
         @endif

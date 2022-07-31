@@ -66,10 +66,12 @@
                   <tr>
                     <th style="width: 50%">Status</th>
                     <td>
-                      @if ($data->status == '0')
+                        @if ($data->status == '0')
                         <button disabled = "disabled" class="btn btn-warning">Menunggu</i></button>
                       @elseif ($data->status == '1')
-                        <button  class="btn btn-success">Disetujui</i></button>
+                        <button disabled = "disabled" class="btn btn-primary">Proses</i></button>
+                      @elseif ($data->status == '2')
+                        <button disabled = "disabled" class="btn btn-success">Disetujui</i></button>
                       @else
                         <button disabled = "disabled" class="btn btn-danger">Ditolak</i></button>
                       @endif

@@ -108,7 +108,7 @@
 
         </div>
         <div class="modal-footer">
-        <a href="{{ url('calon_pedagang') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Kembali</a>
+        <a href="{{ url('informasi_penyewa') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Kembali</a>
         </div>
         </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lapak;
+use App\Models\NomorTempat;
 use Illuminate\Support\Facades\File;
 use Auth;
 
@@ -16,7 +17,7 @@ class LapakController extends Controller
      */
     public function index()
     {
-        $datalapak = Lapak::join('users', 'lapaks.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->get();
+        $datalapak = Lapak::select('*', 'lapaks.id AS lapak_id')->join('users', 'lapaks.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->get();
         // dd($datalapak);
         return view('admin_pasar.pages.lapak.lapak', [
             "title" => "Data Lapak"
@@ -57,7 +58,6 @@ class LapakController extends Controller
         $datalapak = new Lapak;
         $datalapak->jenis_tempat = $request->jenis_tempat;
         $datalapak->jumlah_tempat = $request->jumlah_tempat;
-        $datalapak->tempat_kosong = $request->jumlah_tempat;
         $datalapak->ukuran_tempat = $request->ukuran_tempat;
         $datalapak->harga = $request->harga;
         $datalapak->gambar1 = $gambarlapak1;
@@ -69,6 +69,17 @@ class LapakController extends Controller
         // $upload2->move(public_path().'/img/gambarlapak', $gambarlapak2);
         // $upload3->move(public_path().'/img/gambarlapak', $gambarlapak3);
         $datalapak->save();
+
+        // $data = Lapak::select('*', 'lapaks.id AS lapak_id')->get();
+
+        for($i = 001; $i <= $request->jumlah_tempat; $i++){
+            NomorTempat::create([
+                'lapak_id' => $datalapak->id,
+                'nomor_tempat' => $i
+            ]);
+        }
+
+
         return redirect('lapak')->with('success', 'Data Lapak Berhasil Ditambahkan!');
     }
 
@@ -112,17 +123,21 @@ class LapakController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($lapak_id)
     {
-        $datalapak = Lapak::findOrFail($id);
+        $datalapak = Lapak::findOrFail($lapak_id);
+
         $upload = public_path("img/gambarlapak/{$datalapak->gambar1}");
         File::delete($upload);
-        $upload2 = public_path("img/gambarlapak/{$datalapak->gambar1}");
-        File::delete($upload2);
-        $upload3 = public_path("img/gambarlapak/{$datalapak->gambar1}");
-        File::delete($upload3);
 
         $datalapak->delete();
-        return redirect('lapak')->with('delete', 'Data Berhasil DIhapus!');
+
+        for($i = 001; $i <= $lapak_id->jumlah_tempat; $i++){
+            NomorTempat::delete([
+                'lapak_id' => $datalapak->id,
+                'nomor_tempat' => $i
+            ]);
+        }
+        return redirect('lapak')->with('delete', 'Data Berhasil Dihapus!');
     }
 }

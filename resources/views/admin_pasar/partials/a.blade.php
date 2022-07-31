@@ -25,6 +25,13 @@
             </ul>
           </li><!-- End Dashboard Nav -->
 
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('profil*') ? 'active' : 'collapsed' }}" href="/profil">
+              <i class="bi bi-person"></i>
+              <span>Profile</span>
+            </a>
+          </li><!-- End Profile Page Nav -->
+
       <li class="nav-item">
         <a class="nav-link {{ Request::is('pedagang*') ? 'active' : 'collapsed' }}" href="/pedagang">
           <i class="bi bi-person"></i>
@@ -40,11 +47,17 @@
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('calon_pedagang*') ? 'active' : 'collapsed' }}" href="/calon_pedagang">
+        <a class="nav-link {{ Request::is('calon_penyewa*') ? 'active' : 'collapsed' }}" href="/calon_penyewa">
           <i class="bi bi-person-plus"></i>
-          <span>Calon Pedagang</span>
+          <span>Calon Penyewa</span>
         </a>
       </li><!-- End Calon Penyewa Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('informasi_penyewa') ? 'active' : 'collapsed' }}" href="/informasi_penyewa">
+          <i class="bi bi-person-plus"></i>
+          <span>Informasi Calon Penyewa</span>
+        </a>
 
       {{-- <li class="nav-item">
         <a class="nav-link {{ Request::is('sewa*') ? 'active' : 'collapsed' }}" href="/sewa">

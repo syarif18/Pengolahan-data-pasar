@@ -42,10 +42,10 @@ class RegistrasiController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'nama' => 'required|max:255',
             'level' => 'required|max:255',
             'username' => 'required|max:255|min:5|unique:users',
-            'email' => 'required|email:dns|unique:users',
+            // 'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:5|max:255'
         ]);
 
@@ -53,9 +53,9 @@ class RegistrasiController extends Controller
 
         User::create($validatedData);
 
-        $request->session()->flash('success', 'Registrasi Berhasil!!! Silahkan Login');
+        // $request->session()->put('success', 'Registrasi Berhasil!!! Silahkan Login');
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Silahkan Login');
     }
 
     /**

@@ -17,7 +17,7 @@
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="detailpasar">
+                  <a class="services-icon" href="pasarsumber">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Sumber</h4>
@@ -31,7 +31,7 @@
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarjamblang">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Jamblang</h4>
@@ -46,7 +46,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarpalimanan">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Palimanan</h4>
@@ -61,7 +61,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarbatik">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Batik </h4>
@@ -77,7 +77,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarkue">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Kue</h4>
@@ -93,7 +93,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarpasalaran">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Pasalaran</h4>
@@ -109,7 +109,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarbabakan">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Babakan</h4>
@@ -125,7 +125,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarcipuejuh">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Cipejeuh</h4>
@@ -141,7 +141,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href="#">
+                  <a class="services-icon" href="pasarciledug">
                     <i class="bi bi-shop"></i>
                   </a>
                   <h4>Pasar Ciledug</h4>

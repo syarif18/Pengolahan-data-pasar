@@ -4,8 +4,9 @@
 
 @include('admin.partials.header')
 @include('admin.partials.sidebar')
+@include('sweetalert::alert')
 
-@if(session()->has('success'))
+{{-- @if(session()->has('success'))
     <div class="alert alert-primary alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -17,11 +18,11 @@
         {{ session('delete') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-@endif
+@endif --}}
 
 
 <div>
-    <a href="{{ 'data_admin/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Tambah Admin</i></a>
+    <a href="{{ 'data_admin/create' }}" class="btn btn-primary"><i class="bi bi-plus-circle"> Tambah Pengelola</i></a>
 </div>
 
 <section>
@@ -31,13 +32,14 @@
                     <center><h2>Data Admin</h2></center>
                     <div class="card">
                         <div class="card-body mt-3">
+                            <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Level</th>
                                     <th scope="col">Username</th>
+                                    <th scope="col">Level</th>
+                                    <th scope="col">Nama</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                                 </thead>
@@ -45,9 +47,9 @@
                                     @foreach ($data as $dataAdmin)
                                         <tr>
                                             <td scope="col">{{ $loop->iteration }}</td>
-                                            <td>{{ $dataAdmin->name }}</td>
-                                            <td>{{ $dataAdmin->level }}</td>
                                             <td>{{ $dataAdmin->username }}</td>
+                                            <td>{{ $dataAdmin->level }}</td>
+                                            <td>{{ $dataAdmin->nama }}</td>
                                             <td>
                                             <form action="{{ route('data_admin.destroy', $dataAdmin->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Hapus Data?')">
                                                 @method('delete')
@@ -59,6 +61,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>

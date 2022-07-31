@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SewaUser;
 use App\Models\Lapak;
+use App\Models\NomorTempat;
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -32,6 +33,7 @@ class SewaUserController extends Controller
 
         // dd($request->search);
         $data = SewaUser::select('*', 'sewa_users.id AS sewa_id')->join('users', 'sewa_users.user_id', '=', 'users.id' )->where('user_id', '=', Auth::user()->id)->get();
+        // dd(Auth::user()->id);
         return view('user.pages.sewa.sewa', [
             "title" => "Sewa Lapak"
         ])->with([
@@ -49,10 +51,46 @@ class SewaUserController extends Controller
     {
         // $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
         // $ukuran = Lapak::where('user_id', '=', Auth::user()->id)->get();
-        return view('user.pages.sewa.create', [
-            "title" => "Sewa Lapak"
+        $lapak = Lapak::join('users', 'lapaks.user_id', '=', 'users.id')->get();
+        $data = [];
+        foreach ($lapak as $key => $value) {
+            $penyewa = SewaUser::whereNotNull('nomor_tempat')->get();
+            $nomor = [];
+            foreach ($penyewa as $k => $v) {
+                $nomor[] = $v->nomor_tempat;
+            }
+            $tempatkosong = NomorTempat::where('lapak_id', '=', $value->id)->whereNotIn('id', $nomor)->get();
+            $data[] = [
+                'nama_pasar' => $value->nama_pasar,
+                'jenis_tempat' => $value->jenis_tempat,
+                'ukuran_tempat' => $value->ukuran_tempat,
+                'harga' => $value->harga,
+                'tempat_kosong' => count($tempatkosong),
+                'gambar1' => $value->gambar1
+            ];
+        }
+
+        // dd($data);
+        return view('user.pages.sewa.create1', [
+            "title" => "Sewa Lapak",
+            'data' => $data
         ]);
     }
+
+    public function createform(Request $request)
+    {
+        // dd($request);
+        return view('user.pages.sewa.create', [
+            "title" => "Sewa Lapak",
+            'data' => [
+                'nama_pasar' => $request->nama_pasar,
+                'jenis_tempat' => $request->jenis_tempat,
+                'ukuran_tempat' => $request->ukuran_tempat
+            ]
+        ]);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -167,9 +205,9 @@ class SewaUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($sewa_id)
     {
-        $data = SewaUser::findOrFail($id);
+        $data = SewaUser::findOrFail($sewa_id);
         $imgpoto = public_path("img/gambarpoto/{$data->gambar_paspoto}");
         File::delete($imgpoto);
         $imgktp = public_path("img/gambarktp/{$data->gambar_ktp}");

@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SewaUser;
 use App\Models\Lapak;
+use App\Models\NomorTempat;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
 
 class CalonPedagangController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,17 +20,21 @@ class CalonPedagangController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user()->name;
-        $data = SewaUser::where('status', '1')->where('nama_pasar', $user);
+        $user = Auth::user()->nama_pasar;
+        $data = SewaUser::OrderBy('created_at', 'desc')->where('nama_pasar', $user);
 
         if($request->has('search')){
             $data->where('nama', 'like', '%' . $request->search . '%');
         }
 
-        $data = $data->latest()->paginate(5);
+        $data = $data->latest()->paginate(10);
+        // $data = SewaUser::OrderBy('created_at', 'desc')->get();
 
-        return view('admin_pasar.pages.calon_pedagang.calon_pedagang', [
-            "title" => "Data Calon pedagang"
+
+        // dd($request->search);
+
+        return view('admin_pasar.pages.calon_sewa.calon_sewa', [
+            "title" => "Data Calon Penyewa"
         ])->with([
             "data" => $data,
             "search" => $request->search?$request->search:''
@@ -64,9 +70,10 @@ class CalonPedagangController extends Controller
      */
     public function show($id)
     {
+
         $data = SewaUser::findOrFail($id);
-        return view('admin_pasar.pages.calon_pedagang.show', [
-            "title" => "Lihat informasi data"
+        return view('admin_pasar.pages.calon_sewa.show', [
+            "title" => "Lihat Details"
         ])->with([
             "data" => $data
         ]);
@@ -81,10 +88,18 @@ class CalonPedagangController extends Controller
     public function edit($id)
     {
         $data = SewaUser::findOrFail($id);
-        $lapak = Lapak::where('user_id', '=', Auth::user()->id)->get();
-        $lapaks = Lapak::where('user_id', '=', Auth::user()->id)->get();
+        $lapaks = Lapak::where('user_id', '=', Auth::user()->id)->where('jenis_tempat', '=', $data->jenis_tempat)->first();
+        $penyewa = SewaUser::whereNotNull('nomor_tempat')->get();
 
-        return view('admin_pasar.pages.calon_pedagang.edit', [
+        $nomor = [];
+        foreach ($penyewa as $key => $value) {
+            $nomor[] = $value->nomor_tempat;
+        }
+
+        $lapak = NomorTempat::where('lapak_id', '=', $lapaks->id)->whereNotIn('id', $nomor)->get();
+
+        // dd($lapak);
+        return view('admin_pasar.pages.calon_sewa.edit', [
             "title" => "Konfirmasi Data"
         ])->with([
             "data" => $data,
@@ -113,20 +128,23 @@ class CalonPedagangController extends Controller
             return dd($th);
         }
 
-        $item = SewaUser::findOrFail($id);
-        $item->update(['tahun_masuk' => $request->tahun_masuk]);
+        // $item = SewaUser::findOrFail($id);
+        // $item->update(['tahun_masuk' => $request->tahun_masuk]);
+
+        // $item = SewaUser::findOrFail($id);
+        // $item->update(['konfirmasi' => $request->konfirmasi]);
 
         $item = SewaUser::findOrFail($id);
-        $item->update(['konfirmasi' => $request->konfirmasi]);
+        $item->update(['status' => $request->status]);
 
         $item = SewaUser::findOrFail($id);
         $item->update(['nomor_tempat' => $request->nomor_tempat]);
 
-        $item = SewaUser::findOrFail($id);
-        $item->update(['status_pembayaran' => $request->status_pembayaran]);
+        // $item = SewaUser::findOrFail($id);
+        // $item->update(['status_pembayaran' => $request->status_pembayaran]);
 
 
-        return redirect('calon_pedagang')->with('success', 'Konten Berhasil Diupdate!');
+        return redirect('calon_penyewa')->with('success', 'Konten Berhasil Diupdate!');
     }
 
     /**
@@ -137,6 +155,7 @@ class CalonPedagangController extends Controller
      */
     public function destroy($id)
     {
+
         $data = SewaUser::findOrFail($id);
         $imgpoto = public_path("img/gambarpoto/{$data->gambar_paspoto}");
         File::delete($imgpoto);
@@ -146,6 +165,8 @@ class CalonPedagangController extends Controller
         File::delete($imgkk);
 
         $data->delete();
-        return redirect('calon_pedagang')->with('delete', 'Data Berhasil DIhapus!');
+        return redirect('calon_penyewa')->with('delete', 'Data Berhasil DIhapus!');
     }
+
+
 }

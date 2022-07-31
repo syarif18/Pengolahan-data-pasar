@@ -21,7 +21,7 @@ class BabakanController extends Controller
     public $wanita;
     public $pria;
 
-    public function index()
+    public function index(Request $request)
     {
         $babakan = DB::table('sewa_users')->where('nama_pasar', 'pasar babakan')->where('konfirmasi', '1')->count();
         $wanita = DB::table('sewa_users')->where('nama_pasar', 'pasar babakan')->where('jenis_kelamin', 'perempuan')->where('konfirmasi', '1')->count();
@@ -35,7 +35,7 @@ class BabakanController extends Controller
 
         $userbabakan = $userbabakan->latest()->paginate(10);
 
-        return view('admin.pages.pasar.babakan', [
+        return view('admin.pages.pasar.babakan.babakan', [
             "title" => "Pasar Babakan",
         ])->with([
             "userbabakan" => $userbabakan,

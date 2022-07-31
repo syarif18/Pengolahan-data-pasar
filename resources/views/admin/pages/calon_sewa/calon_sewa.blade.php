@@ -57,19 +57,19 @@
                               <td>{{ $dataSewa->nama_pasar }}</td>
                               <td>
                                 {{-- kondisi button jika data sudah terisi --}}
-                                @if ($dataSewa->status != '0')
+                                @if ($dataSewa->status != '1')
                                     <button disabled = "disabled" class="btn btn-secondary">Selesai</button>
                                 @else
                                     <form action="{{ route('calon_sewa.update', $dataSewa->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('put')
-                                        <input type="hidden" value="1" name="status">
+                                        <input type="hidden" value="2" name="status">
                                         <button type="submit" class="btn btn-success"> <i class="bi bi-check-circle"></i> </button>
                                     </form>
                                     <form action="{{ route('calon_sewa.update', $dataSewa->id) }}" class="d-inline" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('put')
-                                        <input type="hidden" value="2" name="status">
+                                        <input type="hidden" value="3" name="status">
                                         <button type="submit" class="btn btn-danger"> <i class="bi bi-dash-circle"></i> </button>
                                     </form>
                                 @endif

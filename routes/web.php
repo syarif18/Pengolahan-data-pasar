@@ -30,7 +30,9 @@ use App\Http\Controllers\SewaUserController;
 use App\Http\Controllers\SumberController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\DataPedagangController;
+use App\Http\Controllers\KonfirmasiController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -58,15 +60,18 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin,kabid']], function(){
 
     Route::get('admin', [DashboardAdminController::class, 'index']);
 
+    Route::get('profil', [ProfileUserController::class, 'indexpengelola'])->name('profil');
+    Route::put('profil/update/{id}', [ProfileUserController::class, 'updatepengelola'])->name('profil.update');
+
     Route::resource('calon_sewa', CalonSewaController::class);
 
     Route::resource('palimanan', PalimananController::class);
     Route::post('palimananpdf', [PalimananController::class, 'pedagangpdf'])->name('palimananpdf');
-    Route::post('exportpalimanan', [PalimananController::class, 'pedagangExport'])->name('exportpalimanan');
+    Route::post('exportPalimanan', [PalimananController::class, 'pedagangExport'])->name('exportpalimanan');
 
     Route::resource('jamblang', JamblangController::class);
     Route::post('jamblangpdf', [JamblangController::class, 'pedagangpdf'])->name('jamblangpdf');
-    Route::post('exportjamblang', [JamblangController::class, 'pedagangExport'])->name('exportjamblang');
+    Route::post('exportJamblang', [JamblangController::class, 'pedagangExport'])->name('exportjamblang');
 
     Route::resource('sumber', SumberController::class);
     Route::post('sumberpdf', [SumberController::class, 'pedagangpdf'])->name('sumberpdf');
@@ -103,13 +108,18 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function(){
 
     Route::resource('data_admin', DataAdminController::class);
 
+    Route::resource('konfirmasi', KonfirmasiController::class);
+
     Route::resource('data_pasar', DataPasarController::class);
-    // Route::get('data_pasar/create', [DataPasarController::class, 'create']);
+    Route::get('data_lapak', [DataPasarController::class, 'indexlapak'])->name('data_lapak');
 
     Route::resource('konten', KontenController::class);
     // Route::get('konten/checkSlug', [KontenController::class . 'checkSlug']);
 
     Route::get('tentang', [TentangController::class, 'adminindex'])->name('tentang');
+    Route::get('tentang/create', [TentangController::class, 'create'])->name('tentang.create');
+    Route::post('tentang/store', [TentangController::class, 'store'])->name('tentang.store');
+    Route::put('tentang/update/', [TentangController::class, 'update'])->name('tentang.update');
 
     // Route::resource('data_pedagang', DataPedagangController::class);
 
@@ -126,7 +136,16 @@ Route::group(['middleware' => ['auth', 'ceklevel:pengelola']], function () {
 
     Route::resource('lapak', LapakController::class);
 
-    Route::resource('calon_pedagang', CalonPedagangController::class);
+    Route::resource('calon_penyewa', CalonPedagangController::class);
+
+    Route::get('informasi_penyewa', [CalonSewaController::class, 'indexpengelola']);
+    // Route::post('update_penyewa/{id}', [CalonSewaController::class, 'updatepengelola'])->name('update_penyewa');
+    Route::get('show_penyewa/{id}', [CalonSewaController::class, 'showpengelola'])->name('show_penyewa');
+    // Route::get('edit_penyewa/{id}', [CalonSewaController::class, 'editpengelola'])->name('edit_penyewa');
+    Route::delete('destroy_penyewa/{id}', [CalonSewaController::class, 'destroypengelola'])->name('destroy_penyewa');
+
+
+
 
 });
 
@@ -138,6 +157,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function(){
     Route::resource('profile', ProfileUserController::class);
 
     Route::resource('sewa', SewaUserController::class);
+    Route::post('createform', [SewaUserController::class, 'createform'])->name('createform');
 
     Route::resource('informasi', InformasiUserController::class);
     // Route::put('informasi/updatebukti/{id}', [InformasiUserController::class, 'updatebukti'])->name('informasi.update');
@@ -152,8 +172,15 @@ Route::get('berita', [BeritaController::class, 'index'])->name('berita');
 Route::get('detailberita/{id}', [BeritaController::class, 'detailberita'])->name('detailberita');
 
 Route::get('pasar', [PasarController::class, 'index']);
-Route::get('detailpasar', [PasarController::class, 'detailpasar'])->name('detailpasar');
-Route::get('detailpasargambar/{jenis_tempat}', [PasarController::class, 'detailpasargambar'])->name('detailpasargambar');
+Route::get('pasarsumber', [PasarController::class, 'pasarsumber'])->name('pasarsumber');
+Route::get('pasarpalimanan', [PasarController::class, 'pasarpalimanan'])->name('pasarpalimanan');
+Route::get('pasarjamblang', [PasarController::class, 'pasarjamblang'])->name('pasarjamblang');
+Route::get('pasarbatik', [PasarController::class, 'pasarbatik'])->name('pasarbatik');
+Route::get('pasarkue', [PasarController::class, 'pasarkue'])->name('pasarkue');
+Route::get('pasarcipeujeuh', [PasarController::class, 'pasarcipeujeuh'])->name('pasarcipeujeuh');
+Route::get('pasarpasalaran', [PasarController::class, 'pasarpasalaran'])->name('pasarpasalaran');
+Route::get('pasarbabakan', [PasarController::class, 'pasarbabakan'])->name('pasarbabakan');
+Route::get('pasarciledug', [PasarController::class, 'pasarciledug'])->name('pasarciledug');
 
 
 Route::get('kontak', [KontakController::class, 'index']);
